@@ -9,7 +9,6 @@ import Image from "next/image";
 
 // icons
 import {FaSuitcase} from "react-icons/fa";
-import {Button} from "@/components/ui/button";
 
 interface TimelineImagesProps {
     images: string[];
@@ -44,11 +43,12 @@ interface TimelineEntryProps {
     start: string;
     end?: string;
     currentJob?: boolean;
+    lastEntry?: boolean;
 }
 
-export default function TimelineEntry({title, description, currentJob = false, start, end}: TimelineEntryProps) {
+export default function TimelineEntry({title, description, currentJob = false, start, end, lastEntry = false}: TimelineEntryProps) {
     return (
-        <ol className={`pb-25 relative ${!currentJob && "border-s border-dashed dark:border-gray-700"}`}>
+        <ol className={`pb-5 relative ${!lastEntry && "border-s border-dashed dark:border-gray-700"}`}>
             <li className="ml-8 ms-6">
                 <span className="absolute flex items-center justify-center w-6 h-6 rounded-full -start-3 ring-8 dark:ring-primary-dark dark:bg-primary">
                     <span className={`absolute size-7 dark:bg-primary rounded-full z-[-1] ${currentJob && "animate-ping"}`}/>

@@ -40,7 +40,7 @@ export default function ProjectCard({title, year, github, githubLink, badges, de
                 </CardHeader>
                 <CardContent className="h-full">
                     <Image
-                        className="h-auto w-full"
+                        className="rounded-md h-auto w-full"
                         src="https://placehold.co/768x512.png"
                         alt={title}
                         width={768}

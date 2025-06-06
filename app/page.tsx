@@ -46,7 +46,7 @@ export default function Home() {
             <section className="flex flex-col gap-10 min-h-screen py-[10%]">
                 <div>
                     <h2 className="text-4xl leading-15 font-bold">projects.</h2>
-                    <p className="text-gray-400">my best ideas expressed in code.</p>
+                    <p className="text-gray-400">a glimpse into the products i've crafted, the ideas i've pursued, and the problems i've solved along the way.</p>
                 </div>
 
                 <div className="h-full grid grid-cols-4 gap-x-2 gap-y-5">
@@ -80,6 +80,18 @@ export default function Home() {
 
                 <div className="pl-5">
                     <TimelineEntry
+                        title="Flynn Group of Companies"
+                        description={
+                            <p>
+                                💻 Software Engineering Intern <br/>
+                                🏗️ Innovating and optimizing processes in the construction industry through software solutions
+                            </p>
+                        }
+                        start="May 2025"
+                        end="Present"
+                        currentJob={true}
+                    />
+                    <TimelineEntry
                         title="Jitto"
                         description={
                             <p>
@@ -92,16 +104,17 @@ export default function Home() {
                         currentJob={false}
                     />
                     <TimelineEntry
-                        title="Flynn Group of Companies"
+                        title="Google Developer's Student Clubs"
                         description={
                             <p>
-                                💻 Software Engineering Intern <br/>
-                                🏗️ Innovating and optimizing processes in the construction industry through software solutions
+                                💼 Technical Co-lead <br/>
+                                👨‍💻 Guiding and leading fellow computer students to success
                             </p>
                         }
-                        start="May 2025"
-                        end="Present"
-                        currentJob={true}
+                        start="Oct 2023"
+                        end="May 2024"
+                        currentJob={false}
+                        lastEntry={true}
                     />
                 </div>
             </section>
