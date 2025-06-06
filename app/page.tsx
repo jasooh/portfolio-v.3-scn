@@ -1,17 +1,17 @@
 // homepage
 // it's the homepage.
 
+import React from "react";
+
+// components
+
+import ProjectCard from "@/components/ProjectCard";
+
 // icons
 import {FaGithub} from "react-icons/fa";
 import {FaLinkedin} from "react-icons/fa";
 import {IoDocumentOutline} from "react-icons/io5";
 import {FaArrowDownLong} from "react-icons/fa6";
-import {Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
-import {Button} from "@/components/ui/button";
-import {Label} from "@/components/ui/label";
-import {Input} from "@/components/ui/input";
-
-// components
 
 export default function Home() {
     return (
@@ -42,85 +42,46 @@ export default function Home() {
             </section>
 
             {/* projects */}
-            <section className="flex flex-col gap-10 h-screen py-[10%]">
+            <section className="flex flex-col gap-10 min-h-screen py-[10%]">
                 <div>
                     <h2 className="text-2xl font-bold">projects.</h2>
                     <p className="text-gray-400">my best ideas expressed in code.</p>
                 </div>
 
-                {/* TODO: Make this project card into a component */}
-                <div className="h-full grid grid-cols-3">
-                    <Card className="w-full max-w-sm">
-                        <CardHeader>
-                            <CardTitle>Login to your account</CardTitle>
-                            <CardDescription>
-                                Enter your email below to login to your account
-                            </CardDescription>
-                            <CardAction>
-                                <Button variant="link">Sign Up</Button>
-                            </CardAction>
-                        </CardHeader>
-                        <CardContent className="h-full">
-
-                        </CardContent>
-                        <CardFooter className="flex-col gap-2">
-                            <Button type="submit" className="w-full">
-                                Login
-                            </Button>
-                            <Button variant="outline" className="w-full">
-                                Login with Google
-                            </Button>
-                        </CardFooter>
-                    </Card>
-                    <Card className="w-full max-w-sm">
-                        <CardHeader>
-                            <CardTitle>Login to your account</CardTitle>
-                            <CardDescription>
-                                Enter your email below to login to your account
-                            </CardDescription>
-                            <CardAction>
-                                <Button variant="link">Sign Up</Button>
-                            </CardAction>
-                        </CardHeader>
-                        <CardContent className="h-full">
-
-                        </CardContent>
-                        <CardFooter className="flex-col gap-2">
-                            <Button type="submit" className="w-full">
-                                Login
-                            </Button>
-                            <Button variant="outline" className="w-full">
-                                Login with Google
-                            </Button>
-                        </CardFooter>
-                    </Card>
-                    <Card className="w-full max-w-sm">
-                        <CardHeader>
-                            <CardTitle>Login to your account</CardTitle>
-                            <CardDescription>
-                                Enter your email below to login to your account
-                            </CardDescription>
-                            <CardAction>
-                                <Button variant="link">Sign Up</Button>
-                            </CardAction>
-                        </CardHeader>
-                        <CardContent className="h-full">
-
-                        </CardContent>
-                        <CardFooter className="flex-col gap-2">
-                            <Button type="submit" className="w-full">
-                                Login
-                            </Button>
-                            <Button variant="outline" className="w-full">
-                                Login with Google
-                            </Button>
-                        </CardFooter>
-                    </Card>
+                <div className="h-full grid grid-cols-3 gap-y-5">
+                    <ProjectCard
+                        title="project #1"
+                        year={2025}
+                        github={true}
+                        badges={["react", "tensorflow"]}
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan nibh malesuada finibus ornare. Nam sed arcu placerat, mollis ligula id, dapibus lectus."
+                    />
+                    <ProjectCard
+                        title="project #1"
+                        year={2025}
+                        github={true}
+                        badges={["react", "tensorflow"]}
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan nibh malesuada finibus ornare. Nam sed arcu placerat, mollis ligula id, dapibus lectus."
+                    />
+                    <ProjectCard
+                        title="project #1"
+                        year={2025}
+                        github={true}
+                        badges={["react", "tensorflow"]}
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan nibh malesuada finibus ornare. Nam sed arcu placerat, mollis ligula id, dapibus lectus."
+                    />
+                    <ProjectCard
+                        title="project #1"
+                        year={2025}
+                        github={true}
+                        badges={["react", "tensorflow"]}
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan nibh malesuada finibus ornare. Nam sed arcu placerat, mollis ligula id, dapibus lectus."
+                    />
                 </div>
             </section>
 
             {/* experience */}
-            <section className="flex gap-5 h-screen py-[10%]">
+            <section className="flex gap-5 min-h-screen py-[10%]">
                 <div>
                     <h2 className="text-2xl font-bold">experience.</h2>
                     <p className="text-gray-400">proof of my abilities.</p>
