@@ -12,6 +12,7 @@ import {FaGithub} from "react-icons/fa";
 import {FaLinkedin} from "react-icons/fa";
 import {IoDocumentOutline} from "react-icons/io5";
 import {FaArrowDownLong} from "react-icons/fa6";
+import TimelineSegment from "@/components/TimelineSegment";
 
 export default function Home() {
     return (
@@ -44,7 +45,7 @@ export default function Home() {
             {/* projects */}
             <section className="flex flex-col gap-10 min-h-screen py-[10%]">
                 <div>
-                    <h2 className="text-2xl font-bold">projects.</h2>
+                    <h2 className="text-4xl leading-15 font-bold">projects.</h2>
                     <p className="text-gray-400">my best ideas expressed in code.</p>
                 </div>
 
@@ -81,11 +82,20 @@ export default function Home() {
             </section>
 
             {/* experience */}
-            <section className="flex gap-5 min-h-screen py-[10%]">
+            <section className="flex flex-col gap-10 min-h-screen py-[10%]">
                 <div>
-                    <h2 className="text-2xl font-bold">experience.</h2>
-                    <p className="text-gray-400">proof of my abilities.</p>
+                    <h2 className="text-4xl leading-15 font-bold">experience.</h2>
+                    <p className="text-gray-400">
+                        a collection of the teams i&#39;ve built with, the systems i&#39;ve scaled, and the lessons
+                        i&#39;ve carried
+                        forward.
+                    </p>
                 </div>
+
+                <ol className="relative border-s border-gray-200 dark:border-gray-700">
+                    <TimelineSegment/>
+                    <TimelineSegment/>
+                </ol>
             </section>
         </main>
     );
