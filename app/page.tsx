@@ -12,7 +12,7 @@ import {FaGithub} from "react-icons/fa";
 import {FaLinkedin} from "react-icons/fa";
 import {IoDocumentOutline} from "react-icons/io5";
 import {FaArrowDownLong} from "react-icons/fa6";
-import TimelineSegment from "@/components/TimelineSegment";
+import TimelineEntry from "@/components/TimelineEntry";
 
 export default function Home() {
     return (
@@ -49,21 +49,7 @@ export default function Home() {
                     <p className="text-gray-400">my best ideas expressed in code.</p>
                 </div>
 
-                <div className="h-full grid grid-cols-3 gap-y-5">
-                    <ProjectCard
-                        title="project #1"
-                        year={2025}
-                        github={true}
-                        badges={["react", "tensorflow"]}
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan nibh malesuada finibus ornare. Nam sed arcu placerat, mollis ligula id, dapibus lectus."
-                    />
-                    <ProjectCard
-                        title="project #1"
-                        year={2025}
-                        github={true}
-                        badges={["react", "tensorflow"]}
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan nibh malesuada finibus ornare. Nam sed arcu placerat, mollis ligula id, dapibus lectus."
-                    />
+                <div className="h-full grid grid-cols-4 gap-x-2 gap-y-5">
                     <ProjectCard
                         title="project #1"
                         year={2025}
@@ -92,10 +78,32 @@ export default function Home() {
                     </p>
                 </div>
 
-                <ol className="relative border-s border-gray-200 dark:border-gray-700">
-                    <TimelineSegment/>
-                    <TimelineSegment/>
-                </ol>
+                <div className="pl-5">
+                    <TimelineEntry
+                        title="Jitto"
+                        description={
+                            <p>
+                                💻 Full Stack Engineering Intern <br/>
+                                🍅 Innovating and optimizing processes in the produce industry through software solutions
+                            </p>
+                        }
+                        start="July 2024"
+                        end="June 2025"
+                        currentJob={false}
+                    />
+                    <TimelineEntry
+                        title="Flynn Group of Companies"
+                        description={
+                            <p>
+                                💻 Software Engineering Intern <br/>
+                                🏗️ Innovating and optimizing processes in the construction industry through software solutions
+                            </p>
+                        }
+                        start="May 2025"
+                        end="Present"
+                        currentJob={true}
+                    />
+                </div>
             </section>
         </main>
     );
