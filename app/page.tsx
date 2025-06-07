@@ -17,7 +17,7 @@ import {Button} from "@/components/ui/button";
 
 export default function Home() {
     return (
-        <main className="px-[10%]">
+        <main className="px-[10%] max-w-[1800px]">
             <section className="flex relative items-center justify-center h-screen">
                 <div className="flex flex-col gap-10">
                     <header className="text-center">
@@ -45,11 +45,23 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* about */}
+            <section className="flex flex-col gap-10 min-h-screen py-[10%]">
+                <div>
+                    <h2 className="text-5xl leading-25 font-bold">projects.</h2>
+                    <p className="text-gray-400">
+                        a glimpse into the products i&#39;ve crafted, the ideas i&#39;ve pursued, and the problems i&#39;ve solved along the way.
+                    </p>
+                </div>
+            </section>
+
             {/* projects */}
             <section className="flex flex-col gap-10 min-h-screen py-[10%]">
                 <div>
-                    <h2 className="text-4xl leading-15 font-bold">projects.</h2>
-                    <p className="text-gray-400">a glimpse into the products i've crafted, the ideas i've pursued, and the problems i've solved along the way.</p>
+                    <h2 className="text-5xl leading-25 font-bold">projects.</h2>
+                    <p className="text-gray-400">
+                        a glimpse into the products i&#39;ve crafted, the ideas i&#39;ve pursued, and the problems i&#39;ve solved along the way.
+                    </p>
                 </div>
 
                 <div className="h-full grid grid-cols-4 gap-x-2 gap-y-5">
@@ -73,7 +85,7 @@ export default function Home() {
             {/* experience */}
             <section className="flex flex-col gap-10 min-h-screen py-[10%]">
                 <div>
-                    <h2 className="text-4xl leading-15 font-bold">experience.</h2>
+                    <h2 className="text-5xl leading-25 font-bold">experience.</h2>
                     <p className="text-gray-400">
                         a collection of the teams i&#39;ve built with, the systems i&#39;ve scaled, and the lessons
                         i&#39;ve carried
