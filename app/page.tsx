@@ -14,6 +14,7 @@ import {IoDocumentOutline} from "react-icons/io5";
 import {FaArrowDownLong} from "react-icons/fa6";
 import TimelineEntry from "@/components/TimelineEntry";
 import {Button} from "@/components/ui/button";
+import GitHubCalendar from "react-github-calendar";
 
 export default function Home() {
     return (
@@ -42,16 +43,6 @@ export default function Home() {
                 <div className="absolute flex justify-center bottom-10 w-full">
                     <FaArrowDownLong
                         className="opacity-50 animate-bounce size-5"/>
-                </div>
-            </section>
-
-            {/* about */}
-            <section className="flex flex-col gap-10 min-h-screen py-[10%]">
-                <div>
-                    <h2 className="text-5xl leading-25 font-bold">projects.</h2>
-                    <p className="text-gray-400">
-                        a glimpse into the products i&#39;ve crafted, the ideas i&#39;ve pursued, and the problems i&#39;ve solved along the way.
-                    </p>
                 </div>
             </section>
 
@@ -131,6 +122,14 @@ export default function Home() {
                         currentJob={false}
                         lastEntry={true}
                     />
+                </div>
+            </section>
+
+            {/* more */}
+            {/*TODO: cool grid shi*/}
+            <section className="flex flex-col gap-10 min-h-screen py-[10%]">
+                <div className="bg-card text-card-foreground rounded-xl border p-6">
+                    <GitHubCalendar hideColorLegend username="jasooh" />
                 </div>
             </section>
         </main>
