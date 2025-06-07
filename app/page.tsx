@@ -13,13 +13,14 @@ import {FaLinkedin} from "react-icons/fa";
 import {IoDocumentOutline} from "react-icons/io5";
 import {FaArrowDownLong} from "react-icons/fa6";
 import TimelineEntry from "@/components/TimelineEntry";
+import {Button} from "@/components/ui/button";
 
 export default function Home() {
     return (
         <main className="px-[10%]">
-            <section className="flex relative items-center h-screen">
+            <section className="flex relative items-center justify-center h-screen">
                 <div className="flex flex-col gap-10">
-                    <header>
+                    <header className="text-center">
                         <p>hey, i&#39;m</p>
                         <h1 className="relative font-bold text-6xl leading-20 tracking-wide">
                             <span className="absolute inset-0 blur-xs">justin abuyuan.</span>
@@ -30,10 +31,12 @@ export default function Home() {
                     </header>
 
                     {/* social buttons */}
-                    <section className="flex flex-row gap-4 opacity-75">
+                    <section className="flex flex-row justify-center gap-4 opacity-75">
                         <FaGithub className="size-10"/>
                         <FaLinkedin className="size-10"/>
-                        <IoDocumentOutline className="size-10"/>
+                        <Button variant="outline" size="lg">
+                            <IoDocumentOutline /> resume.
+                        </Button>
                     </section>
                 </div>
                 <div className="absolute flex justify-center bottom-10 w-full">
