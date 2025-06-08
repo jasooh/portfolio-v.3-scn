@@ -15,6 +15,7 @@ import {FaArrowDownLong} from "react-icons/fa6";
 import TimelineEntry from "@/components/TimelineEntry";
 import {Button} from "@/components/ui/button";
 import GitHubCalendar from "react-github-calendar";
+import { FaChevronRight } from "react-icons/fa";
 
 export default function Home() {
     return (
@@ -49,11 +50,16 @@ export default function Home() {
 
                 {/* projects */}
                 <section className="mt-40 flex flex-col gap-10">
-                    <div>
-                        <h2 className="text-5xl leading-25 font-bold">projects.</h2>
-                        <p className="text-gray-400">
-                            a glimpse into the products i&#39;ve crafted, the ideas i&#39;ve pursued, and the problems i&#39;ve solved along the way.
-                        </p>
+                    <div className="flex flex-row justify-between items-end">
+                        <div>
+                            <h2 className="text-5xl leading-25 font-bold">projects.</h2>
+                            <p className="text-gray-400">
+                                a glimpse into the products i&#39;ve crafted, the ideas i&#39;ve pursued, and the problems i&#39;ve solved along the way.
+                            </p>
+                        </div>
+                        <Button variant="ghost" size="lg">
+                            see more <FaChevronRight className="size-3"/>
+                        </Button>
                     </div>
 
                     <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
@@ -75,14 +81,19 @@ export default function Home() {
                 </section>
 
                 {/* experience */}
-                <section className="mt-40 flex flex-col gap-10 min-h-screen">
-                    <div>
-                        <h2 className="text-5xl leading-25 font-bold">experience.</h2>
-                        <p className="text-gray-400">
-                            a collection of the teams i&#39;ve built with, the systems i&#39;ve scaled, and the lessons
-                            i&#39;ve carried
-                            forward.
-                        </p>
+                <section className="mt-40 flex flex-col gap-10">
+                    <div className="flex flex-row justify-between items-end">
+                        <div>
+                            <h2 className="text-5xl leading-25 font-bold">experience.</h2>
+                            <p className="text-gray-400">
+                                a collection of the teams i&#39;ve built with, the systems i&#39;ve scaled, and the lessons
+                                i&#39;ve carried
+                                forward.
+                            </p>
+                        </div>
+                        <Button variant="ghost" size="lg">
+                            check out my sick resume <FaChevronRight className="size-3"/>
+                        </Button>
                     </div>
 
                     <div className="pl-5">
@@ -90,36 +101,36 @@ export default function Home() {
                             title="Flynn Group of Companies"
                             description={
                                 <p>
-                                    💻 Software Engineering Intern <br/>
-                                    🏗️ Innovating and optimizing processes in the construction industry through software solutions
+                                    💻 software engineering intern <br/>
+                                    🏗️ innovating and optimizing processes in the construction industry through software solutions
                                 </p>
                             }
-                            start="May 2025"
-                            end="Present"
+                            start="may 2025"
+                            end="present"
                             currentJob={true}
                         />
                         <TimelineEntry
                             title="Jitto"
                             description={
                                 <p>
-                                    💻 Full Stack Engineering Intern <br/>
-                                    🍅 Innovating and optimizing processes in the produce industry through software solutions
+                                    💻 full stack engineering intern <br/>
+                                    🍅 innovating and optimizing processes in the produce industry through software solutions
                                 </p>
                             }
-                            start="July 2024"
-                            end="June 2025"
+                            start="july 2024"
+                            end="june 2025"
                             currentJob={false}
                         />
                         <TimelineEntry
                             title="Google Developer's Student Clubs"
                             description={
                                 <p>
-                                    💼 Technical Co-lead <br/>
-                                    👨‍💻 Guiding and leading fellow computer students to success
+                                    💼 technical co-lead <br/>
+                                    👨‍💻 guiding and leading fellow computer science students to success
                                 </p>
                             }
-                            start="Oct 2023"
-                            end="May 2024"
+                            start="oct 2023"
+                            end="may 2024"
                             currentJob={false}
                             lastEntry={true}
                         />
@@ -128,8 +139,8 @@ export default function Home() {
 
                 {/* more */}
                 {/*TODO: cool grid shi*/}
-                <section className="flex flex-col gap-10">
-                    <div className="bg-card text-card-foreground rounded-xl border p-6">
+                <section className="mt-40 flex flex-col gap-10">
+                    <div className="flex items-center justify-center bg-card text-card-foreground rounded-xl border p-6">
                         <GitHubCalendar hideColorLegend username="jasooh" />
                     </div>
                 </section>
