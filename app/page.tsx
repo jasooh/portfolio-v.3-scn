@@ -140,8 +140,17 @@ export default function Home() {
                 {/* more */}
                 {/*TODO: cool grid shi*/}
                 <section className="mt-40 flex flex-col gap-10">
-                    <div className="flex items-center justify-center bg-card text-card-foreground rounded-xl border p-6">
-                        <GitHubCalendar hideColorLegend username="jasooh" />
+                    <div className="flex flex-row justify-between items-center gap-10">
+                        <p>github</p>
+                        <div className="flex items-center justify-center">
+                            <GitHubCalendar hideColorLegend username="jasooh" />
+                        </div>
+                    </div>
+                    <div className="flex flex-row justify-between items-center gap-10">
+                        <p>technologies</p>
+                        <div className="flex items-center justify-center">
+                            <GitHubCalendar hideColorLegend username="jasooh" />
+                        </div>
                     </div>
                 </section>
             </div>
