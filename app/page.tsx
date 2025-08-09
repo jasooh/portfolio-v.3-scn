@@ -10,12 +10,15 @@ import ProjectCard from "@/components/ProjectCard";
 // icons
 import {FaGithub} from "react-icons/fa";
 import {FaLinkedin} from "react-icons/fa";
-import {IoDocumentOutline} from "react-icons/io5";
+import {IoDocumentTextSharp} from "react-icons/io5";
 import {FaArrowDownLong} from "react-icons/fa6";
 import TimelineEntry from "@/components/TimelineEntry";
 import {Button} from "@/components/ui/button";
 import GitHubCalendar from "react-github-calendar";
-import { FaChevronRight } from "react-icons/fa";
+import {FaChevronRight} from "react-icons/fa";
+import {Separator} from "@/components/ui/separator";
+import SEWebringLogo from "@/public/logo_w.svg";
+import Image from "next/image";
 
 export default function Home() {
     return (
@@ -38,7 +41,7 @@ export default function Home() {
                             <FaGithub className="size-10"/>
                             <FaLinkedin className="size-10"/>
                             <Button variant="outline" size="lg">
-                                <IoDocumentOutline /> resume.
+                                <IoDocumentTextSharp/> resume.
                             </Button>
                         </section>
                     </div>
@@ -54,7 +57,8 @@ export default function Home() {
                         <div>
                             <h2 className="text-5xl leading-25 font-bold">projects.</h2>
                             <p className="text-gray-400">
-                                a glimpse into the products i&#39;ve crafted, the ideas i&#39;ve pursued, and the problems i&#39;ve solved along the way.
+                                a glimpse into the products i&#39;ve crafted, the ideas i&#39;ve pursued, and the
+                                problems i&#39;ve solved along the way.
                             </p>
                         </div>
                         <Button variant="ghost" size="lg">
@@ -86,7 +90,8 @@ export default function Home() {
                         <div>
                             <h2 className="text-5xl leading-25 font-bold">experience.</h2>
                             <p className="text-gray-400">
-                                a collection of the teams i&#39;ve built with, the systems i&#39;ve scaled, and the lessons
+                                a collection of the teams i&#39;ve built with, the systems i&#39;ve scaled, and the
+                                lessons
                                 i&#39;ve carried
                                 forward.
                             </p>
@@ -102,7 +107,8 @@ export default function Home() {
                             description={
                                 <p>
                                     💻 software engineering intern <br/>
-                                    🏗️ innovating and optimizing processes in the construction industry through software solutions
+                                    🏗️ innovating and optimizing processes in the construction industry through software
+                                    solutions
                                 </p>
                             }
                             start="may 2025"
@@ -114,7 +120,8 @@ export default function Home() {
                             description={
                                 <p>
                                     💻 full stack engineering intern <br/>
-                                    🍅 innovating and optimizing processes in the produce industry through software solutions
+                                    🍅 innovating and optimizing processes in the produce industry through software
+                                    solutions
                                 </p>
                             }
                             start="july 2024"
@@ -139,21 +146,44 @@ export default function Home() {
 
                 {/* more */}
                 {/*TODO: cool grid shi*/}
-                <section className="mt-40 flex flex-col gap-10">
-                    <div className="flex flex-row justify-between items-center gap-10">
-                        <p>github</p>
-                        <div className="flex items-center justify-center">
-                            <GitHubCalendar hideColorLegend username="jasooh" />
-                        </div>
-                    </div>
-                    <div className="flex flex-row justify-between items-center gap-10">
-                        <p>technologies</p>
-                        <div className="flex items-center justify-center">
-                            <GitHubCalendar hideColorLegend username="jasooh" />
-                        </div>
+                <section className="mt-40 mb-20 flex flex-col gap-10">
+                    <div className="flex flex-row gap-10 items-center justify-center">
+                        <GitHubCalendar hideColorLegend username="jasooh"/>
                     </div>
                 </section>
             </div>
+            {/* footer */}
+            <Separator/>
+            <section className="flex flex-row justify-between px-12 w-[1200px] py-10 h-60">
+                <div className="flex flex-col justify-between w-1/4 h-full">
+                    <div>
+                        <h3 className="relative font-bold text-2xl leading-12 tracking-wide">
+                            <span className="absolute inset-0 blur-xl ">justin abuyuan</span>
+                            <span className="relative z-10 text-gray-200">justin abuyuan</span>
+                        </h3>
+                        <p className="italic text-gray-400">software engineer and hardstuck plat on valorant</p>
+                    </div>
+                    <div className="flex flex-row gap-2">
+                        <FaGithub className="size-7"/>
+                        <FaLinkedin className="size-7"/>
+                        <IoDocumentTextSharp className="size-7"/>
+                        <Image
+                            src="/logo_w.svg"
+                            alt="SE Webring Logo"
+                            width={28}
+                            height={28}
+                            className="size-7"
+                        />
+                    </div>
+                </div>
+                <div className="flex flex-col justify-end">
+                    <p className="italic text-gray-500 text-sm text-right">
+                        Built with ❤ using Next.js and TypeScript, and deployed using Vercel.
+                        <br/>
+                        © 2024 Justin Abuyuan. All rights reserved.
+                    </p>
+                </div>
+            </section>
         </main>
     );
 }
