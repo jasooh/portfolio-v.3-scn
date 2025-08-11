@@ -17,12 +17,12 @@ export default function MoreSection() {
 
             <div className="grid gap-8 lg:grid-cols-3">
                 {/* row 1, cols 1-2: Tech marquee */}
-                <div className="flex justify-center lg:col-span-2 h-full rounded-2xl border border-white/10 p-6 bg-background/40">
+                <div className="flex justify-center lg:col-span-2 h-full rounded-2xl border border-white/10 p-6 bg-card">
                     <TechMarquee />
                 </div>
 
                 {/* row 1, col 3: availability */}
-                <div className="h-full rounded-2xl border border-white/10 bg-background/40 p-6">
+                <div className="h-full rounded-2xl border border-white/10 bg-card p-6">
                     <div className="flex items-center justify-between gap-3 flex-wrap">
                         {/* status pill */}
                         <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
@@ -41,12 +41,12 @@ export default function MoreSection() {
                 </div>
 
                 {/* row 2, cols 1-2: GitHub calendar */}
-                <div className="lg:col-span-2 h-full rounded-2xl border border-white/10 p-6 bg-background/40">
+                <div className="lg:col-span-2 h-full rounded-2xl border border-white/10 p-6 bg-card">
                     <GitHubCalendar hideColorLegend hideMonthLabels username="jasooh" />
                 </div>
 
                 {/* row 2, col 3: fun stats */}
-                <div className="h-full rounded-2xl border border-white/10 p-6 bg-background/40">
+                <div className="h-full rounded-2xl border border-white/10 p-6 bg-card">
                     <h3 className="text-lg font-semibold mb-4">fun stats 🎯</h3>
 
                     {/* row 1 of fun stats */}
@@ -84,7 +84,7 @@ export default function MoreSection() {
                 </div>
 
                 {/* message me - TODO: turn into separate component and implement backend */}
-                <div className="lg:col-span-3 rounded-2xl border border-white/10 p-6 bg-background/40">
+                <div className="lg:col-span-3 rounded-2xl border border-white/10 p-6 bg-card">
                     <h3 className="text-lg font-semibold mb-4">let’s talk.</h3>
                     {/* FRONTEND-ONLY form — wire to your backend later */}
                     <form className="grid gap-4 sm:grid-cols-2" /* no action yet */>

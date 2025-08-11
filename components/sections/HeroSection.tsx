@@ -22,7 +22,8 @@ export default function HeroSection() {
                     <h2 className="text-xl leading-10">software engineering @ uwaterloo</h2>
                     <TypedText
                         className="text-gray-400"
-                        words={HERO_TEXT} />
+                        words={ HERO_TEXT }
+                    />
                 </header>
 
                 {/* social buttons */}

@@ -29,7 +29,7 @@ export default function TechMarquee() {
             speed={50}
             gradient
             gradientWidth={100}
-            gradientColor="oklch(0.141 0.005 285.823)"
+            gradientColor="oklch(0.21 0.006 285.885)"
             autoFill
         >
             <RiNextjsFill className={iconClass} />
