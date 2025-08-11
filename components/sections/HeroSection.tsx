@@ -6,6 +6,8 @@ import {Button} from "@/components/ui/button";
 import {IoDocumentTextSharp} from "react-icons/io5";
 import {FaArrowDownLong} from "react-icons/fa6";
 import React from "react";
+import TypedText from "@/components/TypedText";
+import { HERO_TEXT } from "@/lib/constants";
 
 export default function HeroSection() {
     return (
@@ -18,7 +20,9 @@ export default function HeroSection() {
                         <span className="relative z-10">justin abuyuan.</span>
                     </h1>
                     <h2 className="text-xl leading-10">software engineering @ uwaterloo</h2>
-                    <p className="text-gray-400">i like to code stuff and build things that solve problems.</p>
+                    <TypedText
+                        className="text-gray-400"
+                        words={HERO_TEXT} />
                 </header>
 
                 {/* social buttons */}
