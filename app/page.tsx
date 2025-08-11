@@ -17,8 +17,8 @@ import {Button} from "@/components/ui/button";
 import GitHubCalendar from "react-github-calendar";
 import {FaChevronRight} from "react-icons/fa";
 import {Separator} from "@/components/ui/separator";
-import SEWebringLogo from "@/public/logo_w.svg";
 import Image from "next/image";
+import TechMarquee from "@/components/TechMarquee";
 
 export default function Home() {
     return (
@@ -144,13 +144,87 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* more */}
-                {/*TODO: cool grid shi*/}
-                <section className="mt-40 mb-20 flex flex-col gap-10">
-                    <div className="flex flex-row gap-10 items-center justify-center">
-                        <GitHubCalendar hideColorLegend username="jasooh"/>
+                {/* more section */}
+                <section className="mt-40 mb-20" id="more">
+                    <div className="flex flex-row justify-between items-end mb-10">
+                        <div>
+                            <h2 className="text-5xl leading-25 font-bold">more.</h2>
+                            <p className="text-gray-400">github activity, tools i use, and what i’m up to now.</p>
+                        </div>
+                    </div>
+
+                    <div className="grid gap-8 lg:grid-cols-3">
+                        {/* Row 1, Cols 1-2: Tech marquee */}
+                        <div className="flex justify-center lg:col-span-2 h-full rounded-2xl border border-white/10 p-6 bg-background/40">
+                            <TechMarquee />
+                        </div>
+
+                        {/* Row 1, Col 3: Availability (pill) */}
+                        <div className="h-full rounded-2xl border border-white/10 bg-background/40 p-6">
+                            <div className="flex items-center justify-between gap-3 flex-wrap">
+                                {/* status pill */}
+                                <div
+                                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
+                                    <span className="relative flex h-2.5 w-2.5">
+                                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+                                    </span>
+                                    <span className="text-sm font-medium leading-none">available for projects</span>
+                                </div>
+
+                                {/* location / mode */}
+                                <span className="text-xs sm:text-sm text-gray-400 leading-none">
+                                    Toronto · remote-friendly
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Row 2, Cols 1-2: GitHub calendar */}
+                        <div className="lg:col-span-2 h-full rounded-2xl border border-white/10 p-6 bg-background/40">
+                            <GitHubCalendar hideColorLegend hideMonthLabels username="jasooh"/>
+                        </div>
+
+                        {/* Row 2, Col 3: Fun stats */}
+                        <div className="h-full rounded-2xl border border-white/10 p-6 bg-background/40">
+                            <h3 className="text-lg font-semibold mb-4">fun stats 🎯</h3>
+
+                            {/* row 1 of fun stats */}
+                            <div className="grid grid-cols-3 gap-4 text-center">
+                                <div>
+                                    <div className="text-2xl font-semibold leading-tight">4</div>
+                                    <div className="text-xs text-gray-400">hackathons</div>
+                                </div>
+                                <div>
+                                    <div className="text-2xl font-semibold leading-tight">12</div>
+                                    <div className="text-xs text-gray-400">PRs</div>
+                                </div>
+                                <div>
+                                    <div className="text-2xl font-semibold leading-tight">plat</div>
+                                    {/* TODO: link tracker gg to ts */}
+                                    <div className="text-xs text-gray-400">valorant rank</div>
+                                </div>
+                            </div>
+
+                            {/* row 2 of fun stats */}
+                            <div className="mt-4 grid grid-cols-3 gap-4 text-center">
+                                <div>
+                                    <div className="text-2xl font-semibold leading-tight">X</div>
+                                    <div className="text-xs text-gray-400">leetcode</div>
+                                </div>
+                                <div>
+                                    <div className="text-2xl font-semibold leading-tight">Y</div>
+                                    <div className="text-xs text-gray-400">talks/posts</div>
+                                </div>
+                                <div>
+                                    <div className="text-2xl font-semibold leading-tight">Z</div>
+                                    <div className="text-xs text-gray-400">coffee ☕</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
+
+
             </div>
             {/* footer */}
             <Separator/>
