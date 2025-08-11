@@ -4,12 +4,9 @@
 export const HERO_TEXT = [
     "i like to code stuff and build things for the internet.",
     "i turn ideas into pixels and apis.",
-    "i build fast frontends and reliable backends.",
-    "i design systems that scale without drama.",
-    "i ship features and learn from the logs.",
-    "i automate the boring so i can build the fun.",
-    "i push to prod on purpose.",
-    "i connect ui to ai without the hype.",
-    "i make databases behave and interfaces shine.",
-    "i optimize queries before the coffee kicks in.",
+    "i push to prod on purpose. (on my own apps 😁)",
+    "i turn napkin sketches into production apps.",
+    "i sweat details so everything just works.",
+    "i measure, optimize, and deliver.",
+    "i learn fast and raise the bar."
 ]

@@ -11,8 +11,9 @@ export default function TypedText({ words, className }: { words: string[], class
                 strings: words,
                 autoStart: true,
                 loop: true,
-                delay: 15,
-                deleteSpeed: 50,
+                delay: 25,
+                deleteSpeed: 40,
+                cursor: "▍"
             }}
         />
     </div>
