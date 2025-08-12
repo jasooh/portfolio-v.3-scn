@@ -26,14 +26,13 @@ export default function MoreSection() {
                     </p>
                 </header>
 
-                {/* IMPORTANT: min-w-0 on grid items prevents overflow at mid widths */}
+                {/* grid content */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     {/* row 1, cols 1-2: tech marquee */}
                     <div
                         aria-label="Technologies I use"
                         className="min-w-0 overflow-hidden flex justify-center lg:col-span-2 h-full rounded-2xl border border-white/10 p-6 bg-card"
                     >
-                        {/* cap width when stacked; full width when beside content */}
                         <div className="w-full mx-auto max-w-full sm:max-w-3xl lg:max-w-none overflow-hidden">
                             <TechMarquee />
                         </div>
@@ -45,7 +44,6 @@ export default function MoreSection() {
                         className="min-w-0 overflow-hidden h-full rounded-2xl border border-white/10 bg-card p-6"
                     >
                         <div className="flex items-center justify-between gap-3 flex-wrap">
-                            {/* status */}
                             <div
                                 role="status"
                                 aria-live="polite"
@@ -70,11 +68,7 @@ export default function MoreSection() {
                             aria-label="GitHub activity calendar"
                             tabIndex={0}
                         >
-                            <GitHubCalendar
-                                hideColorLegend
-                                hideMonthLabels
-                                username="jasooh"
-                            />
+                            <GitHubCalendar hideColorLegend hideMonthLabels username="jasooh" />
                         </div>
                     </div>
 
@@ -117,108 +111,108 @@ export default function MoreSection() {
                             </div>
                         </dl>
                     </section>
-
-                    {/* TODO: message me - FRONTEND ONLY (for now) */}
-                    <section
-                        aria-labelledby="contact-title"
-                        className="min-w-0 overflow-hidden lg:col-span-3 rounded-2xl border border-white/10 p-6 bg-card"
-                    >
-                        <h3 id="contact-title" className="text-lg font-semibold mb-4">
-                            let’s talk.
-                        </h3>
-
-                        <form className="grid gap-4 sm:grid-cols-2" noValidate>
-                            <div className="sm:col-span-1">
-                                <label
-                                    htmlFor="contact-name"
-                                    className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
-                                >
-                                    name
-                                </label>
-                                <input
-                                    id="contact-name"
-                                    name="name"
-                                    type="text"
-                                    required
-                                    autoComplete="name"
-                                    placeholder="name"
-                                    className="w-full rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
-                                />
-                            </div>
-
-                            <div className="sm:col-span-1">
-                                <label
-                                    htmlFor="contact-email"
-                                    className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
-                                >
-                                    email
-                                </label>
-                                <input
-                                    id="contact-email"
-                                    name="email"
-                                    type="email"
-                                    required
-                                    autoComplete="email"
-                                    placeholder="you@domain.com"
-                                    className="w-full rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
-                                />
-                            </div>
-
-                            <div className="sm:col-span-2">
-                                <label
-                                    htmlFor="contact-subject"
-                                    className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
-                                >
-                                    subject
-                                </label>
-                                <input
-                                    id="contact-subject"
-                                    name="subject"
-                                    type="text"
-                                    required
-                                    placeholder="hey justin, we'd like to offer you a job..."
-                                    className="w-full rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
-                                />
-                            </div>
-
-                            <div className="sm:col-span-2">
-                                <label
-                                    htmlFor="contact-message"
-                                    className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
-                                >
-                                    message
-                                </label>
-                                <textarea
-                                    id="contact-message"
-                                    name="message"
-                                    required
-                                    rows={5}
-                                    placeholder="tell me about your project, timeline, and goals…"
-                                    className="w-full resize-y rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
-                                />
-                            </div>
-
-                            <div className="sm:col-span-2 flex items-center gap-3">
-                                <button
-                                    type="button"
-                                    disabled
-                                    aria-disabled="true"
-                                    title="Hook this up to your backend to enable"
-                                    className="rounded-xl border border-white/10 px-4 py-2 opacity-60 cursor-not-allowed"
-                                >
-                                    send message (coming soon)
-                                </button>
-
-                                <a
-                                    href="mailto:abuyuanjustin@gmail.com"
-                                    className="inline-flex text-sm underline hover:no-underline text-gray-300 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                                >
-                                    or email me directly
-                                </a>
-                            </div>
-                        </form>
-                    </section>
                 </div>
+
+                {/* form: moved OUTSIDE the grid so it’s always full width */}
+                <section
+                    aria-labelledby="contact-title"
+                    className="mt-6 sm:mt-8 rounded-2xl border border-white/10 p-6 bg-card"
+                >
+                    <h3 id="contact-title" className="text-lg font-semibold mb-4">
+                        let’s talk.
+                    </h3>
+
+                    <form className="grid gap-4 sm:grid-cols-2" noValidate>
+                        <div className="sm:col-span-1">
+                            <label
+                                htmlFor="contact-name"
+                                className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
+                            >
+                                name
+                            </label>
+                            <input
+                                id="contact-name"
+                                name="name"
+                                type="text"
+                                required
+                                autoComplete="name"
+                                placeholder="name"
+                                className="w-full rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
+                            />
+                        </div>
+
+                        <div className="sm:col-span-1">
+                            <label
+                                htmlFor="contact-email"
+                                className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
+                            >
+                                email
+                            </label>
+                            <input
+                                id="contact-email"
+                                name="email"
+                                type="email"
+                                required
+                                autoComplete="email"
+                                placeholder="you@domain.com"
+                                className="w-full rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
+                            />
+                        </div>
+
+                        <div className="sm:col-span-2">
+                            <label
+                                htmlFor="contact-subject"
+                                className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
+                            >
+                                subject
+                            </label>
+                            <input
+                                id="contact-subject"
+                                name="subject"
+                                type="text"
+                                required
+                                placeholder="hey justin, we'd like to offer you a job..."
+                                className="w-full rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
+                            />
+                        </div>
+
+                        <div className="sm:col-span-2">
+                            <label
+                                htmlFor="contact-message"
+                                className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
+                            >
+                                message
+                            </label>
+                            <textarea
+                                id="contact-message"
+                                name="message"
+                                required
+                                rows={5}
+                                placeholder="tell me about your project, timeline, and goals…"
+                                className="w-full resize-y rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
+                            />
+                        </div>
+
+                        <div className="sm:col-span-2 flex items-center gap-3">
+                            <button
+                                type="button"
+                                disabled
+                                aria-disabled="true"
+                                title="Hook this up to your backend to enable"
+                                className="rounded-xl border border-white/10 px-4 py-2 opacity-60 cursor-not-allowed"
+                            >
+                                send message (coming soon)
+                            </button>
+
+                            <a
+                                href="mailto:abuyuanjustin@gmail.com"
+                                className="inline-flex text-sm underline hover:no-underline text-gray-300 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                            >
+                                or email me directly
+                            </a>
+                        </div>
+                    </form>
+                </section>
             </div>
         </section>
     );
