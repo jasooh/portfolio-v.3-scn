@@ -4,7 +4,7 @@
 import React from "react";
 
 // components
-import {Separator} from "@/components/ui/separator";
+import { Separator } from "@/components/ui/separator";
 
 // sections
 import MoreSection from "@/components/sections/MoreSection";
@@ -15,21 +15,19 @@ import FooterSection from "@/components/sections/FooterSection";
 
 export default function Home() {
     return (
-        <main className="flex flex-col items-center">
-            <div className="px-12 w-[1200px]">
-                <HeroSection />
+        <main className="flex flex-col items-stretch overflow-x-hidden">
+            {/* Each section already handles its own max-width + padding */}
+            <HeroSection />
 
-                {/* projects */}
-                <ProjectsSection />
+            <ProjectsSection />
 
-                {/* experience */}
-                <ExperienceSection />
+            <ExperienceSection />
 
-                {/* more section */}
-                <MoreSection />
-            </div>
-            {/* footer */}
-            <Separator/>
+            <MoreSection />
+
+            {/* full-width separator, but visually centered by each section’s own container */}
+            <Separator className="w-full my-12 sm:my-16 lg:my-20" />
+
             <FooterSection />
         </main>
     );
