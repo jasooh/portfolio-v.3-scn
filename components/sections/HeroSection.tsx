@@ -1,12 +1,11 @@
 // HeroSection.tsx
 // the website hero.
 
-import {FaGithub, FaLinkedin} from "react-icons/fa";
-import {IoDocumentTextSharp} from "react-icons/io5";
 import {FaArrowDownLong} from "react-icons/fa6";
 import React from "react";
 import TypedText from "@/components/TypedText";
 import {HERO_TEXT} from "@/lib/constants";
+import SocialLinks from "@/components/SocialLinks";
 
 export default function HeroSection() {
     return (
@@ -35,56 +34,12 @@ export default function HeroSection() {
                     </h2>
 
                     <div className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-400" aria-live="polite">
-                        <TypedText words={HERO_TEXT}/>
+                        <TypedText className="text-gray-400" words={HERO_TEXT}/>
                     </div>
                 </header>
 
                 {/* social links */}
-                <nav aria-label="Social links" className="mt-2">
-                    <ul className="flex flex-row items-center justify-center gap-4 sm:gap-6 opacity-80 transition-opacity hover:opacity-100">
-                        <li>
-                            <a
-                                href="https://github.com/jasooh"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center rounded-lg p-2 outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                                aria-label="GitHub"
-                                title="GitHub"
-                            >
-                                <FaGithub className="size-7 sm:size-8"/>
-                                <span className="sr-only">GitHub</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a
-                                href="https://www.linkedin.com/in/justin-abuyuan"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center rounded-lg p-2 outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                                aria-label="LinkedIn"
-                                title="LinkedIn"
-                            >
-                                <FaLinkedin className="size-7 sm:size-8"/>
-                                <span className="sr-only">LinkedIn</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a
-                                href="/resume.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center rounded-lg p-2 outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                                aria-label="Resume"
-                                title="Resume"
-                            >
-                                <IoDocumentTextSharp className="size-7 sm:size-8"/>
-                                <span className="sr-only">Resume</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <SocialLinks />
             </div>
 
             {/* scroll cue */}

@@ -5,6 +5,7 @@ import React from "react";
 import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoDocumentTextSharp } from "react-icons/io5";
+import { SocialIcon } from "@/components/SocialIcon";
 
 export default function FooterSection() {
     const year = new Date().getFullYear();
@@ -18,7 +19,9 @@ export default function FooterSection() {
                         <div>
                             <h3 className="relative font-bold text-2xl sm:text-3xl leading-[1.2] tracking-wide">
                                 {/* decorative glow */}
-                                <span aria-hidden="true" className="absolute inset-0 blur-xl">justin abuyuan</span>
+                                <span aria-hidden="true" className="absolute inset-0 blur-xl">
+                  justin abuyuan
+                </span>
                                 <span className="relative z-10 text-gray-200">justin abuyuan</span>
                             </h3>
                             <p className="italic text-gray-400">
@@ -30,61 +33,26 @@ export default function FooterSection() {
                         <nav aria-label="Social links">
                             <ul className="flex flex-row items-center gap-3">
                                 <li>
-                                    <a
-                                        href="https://github.com/jasooh"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        aria-label="GitHub"
-                                        title="GitHub"
-                                        className="inline-flex items-center justify-center rounded-lg p-2 outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                                    >
+                                    <SocialIcon href="https://github.com/jasooh" label="GitHub">
                                         <FaGithub className="size-6 sm:size-7" />
-                                        <span className="sr-only">GitHub</span>
-                                    </a>
+                                    </SocialIcon>
                                 </li>
                                 <li>
-                                    <a
-                                        href="https://www.linkedin.com/in/justin-abuyuan"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        aria-label="LinkedIn"
-                                        title="LinkedIn"
-                                        className="inline-flex items-center justify-center rounded-lg p-2 outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                                    >
+                                    <SocialIcon href="https://www.linkedin.com/in/justin-abuyuan" label="LinkedIn">
                                         <FaLinkedin className="size-6 sm:size-7" />
-                                        <span className="sr-only">LinkedIn</span>
-                                    </a>
+                                    </SocialIcon>
                                 </li>
                                 <li>
-                                    <a
-                                        href="/resume.pdf"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        aria-label="Resume"
-                                        title="Resume"
-                                        className="inline-flex items-center justify-center rounded-lg p-2 outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                                    >
+                                    {/* internal link; open in same tab */}
+                                    <SocialIcon href="/resume.pdf" label="Resume" external={false}>
                                         <IoDocumentTextSharp className="size-6 sm:size-7" />
-                                        <span className="sr-only">Resume</span>
-                                    </a>
+                                    </SocialIcon>
                                 </li>
                                 <li>
-                                    <a
-                                        href="https://se-webring.xyz/"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        aria-label="SE Webring"
-                                        title="SE Webring"
-                                        className="inline-flex items-center justify-center rounded-lg p-1.5 outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                                    >
-                                        <Image
-                                            src="/logo_w.svg"
-                                            alt="SE Webring Logo"
-                                            width={28}
-                                            height={28}
-                                            className="h-7 w-7"
-                                        />
-                                    </a>
+                                    <SocialIcon href="https://se-webring.xyz/" label="SE Webring">
+                                        {/* decorative image: alt can be empty since link has aria-label */}
+                                        <Image src="/logo_w.svg" alt="" width={28} height={28} className="h-7 w-7" />
+                                    </SocialIcon>
                                 </li>
                             </ul>
                         </nav>
