@@ -2,7 +2,6 @@
 // renders the footer section of the home page.
 
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoDocumentTextSharp } from "react-icons/io5";

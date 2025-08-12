@@ -28,12 +28,12 @@ export default function MoreSection() {
 
                 {/* IMPORTANT: min-w-0 on grid items prevents overflow at mid widths */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    {/* row 1, cols 1-2: Tech marquee */}
+                    {/* row 1, cols 1-2: tech marquee */}
                     <div
                         aria-label="Technologies I use"
                         className="min-w-0 overflow-hidden flex justify-center lg:col-span-2 h-full rounded-2xl border border-white/10 p-6 bg-card"
                     >
-                        {/* Cap width when stacked; full width when beside content */}
+                        {/* cap width when stacked; full width when beside content */}
                         <div className="w-full mx-auto max-w-full sm:max-w-3xl lg:max-w-none overflow-hidden">
                             <TechMarquee />
                         </div>
@@ -45,30 +45,26 @@ export default function MoreSection() {
                         className="min-w-0 overflow-hidden h-full rounded-2xl border border-white/10 bg-card p-6"
                     >
                         <div className="flex items-center justify-between gap-3 flex-wrap">
-                            {/* status pill */}
+                            {/* status */}
                             <div
                                 role="status"
                                 aria-live="polite"
                                 className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5"
                             >
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-ping motion-reduce:animate-none" />
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
-                </span>
-                                <span className="text-sm font-medium leading-none">
-                  available for projects
-                </span>
+                                <span className="relative flex h-2.5 w-2.5">
+                                    <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-ping motion-reduce:animate-none" />
+                                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
+                                </span>
+                                <span className="text-sm font-medium leading-none">available for projects</span>
                             </div>
-
                             <span className="text-xs sm:text-sm text-gray-400 leading-none">
-                Toronto · remote-friendly
-              </span>
+                                Toronto · remote-friendly
+                            </span>
                         </div>
                     </aside>
 
                     {/* row 2, cols 1-2: GitHub calendar */}
                     <div className="min-w-0 overflow-hidden lg:col-span-2 h-full rounded-2xl border border-white/10 p-6 bg-card">
-                        {/* Make the calendar horizontally scrollable if needed */}
                         <div
                             className="min-w-0 overflow-x-auto -mx-2 px-2"
                             aria-label="GitHub activity calendar"
@@ -122,7 +118,7 @@ export default function MoreSection() {
                         </dl>
                     </section>
 
-                    {/* message me - FRONTEND ONLY (for now) */}
+                    {/* TODO: message me - FRONTEND ONLY (for now) */}
                     <section
                         aria-labelledby="contact-title"
                         className="min-w-0 overflow-hidden lg:col-span-3 rounded-2xl border border-white/10 p-6 bg-card"
