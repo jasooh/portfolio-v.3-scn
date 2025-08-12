@@ -87,8 +87,8 @@ export default function MoreSection() {
                                 <dt className="text-xs text-gray-400">hackathons</dt>
                             </div>
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">12</dd>
-                                <dt className="text-xs text-gray-400">PRs</dt>
+                                <dd className="text-2xl font-semibold leading-tight">0</dd>
+                                <dt className="text-xs text-gray-400">PRs merged</dt>
                             </div>
                             <div>
                                 <dd className="text-2xl font-semibold leading-tight">plat</dd>
@@ -98,16 +98,16 @@ export default function MoreSection() {
 
                         <dl className="mt-4 grid grid-cols-3 gap-4 text-center">
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">X</dd>
+                                <dd className="text-2xl font-semibold leading-tight">0</dd>
                                 <dt className="text-xs text-gray-400">leetcode</dt>
                             </div>
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">Y</dd>
-                                <dt className="text-xs text-gray-400">talks/posts</dt>
+                                <dd className="text-2xl font-semibold leading-tight">2</dd>
+                                <dt className="text-xs text-gray-400">databases cooked</dt>
                             </div>
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">Z</dd>
-                                <dt className="text-xs text-gray-400">coffee ☕</dt>
+                                <dd className="text-2xl font-semibold leading-tight">28.6%</dd>
+                                <dt className="text-xs text-gray-400">headshot %</dt>
                             </div>
                         </dl>
                     </section>
