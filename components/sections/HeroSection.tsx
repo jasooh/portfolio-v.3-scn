@@ -2,7 +2,6 @@
 // the website hero.
 
 import {FaGithub, FaLinkedin} from "react-icons/fa";
-import {Button} from "@/components/ui/button";
 import {IoDocumentTextSharp} from "react-icons/io5";
 import {FaArrowDownLong} from "react-icons/fa6";
 import React from "react";
@@ -27,12 +26,10 @@ export default function HeroSection() {
                 </header>
 
                 {/* social buttons */}
-                <section className="flex flex-row justify-center gap-4 opacity-75">
-                    <FaGithub className="size-10"/>
-                    <FaLinkedin className="size-10"/>
-                    <Button variant="outline" size="lg">
-                        <IoDocumentTextSharp/> resume.
-                    </Button>
+                <section className="flex flex-row justify-center items-center gap-4 opacity-75">
+                    <FaGithub className="size-8" />
+                    <FaLinkedin className="size-8" />
+                    <IoDocumentTextSharp className="size-8" />
                 </section>
             </div>
             <div className="absolute flex justify-center bottom-10 w-full">
