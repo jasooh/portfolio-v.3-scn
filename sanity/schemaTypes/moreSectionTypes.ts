@@ -14,10 +14,10 @@ export const moreSectionTypes = defineType({
             type: 'string',
             options: {
                 list: [
-                    { title: 'available for projects', value: 'available' },
-                    { title: 'open to work', value: 'open_to_work' },
+                    { title: 'available for projects', value: 'available for projects' },
+                    { title: 'open to work', value: 'open to work' },
                     { title: 'studying', value: 'studying' },
-                    { title: 'on break', value: 'on_break' },
+                    { title: 'on break', value: 'on break' },
                 ],
                 layout: 'dropdown',
             },

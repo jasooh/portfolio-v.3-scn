@@ -36,7 +36,7 @@ export type Experience = {
 // --- MORE ---
 
 export type More = {
-    status: "available" | "open_to_work" | "studying" | "on_break";
+    status: "available for projects" | "open to work" | "studying" | "on break";
     hackathons: number;
     redbulls: string;
     valorantRank: string;
