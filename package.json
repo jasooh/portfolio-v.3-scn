@@ -16,6 +16,7 @@
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
+    "@react-three/fiber": "^9.3.0",
     "@sanity/client": "^7.8.2",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^4.3.0",
@@ -36,6 +37,7 @@
     "sanity": "^4.3.0",
     "styled-components": "^6.1.19",
     "tailwind-merge": "^3.3.0",
+    "three": "^0.179.1",
     "typewriter-effect": "^2.22.0"
   },
   "devDependencies": {
@@ -44,6 +46,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.179.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
     "tailwindcss": "^4",
