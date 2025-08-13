@@ -11,53 +11,47 @@ import Image from "next/image";
 // icons
 import {FaGithub} from "react-icons/fa";
 import {Button} from "@/components/ui/button";
+import {Project} from "@/lib/types/queryTypes";
 
-interface ProjectCardProps {
-    title: string;
-    year: string | number;
-    github?: boolean;
-    githubLink?: string;
-    badges?: string[];
-    description: string;
-}
-
-export default function ProjectCard({title, year, github, githubLink, badges, description}: ProjectCardProps) {
+export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badges, description}: Project) {
     return (
-        <>
-            <Card className="w-full max-w-sm max-h-[500px]">
-                <CardHeader>
-                    <CardTitle>{title}</CardTitle>
-                    <CardDescription>{year}</CardDescription>
-                    <CardAction>
-                        {github && (
-                            <Button variant="ghost" size="icon">
-                                <a href={githubLink || "https://www.google.com/"} target="_blank">
-                                    <FaGithub className="size-8 opacity-75"/>
-                                </a>
-                            </Button>
-                        )}
-                    </CardAction>
-                </CardHeader>
-                <CardContent className="h-full">
+        <Card className="w-full max-w-sm max-h-[500px]">
+            <CardHeader>
+                <CardTitle>{title}</CardTitle>
+                <CardDescription>{year}</CardDescription>
+                <CardAction>
+                    {githubUrl && (
+                        <Button variant="ghost" size="icon" asChild>
+                            <a href={githubUrl || "#"} target="_blank" rel="noreferrer">
+                                <FaGithub className="size-5 opacity-75"/>
+                            </a>
+                        </Button>
+                    )}
+                </CardAction>
+            </CardHeader>
+
+            <CardContent className="h-full">
+                <div className="relative w-full overflow-hidden rounded-md" style={{aspectRatio: "3 / 2"}}>
                     <Image
-                        className="rounded-md h-auto w-full"
-                        src="https://placehold.co/768x512.png"
-                        alt={title}
-                        width={768}
-                        height={512}
+                        src={imageUrl || "https://placehold.co/768x512.png"}
+                        alt={alt || title}
+                        fill
+                        sizes="(min-width:1024px) 384px, 100vw"
+                        className="object-cover"
                     />
-                </CardContent>
-                <CardFooter className="flex-col gap-2">
-                    <CardDescription className="flex flex-col gap-3">
-                        <div className="flex flex-row flex-wrap gap-2">
-                            {badges?.map((badgeText, index) => (
-                                <Badge key={index} variant="default">{badgeText}</Badge>
-                            ))}
-                        </div>
-                        <p>{description}</p>
-                    </CardDescription>
-                </CardFooter>
-            </Card>
-        </>
+                </div>
+            </CardContent>
+
+            <CardFooter className="flex-col gap-2">
+                <CardDescription className="flex flex-col gap-3">
+                    <div className="flex flex-row flex-wrap gap-2">
+                        {badges?.map((badgeText, i) => (
+                            <Badge key={i} variant="default">{badgeText}</Badge>
+                        ))}
+                    </div>
+                    <p>{description}</p>
+                </CardDescription>
+            </CardFooter>
+        </Card>
     )
 }

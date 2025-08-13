@@ -6,8 +6,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FaChevronRight } from "react-icons/fa";
 import ProjectCard from "@/components/ProjectCard";
+import {getProjects} from "@/data/getProjects";
 
-export default function ProjectsSection() {
+export default async function ProjectsSection() {
+    const projects = await getProjects();
+    console.log(projects[0].githubUrl)
+
     return (
         <section
             id="projects"
@@ -54,25 +58,20 @@ export default function ProjectsSection() {
                     role="list"
                     className="mt-8 grid gap-8 sm:mt-10 sm:gap-10 sm:grid-cols-2 lg:grid-cols-3"
                 >
-                    <li>
-                        <ProjectCard
-                            title="project #1"
-                            year={2025}
-                            github={true}
-                            badges={["react", "tensorflow"]}
-                            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan nibh malesuada finibus ornare. Nam sed arcu placerat, mollis ligula id, dapibus lectus."
-                        />
-                    </li>
-
-                    <li>
-                        <ProjectCard
-                            title="project #2"
-                            year={2025}
-                            github={true}
-                            badges={["react", "tensorflow"]}
-                            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan nibh malesuada finibus ornare. Nam sed arcu placerat, mollis ligula id, dapibus lectus."
-                        />
-                    </li>
+                    {projects.map((project) => (
+                        <li key={project._id}>
+                            <ProjectCard
+                                _id={project._id}
+                                title={project.title}
+                                year={project.year}
+                                imageUrl={project.imageUrl}
+                                alt={project.alt}
+                                githubUrl={project.githubUrl}
+                                badges={project.badges}
+                                description={project.description}
+                            />
+                        </li>
+                    ))}
                 </ul>
             </div>
         </section>
