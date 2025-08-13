@@ -5,6 +5,7 @@ import React from "react";
 import TechMarquee from "@/components/TechMarquee";
 import GitHubCalendar from "react-github-calendar";
 import {getMoreSectionData} from "@/data/getExtras";
+import MessageForm from "@/components/MessageForm";
 
 export default async function MoreSection() {
     const moreData = await getMoreSectionData();
@@ -116,106 +117,8 @@ export default async function MoreSection() {
                     </section>
                 </div>
 
-                {/* form: moved OUTSIDE the grid so it’s always full width */}
-                <section
-                    aria-labelledby="contact-title"
-                    className="mt-6 sm:mt-8 rounded-2xl border border-white/10 p-6 bg-card"
-                >
-                    <h3 id="contact-title" className="text-lg font-semibold mb-4">
-                        let’s talk.
-                    </h3>
-
-                    <form className="grid gap-4 sm:grid-cols-2" noValidate>
-                        <div className="sm:col-span-1">
-                            <label
-                                htmlFor="contact-name"
-                                className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
-                            >
-                                name
-                            </label>
-                            <input
-                                id="contact-name"
-                                name="name"
-                                type="text"
-                                required
-                                autoComplete="name"
-                                placeholder="name"
-                                className="w-full rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
-                            />
-                        </div>
-
-                        <div className="sm:col-span-1">
-                            <label
-                                htmlFor="contact-email"
-                                className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
-                            >
-                                email
-                            </label>
-                            <input
-                                id="contact-email"
-                                name="email"
-                                type="email"
-                                required
-                                autoComplete="email"
-                                placeholder="you@domain.com"
-                                className="w-full rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
-                            />
-                        </div>
-
-                        <div className="sm:col-span-2">
-                            <label
-                                htmlFor="contact-subject"
-                                className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
-                            >
-                                subject
-                            </label>
-                            <input
-                                id="contact-subject"
-                                name="subject"
-                                type="text"
-                                required
-                                placeholder="hey justin, we'd like to offer you a job..."
-                                className="w-full rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
-                            />
-                        </div>
-
-                        <div className="sm:col-span-2">
-                            <label
-                                htmlFor="contact-message"
-                                className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
-                            >
-                                message
-                            </label>
-                            <textarea
-                                id="contact-message"
-                                name="message"
-                                required
-                                rows={5}
-                                placeholder="tell me about your project, timeline, and goals…"
-                                className="w-full resize-y rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
-                            />
-                        </div>
-
-                        <div className="sm:col-span-2 flex items-center gap-3">
-                            <button
-                                type="button"
-                                disabled
-                                aria-disabled="true"
-                                title="Hook this up to your backend to enable"
-                                className="rounded-xl border border-white/10 px-4 py-2 opacity-60 cursor-not-allowed"
-                            >
-                                send message (coming soon)
-                            </button>
-
-                            <a
-                                href="mailto:abuyuanjustin@gmail.com"
-                                className="inline-flex text-sm underline hover:no-underline text-gray-300 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                            >
-                                or email me directly
-                            </a>
-                        </div>
-                    </form>
-                </section>
+                {/* form */}
+                <MessageForm />
             </div>
         </section>
     );
