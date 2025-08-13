@@ -54,7 +54,7 @@ export default function TimelineEntry({title, description, currentJob = false, s
                     <span className={`absolute size-7 dark:bg-primary rounded-full z-[-1] ${currentJob && "animate-ping"}`}/>
                     <FaSuitcase className="w-2.5 h-2.5" aria-hidden="true"/>
                 </span>
-                <h3 className="mb-1 text-lg font-semibold  dark:text-white">{title}</h3>
+                <h3 className="mb-1 text-lg font-semibold dark:text-white">{title}</h3>
                 <time className="block mb-2 text-sm font-normal leading-none dark:text-gray-500">
                     {start} {end && `— ${end}`}
                 </time>

@@ -17,7 +17,7 @@ export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badg
     return (
         <Card className="w-full max-w-sm max-h-[500px]">
             <CardHeader>
-                <CardTitle>{title}</CardTitle>
+                <CardTitle className="font-semibold">{title}</CardTitle>
                 <CardDescription>{year}</CardDescription>
                 <CardAction>
                     {githubUrl && (

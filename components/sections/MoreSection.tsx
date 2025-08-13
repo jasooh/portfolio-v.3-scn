@@ -33,7 +33,7 @@ export default function MoreSection() {
                         aria-label="Technologies I use"
                         className="min-w-0 overflow-hidden flex justify-center lg:col-span-2 h-full rounded-2xl border border-white/10 p-6 bg-card"
                     >
-                        <div className="w-full mx-auto max-w-full sm:max-w-3xl lg:max-w-none overflow-hidden">
+                        <div className="flex w-full mx-auto max-w-full sm:max-w-3xl lg:max-w-none overflow-hidden">
                             <TechMarquee />
                         </div>
                     </div>
