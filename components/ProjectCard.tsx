@@ -41,7 +41,8 @@ export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badg
                     </div>
 
                     {/* clamp description so cards don't grow past fixed height */}
-                    <div className="line-clamp-4 [display:-webkit-box] [-webkit-line-clamp:4] [-webkit-box-orient:vertical] overflow-hidden">
+                    {/* line-clamp-4 [display:-webkit-box] [-webkit-line-clamp:4] [-webkit-box-orient:vertical] overflow-hidden */}
+                    <div>
                         <PortableText value={description} />
                     </div>
                 </CardDescription>
