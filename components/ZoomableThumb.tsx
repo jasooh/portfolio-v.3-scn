@@ -13,10 +13,8 @@ export default function ZoomableThumb({url, alt, className}: {
     alt?: string;
     className?: string;
 }) {
-    const [zoomed, setZoomed] = React.useState(false);
-
     return (
-        <Dialog onOpenChange={(open) => !open && setZoomed(false)}>
+        <Dialog onOpenChange={(open) => !open}>
             {/* smaller image used as a button */}
             <DialogTrigger asChild>
                 <button
@@ -38,17 +36,14 @@ export default function ZoomableThumb({url, alt, className}: {
 
             {/* preview content */}
             <DialogContent className="p-0 gap-0 !max-w-none w-[95vw] sm:w-[90vw]">
-                {/* zoom container */}
+                {/* zoomed-in container */}
                 <div className="relative w-[95vw] sm:w-[90vw] h-[85vh] overflow-auto bg-black">
                     <DialogTitle className="absolute left-3 top-3 z-10 rounded bg-black/50 px-2 py-1 text-xs text-white">
-                        {zoomed ? "Click to reset • Scroll to pan" : "Click to zoom"}
+                        {alt}
                     </DialogTitle>
                     <div
-                        className={`inline-block transition-transform duration-200 ${
-                            zoomed ? "scale-[1.8] cursor-zoom-out" : "scale-100 cursor-zoom-in"
-                        }`}
+                        className="inline-block transition-transform duration-200 scale-100"
                         style={{ transformOrigin: "center center" }}
-                        onClick={() => setZoomed((z) => !z)}
                     >
                         <div className="relative w-[95vw] sm:w-[90vw] h-[85vh] select-none">
                             <Image
