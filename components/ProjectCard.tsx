@@ -13,7 +13,6 @@ import { TbWorld } from "react-icons/tb";
 
 export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badges, description, websiteUrl}: Project) {
     return (
-        // Fixed height + column flex so content can lay out predictably
         <Card className="w-full max-w-sm h-[520px] flex flex-col">
             <CardHeader className="shrink-0">
                 <CardTitle className="font-semibold line-clamp-1">{title}</CardTitle>
