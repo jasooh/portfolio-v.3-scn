@@ -32,3 +32,15 @@ export type Experience = {
     images: ExperienceImage[]        // up to 3 (per query)
     description: PortableTextBlock[] // rich text blocks
 }
+
+// --- MORE ---
+
+export type More = {
+    status: "available" | "open_to_work" | "studying" | "on_break";
+    hackathons: number;
+    redbulls: string;
+    valorantRank: string;
+    headshotPercent: string;
+    osuRank: string;
+    currentObsession: string;
+};

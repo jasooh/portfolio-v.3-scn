@@ -4,8 +4,11 @@
 import React from "react";
 import TechMarquee from "@/components/TechMarquee";
 import GitHubCalendar from "react-github-calendar";
+import {getMoreSectionData} from "@/data/getExtras";
 
-export default function MoreSection() {
+export default async function MoreSection() {
+    const moreData = await getMoreSectionData();
+
     return (
         <section
             id="more"
@@ -53,7 +56,7 @@ export default function MoreSection() {
                                     <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-ping motion-reduce:animate-none" />
                                     <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
                                 </span>
-                                <span className="text-sm font-medium leading-none">available for projects</span>
+                                <span className="text-sm font-medium leading-none">{moreData.status}</span>
                             </div>
                             <span className="text-xs sm:text-sm text-gray-400 leading-none">
                                 Toronto · remote-friendly
@@ -83,30 +86,30 @@ export default function MoreSection() {
 
                         <dl className="grid grid-cols-3 gap-4 text-center">
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">4</dd>
+                                <dd className="text-2xl font-semibold leading-tight">{moreData.hackathons || 3}</dd>
                                 <dt className="text-xs text-gray-400">hackathons</dt>
                             </div>
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">0</dd>
-                                <dt className="text-xs text-gray-400">PRs merged</dt>
+                                <dd className="text-2xl font-semibold leading-tight">{moreData.redbulls || "100+"}</dd>
+                                <dt className="text-xs text-gray-400">redbulls</dt>
                             </div>
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">plat</dd>
+                                <dd className="text-2xl font-semibold leading-tight">{moreData.valorantRank || "radiant"}</dd>
                                 <dt className="text-xs text-gray-400">valorant rank</dt>
                             </div>
                         </dl>
 
                         <dl className="mt-4 grid grid-cols-3 gap-4 text-center">
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">0</dd>
-                                <dt className="text-xs text-gray-400">leetcode</dt>
+                                <dd className="text-2xl font-semibold leading-tight">{moreData.currentObsession || "none :("}</dd>
+                                <dt className="text-xs text-gray-400">current obsession</dt>
                             </div>
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">2</dd>
-                                <dt className="text-xs text-gray-400">databases cooked</dt>
+                                <dd className="text-2xl font-semibold leading-tight">{moreData.osuRank || 100 + "k"}</dd>
+                                <dt className="text-xs text-gray-400">osu! rank</dt>
                             </div>
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">28.6%</dd>
+                                <dd className="text-2xl font-semibold leading-tight">{moreData.headshotPercent || 100 + "%"}</dd>
                                 <dt className="text-xs text-gray-400">headshot %</dt>
                             </div>
                         </dl>
