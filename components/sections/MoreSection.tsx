@@ -103,7 +103,7 @@ export default async function MoreSection() {
                         <dl className="mt-4 grid grid-cols-3 gap-4 text-center">
                             <div>
                                 <dd className="text-2xl font-semibold leading-tight">{moreData.currentObsession || "none :("}</dd>
-                                <dt className="text-xs text-gray-400">current obsession</dt>
+                                <dt className="text-xs text-gray-400">obsessed w/</dt>
                             </div>
                             <div>
                                 <dd className="text-2xl font-semibold leading-tight">{moreData.osuRank || 100 + "k"}</dd>
