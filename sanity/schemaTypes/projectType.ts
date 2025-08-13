@@ -1,3 +1,6 @@
+// projectType.ts
+// defines a project type document.
+
 import { defineType, defineField } from "sanity";
 
 export const projectType = defineType({

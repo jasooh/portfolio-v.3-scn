@@ -6,8 +6,17 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FaChevronRight } from "react-icons/fa";
 import TimelineEntry from "@/components/TimelineEntry";
+import {PortableText} from "@portabletext/react";
+import {getExperiences} from "@/data/getExperiences";
 
-export default function ExperienceSection() {
+function fmt(date?: string | null) {
+    if (!date) return "present"
+    return new Date(date).toLocaleString("en-US", { month: "short", year: "numeric" }).toLowerCase()
+}
+
+export default async function ExperienceSection() {
+    const exps = await getExperiences();
+
     return (
         <section
             id="experience"
@@ -56,58 +65,24 @@ export default function ExperienceSection() {
                 </header>
 
                 {/* timeline */}
-                <ol
-                    role="list"
-                    className="mt-8 sm:mt-10 pl-5 sm:pl-6"
-                >
-                    <li aria-current="true">
-                        <TimelineEntry
-                            title="Flynn Group of Companies"
-                            description={
-                                <p>
-                                    💻 software engineering intern <br />
-                                    🏗️ innovating and optimizing processes in the construction
-                                    industry through software solutions
-                                </p>
-                            }
-                            start="may 2025"
-                            end="present"
-                            currentJob={true} // keeps your pulsing indicator
-                        />
-                    </li>
+                <ol role="list" className="mt-8 sm:mt-10 pl-5 sm:pl-6">
+                    {exps.length === 0 && (
+                        <li className="text-sm text-muted-foreground">No experience entries yet.</li>
+                    )}
 
-                    <li>
-                        <TimelineEntry
-                            title="Jitto"
-                            description={
-                                <p>
-                                    💻 full stack engineering intern <br />
-                                    🍅 innovating and optimizing processes in the produce industry
-                                    through software solutions
-                                </p>
-                            }
-                            start="july 2024"
-                            end="june 2025"
-                            currentJob={false}
-                        />
-                    </li>
-
-                    <li>
-                        <TimelineEntry
-                            title="Google Developer's Student Clubs"
-                            description={
-                                <p>
-                                    💼 technical co-lead <br />
-                                    👨‍💻 guiding and leading fellow computer science students to
-                                    success
-                                </p>
-                            }
-                            start="oct 2023"
-                            end="may 2024"
-                            currentJob={false}
-                            lastEntry={true}
-                        />
-                    </li>
+                    {exps.map((e, i) => (
+                        <li key={e._id} aria-current={i === 0 ? "true" : undefined}>
+                            <TimelineEntry
+                                title={e.title}
+                                description={<PortableText value={e.description} />}
+                                start={fmt(e.startDate)}
+                                end={fmt(e.endDate)}
+                                currentJob={i === 0}                 // newest = pulsing
+                                lastEntry={i === exps.length - 1}    // oldest = no trail
+                                images={e.images}                    // [{ url, alt }, ...] (if your TimelineEntry accepts images)
+                            />
+                        </li>
+                    ))}
                 </ol>
             </div>
         </section>

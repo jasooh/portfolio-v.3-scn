@@ -3,7 +3,8 @@
 
 import { type SchemaTypeDefinition } from 'sanity'
 import {projectType} from "@/sanity/schemaTypes/projectType";
+import {experienceType} from "@/sanity/schemaTypes/experienceType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [projectType],
+  types: [projectType, experienceType],
 }
