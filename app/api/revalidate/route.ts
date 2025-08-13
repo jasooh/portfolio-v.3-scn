@@ -18,6 +18,9 @@ export async function POST(req: Request) {
         case 'experience':
             revalidateTag('experience');
             break;
+        case 'more':
+            revalidateTag('more');
+            break;
         default:
             revalidateTag('sanity');
     }
