@@ -47,7 +47,7 @@ export default async function MoreSection() {
                         aria-label="Availability and location"
                         className="min-w-0 overflow-hidden h-full rounded-2xl border border-white/10 bg-card p-6"
                     >
-                        <div className="flex items-center justify-between gap-3 flex-wrap">
+                        <div className="flex flex-col items-center gap-2">
                             <div
                                 role="status"
                                 aria-live="polite"
@@ -55,7 +55,7 @@ export default async function MoreSection() {
                             >
                                 <span className="relative flex h-2.5 w-2.5">
                                     <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-ping motion-reduce:animate-none" />
-                                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
+                                    <span className="relative inline-flex size-2.5 rounded-full bg-primary" />
                                 </span>
                                 <span className="text-sm font-medium leading-none">{moreData.status}</span>
                             </div>
