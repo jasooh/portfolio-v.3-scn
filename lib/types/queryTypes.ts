@@ -12,7 +12,7 @@ export type Project = {
     imageUrl?: string
     alt?: string
     badges: string[]
-    description: string
+    description: PortableTextBlock[]
     githubUrl: string | null
 }
 

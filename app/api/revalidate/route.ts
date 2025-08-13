@@ -1,5 +1,6 @@
 // api/revalidate
 // responsible for triggering the sanity content lake webhook for re-rendering only when content changes.
+// it does this by invalidating the data cache and forces a re-query of the data.
 
 import { revalidateTag } from 'next/cache';
 import { isValidSignature } from '@sanity/webhook';

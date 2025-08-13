@@ -11,23 +11,23 @@ import Image from "next/image";
 // icons
 import {FaGithub} from "react-icons/fa";
 import {Button} from "@/components/ui/button";
-import {Project} from "@/lib/types/queryTypes";
 
-export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badges, description}: Project) {
+interface ProjectCardProps {
+    title: string
+    year: number
+    imageUrl?: string
+    alt?: string
+    badges: string[]
+    description: React.ReactNode
+    githubUrl: string | null
+}
+
+export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badges, description}: ProjectCardProps) {
     return (
         <Card className="w-full max-w-sm max-h-[500px]">
             <CardHeader>
                 <CardTitle className="font-semibold">{title}</CardTitle>
                 <CardDescription>{year}</CardDescription>
-                <CardAction>
-                    {githubUrl && (
-                        <Button variant="ghost" size="icon" asChild>
-                            <a href={githubUrl || "#"} target="_blank" rel="noreferrer">
-                                <FaGithub className="size-5 opacity-75"/>
-                            </a>
-                        </Button>
-                    )}
-                </CardAction>
             </CardHeader>
 
             <CardContent className="h-full">
@@ -42,15 +42,24 @@ export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badg
                 </div>
             </CardContent>
 
-            <CardFooter className="flex-col gap-2">
+            <CardFooter className="flex-col gap-5 min-h-[200px]">
                 <CardDescription className="flex flex-col gap-3">
                     <div className="flex flex-row flex-wrap gap-2">
                         {badges?.map((badgeText, i) => (
                             <Badge key={i} variant="default">{badgeText}</Badge>
                         ))}
                     </div>
-                    <p>{description}</p>
+                    <div>{description}</div>
                 </CardDescription>
+                <CardAction>
+                    {githubUrl && (
+                        <Button variant="ghost" size="icon" asChild>
+                            <a href={githubUrl || "#"} target="_blank" rel="noreferrer">
+                                <FaGithub className="size-5 opacity-75"/>
+                            </a>
+                        </Button>
+                    )}
+                </CardAction>
             </CardFooter>
         </Card>
     )

@@ -51,10 +51,10 @@ export const projectType = defineType({
         }),
         defineField({
             name: 'description',
-            title: 'Short Description',
-            type: 'text',
-            rows: 3,
-            validation: (Rule) => Rule.required().min(10).max(280),
+            title: 'Description',
+            type: 'array',
+            of: [{type: 'block'}],
+            validation: (Rule) => Rule.required(),
         }),
         defineField({
             name: 'githubUrl',
