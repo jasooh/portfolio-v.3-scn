@@ -3,12 +3,9 @@
 
 import React from "react";
 
-// components
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import Image from "next/image";
-
 // icons
 import { FaSuitcase } from "react-icons/fa";
+import ZoomableThumb from "@/components/ZoomableThumb";
 
 // timeline images
 interface TimelineImagesProps {
@@ -21,16 +18,7 @@ function TimelineImages({ images, className }: TimelineImagesProps) {
     return (
         <div className={className}>
             {limitedImages.map((img, i) => (
-                <div key={i} className="w-40 relative">
-                    <AspectRatio ratio={16 / 9}>
-                        <Image
-                            src={img.url}
-                            alt={img.alt || `Preview ${i + 1}`}
-                            fill
-                            className="rounded-md object-cover"
-                        />
-                    </AspectRatio>
-                </div>
+                <ZoomableThumb key={i} url={img.url} alt={img.alt || `Preview ${i + 1}`} />
             ))}
         </div>
     );
