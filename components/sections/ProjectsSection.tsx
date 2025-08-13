@@ -10,6 +10,7 @@ import {getProjects} from "@/data/getProjects";
 
 export default async function ProjectsSection() {
     const projects = await getProjects();
+    const limitedProjects = projects.slice(0, 3);
 
     return (
         <section
@@ -57,7 +58,7 @@ export default async function ProjectsSection() {
                     role="list"
                     className="mt-8 grid gap-8 sm:mt-10 sm:gap-10 sm:grid-cols-2 lg:grid-cols-3"
                 >
-                    {projects.map((project) => (
+                    {limitedProjects.map((project) => (
                         <li key={project._id}>
                             <ProjectCard
                                 _id={project._id}
