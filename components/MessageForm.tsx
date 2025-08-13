@@ -148,14 +148,14 @@ export default function MessageForm() {
                         name="message"
                         required
                         rows={5}
-                        placeholder="tell me about your project, timeline, and goals…"
+                        placeholder="go on..."
                         className="w-full resize-y rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
                     />
                     <ValidationError prefix="Message" field="message" errors={state.errors} />
                 </div>
 
-                {/* optional: fixed subject for email notification */}
-                <input type="hidden" name="_subject" value="New message from justinabuyuan.com" />
+                {/* fixed subject for email notification */}
+                <input type="hidden" name="_subject" value="New message from justin-abuyuan.xyz" />
 
                 <div className="sm:col-span-2 flex items-center gap-3">
                     <button
@@ -176,7 +176,7 @@ export default function MessageForm() {
                 </p>
             </form>
 
-            {/* reCAPTCHA attribution (required if you hide the default badge) */}
+            {/* reCAPTCHA attribution - very important */}
             <p className="mt-4 text-[11px] text-gray-400">
                 This site is protected by reCAPTCHA and the Google{" "}
                 <a
