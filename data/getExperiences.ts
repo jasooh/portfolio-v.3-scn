@@ -6,5 +6,7 @@ import { Experience } from "@/lib/types/queryTypes";
 import { experiencesQuery } from "@/lib/queries/sanityQueries";
 
 export async function getExperiences(): Promise<Experience[]> {
-    return client.fetch(experiencesQuery)
+    return client.fetch(experiencesQuery, {}, {
+        next: { tags: ['experience'] }
+    })
 }

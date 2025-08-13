@@ -10,7 +10,6 @@ import {getProjects} from "@/data/getProjects";
 
 export default async function ProjectsSection() {
     const projects = await getProjects();
-    console.log(projects[0].githubUrl)
 
     return (
         <section

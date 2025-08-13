@@ -6,5 +6,7 @@ import { Project } from "@/lib/types/queryTypes";
 import { projectsQuery } from "@/lib/queries/sanityQueries";
 
 export async function getProjects(): Promise<Project[]> {
-    return client.fetch(projectsQuery)
+    return client.fetch(projectsQuery, {}, {
+        next: { tags: ['project'] }
+    })
 }
