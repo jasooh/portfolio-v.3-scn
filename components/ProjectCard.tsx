@@ -2,36 +2,26 @@
 // displays project info.
 
 import React from "react";
-
-// components
-import {Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
-import {Badge} from "@/components/ui/badge";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Project } from "@/lib/types/queryTypes";
+import { PortableText } from "@portabletext/react";
+import { FaGithub } from "react-icons/fa";
+import { TbWorld } from "react-icons/tb";
 
-// icons
-import {FaGithub} from "react-icons/fa";
-import {Button} from "@/components/ui/button";
-
-interface ProjectCardProps {
-    title: string
-    year: number
-    imageUrl?: string
-    alt?: string
-    badges: string[]
-    description: React.ReactNode
-    githubUrl: string | null
-}
-
-export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badges, description}: ProjectCardProps) {
+export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badges, description, websiteUrl}: Project) {
     return (
-        <Card className="w-full max-w-sm max-h-[500px]">
-            <CardHeader>
-                <CardTitle className="font-semibold">{title}</CardTitle>
+        // Fixed height + column flex so content can lay out predictably
+        <Card className="w-full max-w-sm h-[520px] flex flex-col">
+            <CardHeader className="shrink-0">
+                <CardTitle className="font-semibold line-clamp-1">{title}</CardTitle>
                 <CardDescription>{year}</CardDescription>
             </CardHeader>
 
-            <CardContent className="h-full">
-                <div className="relative w-full overflow-hidden rounded-md" style={{aspectRatio: "3 / 2"}}>
+            <CardContent className="shrink-0">
+                <div className="relative w-full overflow-hidden rounded-md" style={{ aspectRatio: "3 / 2" }}>
                     <Image
                         src={imageUrl || "https://placehold.co/768x512.png"}
                         alt={alt || title}
@@ -42,25 +32,39 @@ export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badg
                 </div>
             </CardContent>
 
-            <CardFooter className="flex-col gap-5 min-h-[200px]">
-                <CardDescription className="flex flex-col gap-3">
+            {/* footer expands within the fixed card height */}
+            <CardFooter className="flex flex-col gap-5 grow min-h-0">
+                <CardDescription className="flex flex-col gap-3 overflow-hidden">
                     <div className="flex flex-row flex-wrap gap-2">
                         {badges?.map((badgeText, i) => (
                             <Badge key={i} variant="default">{badgeText}</Badge>
                         ))}
                     </div>
-                    <div>{description}</div>
+
+                    {/* clamp description so cards don't grow past fixed height */}
+                    <div className="line-clamp-4 [display:-webkit-box] [-webkit-line-clamp:4] [-webkit-box-orient:vertical] overflow-hidden">
+                        <PortableText value={description} />
+                    </div>
                 </CardDescription>
-                <CardAction>
+
+                {/* icons */}
+                <div className="mt-auto flex w-full items-center justify-start gap-1">
                     {githubUrl && (
                         <Button variant="ghost" size="icon" asChild>
-                            <a href={githubUrl || "#"} target="_blank" rel="noreferrer">
-                                <FaGithub className="size-5 opacity-75"/>
+                            <a href={githubUrl} target="_blank" rel="noreferrer">
+                                <FaGithub className="size-5 opacity-75" />
                             </a>
                         </Button>
                     )}
-                </CardAction>
+                    {websiteUrl && (
+                        <Button variant="ghost" size="icon" asChild>
+                            <a href={websiteUrl} target="_blank" rel="noreferrer">
+                                <TbWorld className="size-5 opacity-75" />
+                            </a>
+                        </Button>
+                    )}
+                </div>
             </CardFooter>
         </Card>
-    )
+    );
 }

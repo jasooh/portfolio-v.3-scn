@@ -65,5 +65,14 @@ export const projectType = defineType({
                 scheme: ['http', 'https'],
             }),
         }),
+        defineField({
+            name: 'websiteUrl',
+            title: 'Website URL',
+            type: 'url',
+            description: 'Optional: link to the website for this post/project',
+            validation: (rule) => rule.uri({
+                scheme: ['http', 'https'],
+            }),
+        }),
     ]
 })

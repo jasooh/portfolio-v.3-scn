@@ -14,6 +14,7 @@ export type Project = {
     badges: string[]
     description: PortableTextBlock[]
     githubUrl: string | null
+    websiteUrl: string | null
 }
 
 // --- EXPERIENCES ---

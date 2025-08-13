@@ -12,7 +12,8 @@ export const projectsQuery = groq`
   "alt": image.alt,
   badges,
   description,
-  githubUrl
+  githubUrl,
+  websiteUrl
 }
 `
 

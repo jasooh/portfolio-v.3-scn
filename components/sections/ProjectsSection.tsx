@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { FaChevronRight } from "react-icons/fa";
 import ProjectCard from "@/components/ProjectCard";
 import {getProjects} from "@/data/getProjects";
-import {PortableText} from "@portabletext/react";
 
 export default async function ProjectsSection() {
     const projects = await getProjects();
@@ -61,13 +60,15 @@ export default async function ProjectsSection() {
                     {projects.map((project) => (
                         <li key={project._id}>
                             <ProjectCard
+                                _id={project._id}
                                 title={project.title}
                                 year={project.year}
                                 imageUrl={project.imageUrl}
                                 alt={project.alt}
                                 githubUrl={project.githubUrl}
+                                websiteUrl={project.websiteUrl}
                                 badges={project.badges}
-                                description={<PortableText value={project.description} />}
+                                description={project.description}
                             />
                         </li>
                     ))}
