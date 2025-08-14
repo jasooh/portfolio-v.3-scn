@@ -12,7 +12,7 @@ export default function Loading() {
                         aria-hidden="true"
                         className="pointer-events-none absolute inset-0 select-none blur-sm opacity-80"
                     >
-                            j.a
+                            j
                         </span>
                     <span className="relative z-10">j.a</span>
                 </h1>
