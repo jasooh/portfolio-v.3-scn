@@ -8,7 +8,7 @@ export default function FooterSection() {
     const year = new Date().getFullYear();
 
     return (
-        <footer className="w-full">
+        <footer className="w-full bg-card">
             <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-end">
                     {/* left: brand + tagline + social */}

@@ -19,7 +19,7 @@ export default function ZoomableThumb({url, alt, className}: {
             <DialogTrigger asChild>
                 <button
                     type="button"
-                    className={`w-40 relative hover:opacity-30 hover:cursor-pointer duration-150 ${className || ""}`}
+                    className={`w-40 relative hover:opacity-50 hover:cursor-pointer duration-150 ${className || ""}`}
                     aria-label={`Open preview for ${alt || "image"}`}
                 >
                     <AspectRatio ratio={16 / 9}>

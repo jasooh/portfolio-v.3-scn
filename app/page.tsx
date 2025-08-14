@@ -21,7 +21,7 @@ export default function Home() {
             <ProjectsSection />
             <ExperienceSection />
             <MoreSection />
-            <Separator className="w-full my-12 sm:my-16 lg:my-20" />
+            <Separator className="w-full mt-12 sm:mt-16 lg:mt-20" />
             <FooterSection />
             <BackgroundEffect />
         </main>
