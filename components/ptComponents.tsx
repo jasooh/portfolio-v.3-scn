@@ -39,11 +39,11 @@ export const ptComponents: PortableTextComponents = {
             const href = value?.href || "#";
             const external = /^https?:\/\//i.test(href);
             return external ? (
-                <a href={href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-foreground">
+                <a href={href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-primary duration-100">
                     {children}
                 </a>
             ) : (
-                <Link href={href} className="underline underline-offset-4 hover:text-foreground">
+                <Link href={href} className="underline underline-offset-4 hover:text-primary duration-100">
                     {children}
                 </Link>
             );
