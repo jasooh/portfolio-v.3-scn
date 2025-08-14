@@ -13,17 +13,20 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 import HeroSection from "@/components/sections/HeroSection";
 import FooterSection from "@/components/sections/FooterSection";
 import BackgroundEffect from "@/components/three/BackgroundEffect";
+import AnimatedLoading from "@/components/AnimatedLoading";
 
 export default function Home() {
     return (
-        <main className="flex flex-col items-stretch overflow-x-hidden">
-            <HeroSection />
-            <ProjectsSection />
-            <ExperienceSection />
-            <MoreSection />
-            <Separator className="w-full mt-12 sm:mt-16 lg:mt-20" />
-            <FooterSection />
-            <BackgroundEffect />
-        </main>
+        <AnimatedLoading minDuration={1000} fadeOutMs={300}>
+            <main className="flex flex-col items-stretch overflow-x-hidden">
+                <HeroSection />
+                <ProjectsSection />
+                <ExperienceSection />
+                <MoreSection />
+                <Separator className="w-full mt-12 sm:mt-16 lg:mt-20" />
+                <FooterSection />
+                <BackgroundEffect />
+            </main>
+        </AnimatedLoading>
     );
 }
