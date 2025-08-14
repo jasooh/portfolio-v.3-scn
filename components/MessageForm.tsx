@@ -18,6 +18,35 @@ export default function MessageForm() {
         },
     });
 
+    /**
+     * reCAPTCHA detail display, required if using Google reCAPTCHA
+     */
+    const ReCaptchaDetails = () => {
+        return (
+            <p className="mt-4 text-[11px] text-gray-400">
+                This site is protected by reCAPTCHA and the Google{" "}
+                <a
+                    href="https://policies.google.com/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:no-underline"
+                >
+                    Privacy Policy
+                </a>{" "}
+                and{" "}
+                <a
+                    href="https://policies.google.com/terms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:no-underline"
+                >
+                    Terms of Service
+                </a>{" "}
+                apply.
+            </p>
+        )
+    }
+
     const canSubmit = !!executeRecaptcha && !state.submitting;
 
     // success msg
@@ -41,28 +70,7 @@ export default function MessageForm() {
                     send another
                 </button>
 
-                {/* reCAPTCHA attribution (required if you hide the default badge) */}
-                <p className="mt-4 text-[11px] text-gray-400">
-                    This site is protected by reCAPTCHA and the Google{" "}
-                    <a
-                        href="https://policies.google.com/privacy"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline hover:no-underline"
-                    >
-                        Privacy Policy
-                    </a>{" "}
-                    and{" "}
-                    <a
-                        href="https://policies.google.com/terms"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline hover:no-underline"
-                    >
-                        Terms of Service
-                    </a>{" "}
-                    apply.
-                </p>
+                <ReCaptchaDetails />
             </section>
         );
     }
@@ -92,7 +100,6 @@ export default function MessageForm() {
                         name="name"
                         type="text"
                         required
-                        autoComplete="name"
                         placeholder="name"
                         className="w-full rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
                     />
@@ -154,9 +161,6 @@ export default function MessageForm() {
                     <ValidationError prefix="Message" field="message" errors={state.errors} />
                 </div>
 
-                {/* fixed subject for email notification */}
-                <input type="hidden" name="_subject" value="New message from justin-abuyuan.xyz" />
-
                 <div className="sm:col-span-2 flex items-center gap-3">
                     <button
                         type="submit"
@@ -176,28 +180,7 @@ export default function MessageForm() {
                 </p>
             </form>
 
-            {/* reCAPTCHA attribution - very important */}
-            <p className="mt-4 text-[11px] text-gray-400">
-                This site is protected by reCAPTCHA and the Google{" "}
-                <a
-                    href="https://policies.google.com/privacy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline hover:no-underline"
-                >
-                    Privacy Policy
-                </a>{" "}
-                and{" "}
-                <a
-                    href="https://policies.google.com/terms"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline hover:no-underline"
-                >
-                    Terms of Service
-                </a>{" "}
-                apply.
-            </p>
+            <ReCaptchaDetails />
         </section>
     );
 }
