@@ -10,6 +10,7 @@ import {getProjects} from "@/data/getProjects";
 
 export default async function ProjectsSection() {
     const projects = await getProjects();
+    console.log(projects);
     const limitedProjects = projects.slice(0, 3);
 
     return (
@@ -70,6 +71,7 @@ export default async function ProjectsSection() {
                                 websiteUrl={project.websiteUrl}
                                 badges={project.badges}
                                 description={project.description}
+                                extraDetails={project.extraDetails}
                             />
                         </li>
                     ))}

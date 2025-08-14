@@ -13,7 +13,8 @@ export const projectsQuery = groq`
     badges,
     description,
     githubUrl,
-    websiteUrl
+    websiteUrl,
+    extraDetails
 }
 `
 

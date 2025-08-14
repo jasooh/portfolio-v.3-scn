@@ -13,6 +13,7 @@ export type Project = {
     alt?: string
     badges: string[]
     description: PortableTextBlock[]
+    extraDetails: PortableTextBlock[]
     githubUrl: string | null
     websiteUrl: string | null
 }
@@ -27,10 +28,10 @@ export type ExperienceImage = {
 export type Experience = {
     _id: string
     title: string
-    startDate: string                // ISO date, e.g. "2025-05-01"
-    endDate?: string | null          // null/undefined => "present"
-    images: ExperienceImage[]        // up to 3 (per query)
-    description: PortableTextBlock[] // rich text blocks
+    startDate: string
+    endDate?: string | null
+    images: ExperienceImage[]
+    description: PortableTextBlock[]
 }
 
 // --- MORE ---

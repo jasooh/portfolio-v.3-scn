@@ -8,11 +8,11 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Project } from "@/lib/types/queryTypes";
 import { PortableText } from "@portabletext/react";
-import {FaChevronRight, FaGithub} from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
 import ProjectDetailsDialog from "@/components/ui/ProjectDetailsDialog";
 
-export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badges, description, websiteUrl}: Project) {
+export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badges, description, extraDetails, websiteUrl}: Project) {
     return (
         <Card className="w-full max-w-sm h-[520px] flex flex-col">
             <CardHeader className="shrink-0">
@@ -69,7 +69,7 @@ export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badg
                     {/* see more details */}
                     <ProjectDetailsDialog
                         title={title}
-                        content={description}
+                        content={extraDetails}
                         subtitle={String(year)}
                     />
                 </div>

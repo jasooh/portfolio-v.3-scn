@@ -74,5 +74,12 @@ export const projectType = defineType({
                 scheme: ['http', 'https'],
             }),
         }),
+        defineField({
+            name: 'extraDetails',
+            title: 'Extra details',
+            type: 'array',
+            of: [{type: 'block'}],
+            validation: (Rule) => Rule.required(),
+        }),
     ]
 })
