@@ -48,18 +48,18 @@ export default async function ExperienceSection() {
                         className="group w-full justify-center sm:w-auto focus-visible:ring-primary"
                         title="Open résumé (PDF)"
                     >
-                        <Link
-                            href="/resume.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Open résumé"
-                        >
-                            <span>check out my resume</span>
-                            <FaChevronRight
-                                aria-hidden="true"
-                                className="ml-2 size-3 transition-transform group-hover:translate-x-0.5"
-                            />
-                        </Link>
+                        {/*<Link*/}
+                        {/*    href="/resume.pdf"*/}
+                        {/*    target="_blank"*/}
+                        {/*    rel="noopener noreferrer"*/}
+                        {/*    aria-label="Open résumé"*/}
+                        {/*>*/}
+                        {/*    <span>check out my resume</span>*/}
+                        {/*    <FaChevronRight*/}
+                        {/*        aria-hidden="true"*/}
+                        {/*        className="ml-2 size-3 transition-transform group-hover:translate-x-0.5"*/}
+                        {/*    />*/}
+                        {/*</Link>*/}
                     </Button>
                 </header>
 

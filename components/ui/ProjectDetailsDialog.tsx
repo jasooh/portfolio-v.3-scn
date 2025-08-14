@@ -40,7 +40,7 @@ export default function ProjectDetailsDialog({ title, content, subtitle }: Proje
             </DialogTrigger>
 
             {/* extra detail content */}
-            <DialogContent className="sm:max-w-2xl max-h-[85vh] p-0">
+            <DialogContent className="sm:max-w-xl max-h-[85vh] p-0">
                 <div className="p-6">
                     <DialogHeader className="space-y-1">
                         <DialogTitle className="text-xl">{title}</DialogTitle>

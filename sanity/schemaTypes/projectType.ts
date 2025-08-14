@@ -54,7 +54,10 @@ export const projectType = defineType({
             title: 'Description',
             type: 'array',
             of: [{type: 'block'}],
-            validation: (Rule) => Rule.required(),
+            validation: (Rule) =>
+                Rule.required()
+                    .min(10).error('Must be at least 10 characters.')
+                    .max(180).warning('Try to keep under 180 characters.'),
         }),
         defineField({
             name: 'githubUrl',

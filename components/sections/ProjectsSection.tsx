@@ -38,21 +38,21 @@ export default async function ProjectsSection() {
                         </p>
                     </div>
 
-                    <Button
-                        asChild
-                        variant="ghost"
-                        size="lg"
-                        className="group w-full justify-center sm:w-auto focus-visible:ring-primary"
-                        title="See more projects"
-                    >
-                        <Link href="/projects" aria-label="See more projects">
-                            <span>see more</span>
-                            <FaChevronRight
-                                aria-hidden="true"
-                                className="ml-2 size-3 transition-transform group-hover:translate-x-0.5"
-                            />
-                        </Link>
-                    </Button>
+                    {/*<Button*/}
+                    {/*    asChild*/}
+                    {/*    variant="ghost"*/}
+                    {/*    size="lg"*/}
+                    {/*    className="group w-full justify-center sm:w-auto focus-visible:ring-primary"*/}
+                    {/*    title="See more projects"*/}
+                    {/*>*/}
+                    {/*    <Link href="/projects" aria-label="See more projects">*/}
+                    {/*        <span>see more</span>*/}
+                    {/*        <FaChevronRight*/}
+                    {/*            aria-hidden="true"*/}
+                    {/*            className="ml-2 size-3 transition-transform group-hover:translate-x-0.5"*/}
+                    {/*        />*/}
+                    {/*    </Link>*/}
+                    {/*</Button>*/}
                 </header>
 
                 <ul
