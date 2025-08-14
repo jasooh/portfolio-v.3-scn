@@ -35,7 +35,6 @@ export const ptComponents: PortableTextComponents = {
         em: ({ children }) => <em className="italic">{children}</em>,
         underline: ({ children }) => <span className="underline">{children}</span>,
         code: ({ children }) => <code className="rounded bg-muted px-1.5 py-0.5 text-sm">{children}</code>,
-        // Sanity "link" annotation
         link: ({ children, value }) => {
             const href = value?.href || "#";
             const external = /^https?:\/\//i.test(href);
@@ -52,7 +51,6 @@ export const ptComponents: PortableTextComponents = {
     },
     types: {
         image: ({ value }) => {
-            // value: {_type:'image', asset:..., alt?:string, crop?, hotspot?}
             const alt: string = value?.alt ?? "";
             const src = urlFor(value).width(1200).height(800).fit("crop").auto("format").url();
             return (
