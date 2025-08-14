@@ -3,14 +3,12 @@
 
 "use client";
 
-import {Suspense, useEffect, useState} from "react";
+import React, {Suspense, useEffect, useState} from "react";
 import {AnimatePresence, motion} from "framer-motion";
 
 type Props = {
     children: React.ReactNode;
-    /** Keep the overlay up for at least this long (ms) to avoid flashes */
     minDuration?: number;
-    /** Fade-out duration (ms) */
     fadeOutMs?: number;
 };
 
@@ -20,8 +18,7 @@ export default function AnimatedLoading(
         minDuration = 300,
         fadeOutMs = 300,
     }: Props) {
-    // This component isn’t mounted until Suspense resolves.
-    // Once it mounts, we wait a beat, then fade the overlay out.
+    // this component isn’t mounted until suspense resolves
     const [showOverlay, setShowOverlay] = useState(true);
     const [mountedAt] = useState(() => Date.now());
 
@@ -32,7 +29,6 @@ export default function AnimatedLoading(
         return () => clearTimeout(t);
     }, [mountedAt, minDuration]);
 
-    // Animated version of the same overlay for the fade-out phase
     const AnimatedOverlay = (
         <AnimatePresence>
             {showOverlay && (
@@ -60,7 +56,7 @@ export default function AnimatedLoading(
 
     return (
         <Suspense>
-            {/* Children render only after Suspense resolves */}
+            {/* children render only after Suspense resolves */}
             {children}
             {AnimatedOverlay}
         </Suspense>
