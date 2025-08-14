@@ -11,6 +11,7 @@ export async function POST(req: Request) {
     const ok = isValidSignature(JSON.stringify(body), signature, process.env.SANITY_REVALIDATE_SECRET!);
     if (!ok) return new Response('Invalid signature.', { status: 401 });
 
+    console.log("REVALIDATE: " + body?._type);
     switch (body?._type) {
         case 'project':
             revalidateTag('project');
