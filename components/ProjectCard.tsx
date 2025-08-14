@@ -8,8 +8,9 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Project } from "@/lib/types/queryTypes";
 import { PortableText } from "@portabletext/react";
-import { FaGithub } from "react-icons/fa";
+import {FaChevronRight, FaGithub} from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
+import ProjectDetailsDialog from "@/components/ui/ProjectDetailsDialog";
 
 export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badges, description, websiteUrl}: Project) {
     return (
@@ -48,21 +49,29 @@ export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badg
                 </CardDescription>
 
                 {/* icons */}
-                <div className="mt-auto flex w-full items-center justify-start gap-1">
-                    {githubUrl && (
-                        <Button variant="ghost" size="icon" asChild>
-                            <a href={githubUrl} target="_blank" rel="noreferrer">
-                                <FaGithub className="size-5 opacity-75" />
-                            </a>
-                        </Button>
-                    )}
-                    {websiteUrl && (
-                        <Button variant="ghost" size="icon" asChild>
-                            <a href={websiteUrl} target="_blank" rel="noreferrer">
-                                <TbWorld className="size-5 opacity-75" />
-                            </a>
-                        </Button>
-                    )}
+                <div className="mt-auto flex w-full items-center justify-between gap-1">
+                    <div>
+                        {githubUrl && (
+                            <Button variant="ghost" size="icon" asChild>
+                                <a href={githubUrl} target="_blank" rel="noreferrer">
+                                    <FaGithub className="size-5 opacity-75" />
+                                </a>
+                            </Button>
+                        )}
+                        {websiteUrl && (
+                            <Button variant="ghost" size="icon" asChild>
+                                <a href={websiteUrl} target="_blank" rel="noreferrer">
+                                    <TbWorld className="size-5 opacity-75" />
+                                </a>
+                            </Button>
+                        )}
+                    </div>
+                    {/* see more details */}
+                    <ProjectDetailsDialog
+                        title={title}
+                        content={description}
+                        subtitle={String(year)}
+                    />
                 </div>
             </CardFooter>
         </Card>
