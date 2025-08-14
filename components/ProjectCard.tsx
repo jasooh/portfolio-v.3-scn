@@ -11,6 +11,7 @@ import { PortableText } from "@portabletext/react";
 import { FaGithub } from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
 import ProjectDetailsDialog from "@/components/ui/ProjectDetailsDialog";
+import {ptComponents} from "@/components/ptComponents";
 
 export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badges, description, extraDetails, websiteUrl}: Project) {
     return (
@@ -44,7 +45,7 @@ export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badg
                     {/* clamp description so cards don't grow past fixed height */}
                     {/* line-clamp-4 [display:-webkit-box] [-webkit-line-clamp:4] [-webkit-box-orient:vertical] overflow-hidden */}
                     <div>
-                        <PortableText value={description} />
+                        <PortableText value={description} components={ptComponents} />
                     </div>
                 </CardDescription>
 

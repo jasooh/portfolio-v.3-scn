@@ -6,6 +6,9 @@ import React from "react";
 // icons
 import { FaSuitcase } from "react-icons/fa";
 import ZoomableThumb from "@/components/ZoomableThumb";
+import {PortableTextBlock} from "@portabletext/types";
+import {PortableText} from "@portabletext/react";
+import {ptComponents} from "@/components/ptComponents";
 
 // timeline images
 interface TimelineImagesProps {
@@ -28,7 +31,7 @@ function TimelineImages({ images, className }: TimelineImagesProps) {
 
 interface TimelineEntryProps {
     title: string;
-    description: React.ReactNode;
+    description: PortableTextBlock[];
     start: string;
     end?: string;
     currentJob?: boolean;
@@ -57,7 +60,7 @@ export default function TimelineEntry({
                     {start} {end && `— ${end}`}
                 </time>
                 <div className="text-base font-normal dark:text-gray-400 mb-5">
-                    {description}
+                    <PortableText value={description} components={ptComponents} />
                 </div>
                 {images && (
                     <TimelineImages className="my-4 flex flex-wrap gap-4" images={images} />

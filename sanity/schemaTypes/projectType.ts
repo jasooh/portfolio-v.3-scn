@@ -78,8 +78,24 @@ export const projectType = defineType({
             name: 'extraDetails',
             title: 'Extra details',
             type: 'array',
-            of: [{type: 'block'}],
+            of: [
+                { type: 'block' },
+                {
+                    type: 'image',
+                    options: { hotspot: true },
+                    fields: [
+                        defineField({
+                            name: 'alt',
+                            title: 'Alt text',
+                            type: 'string',
+                            description: 'Describe the image for accessibility',
+                            validation: (Rule) => Rule.required().min(5).max(160),
+                        }),
+                    ],
+                },
+            ],
             validation: (Rule) => Rule.required(),
-        }),
+        })
+
     ]
 })

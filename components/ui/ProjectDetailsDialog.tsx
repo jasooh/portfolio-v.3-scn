@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { PortableText } from "@portabletext/react";
 import type { PortableTextBlock } from "@portabletext/types";
 import {FaChevronRight} from "react-icons/fa";
+import {ptComponents} from "@/components/ptComponents";
 
 interface ProjectDetailsDialogProps {
     title: string;
@@ -52,7 +53,7 @@ export default function ProjectDetailsDialog({ title, content, subtitle }: Proje
 
                     <ScrollArea className="mt-4 h-[56vh] pr-4">
                         <article className="prose dark:prose-invert max-w-none">
-                            <PortableText value={content} />
+                            <PortableText value={content} components={ptComponents} />
                         </article>
                     </ScrollArea>
                 </div>

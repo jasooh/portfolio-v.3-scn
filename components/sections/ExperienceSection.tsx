@@ -6,7 +6,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FaChevronRight } from "react-icons/fa";
 import TimelineEntry from "@/components/TimelineEntry";
-import {PortableText} from "@portabletext/react";
 import {getExperiences} from "@/data/getExperiences";
 
 function fmt(date?: string | null) {
@@ -74,12 +73,12 @@ export default async function ExperienceSection() {
                         <li key={e._id} aria-current={i === 0 ? "true" : undefined}>
                             <TimelineEntry
                                 title={e.title}
-                                description={<PortableText value={e.description} />}
+                                description={e.description}
                                 start={fmt(e.startDate)}
                                 end={fmt(e.endDate)}
                                 currentJob={i === 0}                 // newest = pulsing
                                 lastEntry={i === exps.length - 1}    // oldest = no trail
-                                images={e.images}                    // [{ url, alt }, ...] (if your TimelineEntry accepts images)
+                                images={e.images}
                             />
                         </li>
                     ))}
