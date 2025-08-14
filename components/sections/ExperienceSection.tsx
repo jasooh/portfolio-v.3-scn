@@ -2,9 +2,7 @@
 // renders the experience section of the home page.
 
 import React from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { FaChevronRight } from "react-icons/fa";
 import TimelineEntry from "@/components/TimelineEntry";
 import {getExperiences} from "@/data/getExperiences";
 
