@@ -45,3 +45,9 @@ export type More = {
     osuRank: string;
     currentObsession: string;
 };
+
+// --- RESUME ---
+
+export type Resume = {
+    resumeUrl: string | null;
+}

@@ -44,3 +44,9 @@ export const moreQuery = groq`
 }
 `
 
+export const resumeQuery = groq`
+*[_type == "siteSettings"][0]{
+    "resumeUrl": resume.asset->url,
+}
+`
+

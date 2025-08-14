@@ -4,10 +4,13 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoDocumentTextSharp } from "react-icons/io5";
 import { SocialIcon } from "@/components/SocialIcon";
+import { getResume } from "@/data/getResume";
 import Image from "next/image";
 import React from "react";
 
-export default function SocialLinks() {
+export default async function SocialLinks() {
+    const resumeData = await getResume();
+
     return (
         <nav aria-label="Social links">
             <ul className="flex flex-row items-center gap-3">
@@ -22,8 +25,7 @@ export default function SocialLinks() {
                     </SocialIcon>
                 </li>
                 <li>
-                    {/* internal link; open in same tab */}
-                    <SocialIcon href="/resume.pdf" label="Resume" external={false}>
+                    <SocialIcon href={resumeData.resumeUrl || "https://portfolio-v-2-alpha.vercel.app/documents/resume.pdf"} label="Resume">
                         <IoDocumentTextSharp className="size-6 sm:size-7" />
                     </SocialIcon>
                 </li>
