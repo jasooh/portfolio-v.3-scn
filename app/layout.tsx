@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Justin Abuyuan (v3)",
+    title: "Justin Abuyuan",
     description:
         "I'm Justin Abuyuan, an undergraduate Software Engineering student at the University of Waterloo. " +
         "I'm interested in software development and machine intelligence.",

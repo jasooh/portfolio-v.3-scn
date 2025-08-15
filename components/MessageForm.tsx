@@ -137,7 +137,7 @@ export default function MessageForm() {
                         name="subject"
                         type="text"
                         required
-                        placeholder="hey justin, we'd like to offer you a job..."
+                        placeholder="subject"
                         className="w-full rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
                     />
                     <ValidationError prefix="Subject" field="subject" errors={state.errors} />
@@ -155,7 +155,7 @@ export default function MessageForm() {
                         name="message"
                         required
                         rows={5}
-                        placeholder="go on..."
+                        placeholder="hey justin, we'd like to offer you a job..."
                         className="w-full resize-y rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
                     />
                     <ValidationError prefix="Message" field="message" errors={state.errors} />
