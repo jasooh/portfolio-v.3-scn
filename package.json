@@ -28,7 +28,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^12.43.0",
     "lucide-react": "^0.511.0",
-    "next": "15.3.8",
+    "next": "15.5.26",
     "next-sanity": "^10.0.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -50,7 +50,7 @@
     "@types/react-dom": "^19",
     "@types/three": "^0.179.0",
     "eslint": "^9",
-    "eslint-config-next": "15.3.8",
+    "eslint-config-next": "15.5.26",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.3",
     "typescript": "^5"
