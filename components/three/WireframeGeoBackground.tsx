@@ -9,7 +9,7 @@ import { scrollState } from "@/lib/scrollProgress";
 
 const TAU = Math.PI * 2;
 
-// how far right the composition slides, and how much it grows, across the page.
+// how far left the composition slides, and how much it grows, across the page.
 // the drift is measured for a landscape viewport and scaled down on narrow ones,
 // which have far less horizontal room before it leaves the screen entirely.
 const DRIFT_X = 7;
@@ -100,7 +100,7 @@ export default function WireframeGeoBackground() {
         const p = scroll.current;
         // children sit at the group origin so scaling grows them in place
         // instead of also pushing them away from the camera
-        group.current.position.set(p * driftX, 0, BASE_Z);
+        group.current.position.set(-p * driftX, 0, BASE_Z);
         group.current.scale.setScalar(1 + p * GROWTH);
         group.current.rotation.y = p * TAU * 0.3;
         // everything keys off scroll progress, so scrolling back to the top
