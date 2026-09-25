@@ -3,11 +3,11 @@
 
 import React from "react";
 import ProjectCard from "@/components/ProjectCard";
+import Reveal from "@/components/Reveal";
 import {getProjects} from "@/data/getProjects";
 
 export default async function ProjectsSection() {
     const projects = await getProjects();
-    console.log(projects);
     const limitedProjects = projects.slice(0, 3);
 
     return (
@@ -18,6 +18,7 @@ export default async function ProjectsSection() {
             className="scroll-mt-24 mt-24 sm:mt-32 lg:mt-40"
         >
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
+                <Reveal>
                 <header className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
                     <div>
                         <h2
@@ -35,29 +36,17 @@ export default async function ProjectsSection() {
                         </p>
                     </div>
 
-                    {/*<Button*/}
-                    {/*    asChild*/}
-                    {/*    variant="ghost"*/}
-                    {/*    size="lg"*/}
-                    {/*    className="group w-full justify-center sm:w-auto focus-visible:ring-primary"*/}
-                    {/*    title="See more projects"*/}
-                    {/*>*/}
-                    {/*    <Link href="/projects" aria-label="See more projects">*/}
-                    {/*        <span>see more</span>*/}
-                    {/*        <FaChevronRight*/}
-                    {/*            aria-hidden="true"*/}
-                    {/*            className="ml-2 size-3 transition-transform group-hover:translate-x-0.5"*/}
-                    {/*        />*/}
-                    {/*    </Link>*/}
-                    {/*</Button>*/}
                 </header>
+                </Reveal>
 
                 <ul
                     role="list"
                     className="mt-8 grid gap-8 sm:mt-10 sm:gap-10 sm:grid-cols-2 lg:grid-cols-3"
                 >
-                    {limitedProjects.map((project) => (
+                    {limitedProjects.map((project, i) => (
                         <li key={project._id}>
+                            {/* cascade rather than landing all at once */}
+                            <Reveal delay={i * 0.1}>
                             <ProjectCard
                                 _id={project._id}
                                 title={project.title}
@@ -70,6 +59,7 @@ export default async function ProjectsSection() {
                                 description={project.description}
                                 extraDetails={project.extraDetails}
                             />
+                            </Reveal>
                         </li>
                     ))}
                 </ul>

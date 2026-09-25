@@ -6,6 +6,7 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true, // Set to false if statically generating pages, using ISR or tag-based revalidation
+  // off: the cdn can still serve stale docs after revalidateTag fires
+  useCdn: false,
   perspective: 'published'
 })

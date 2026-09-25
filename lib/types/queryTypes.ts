@@ -28,6 +28,7 @@ export type ExperienceImage = {
 export type Experience = {
     _id: string
     title: string
+    role?: string | null
     startDate: string
     endDate?: string | null
     images: ExperienceImage[]

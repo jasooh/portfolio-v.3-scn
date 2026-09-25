@@ -6,6 +6,8 @@
 import React from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export default function MessageForm() {
     const { executeRecaptcha } = useGoogleReCaptcha();
@@ -65,7 +67,7 @@ export default function MessageForm() {
                 <button
                     type="button"
                     onClick={() => window.location.reload()}
-                    className="rounded-xl border border-white/10 px-4 py-2"
+                    className={cn(buttonVariants({ variant: "fill" }), "rounded-xl")}
                 >
                     send another
                 </button>
@@ -166,9 +168,11 @@ export default function MessageForm() {
                         type="submit"
                         disabled={!canSubmit}
                         aria-disabled={!canSubmit}
-                        className={`rounded-xl border border-white/10 px-4 py-2 ${
-                            !canSubmit ? "opacity-60 cursor-not-allowed" : ""
-                        }`}
+                        className={cn(
+                            buttonVariants({ variant: "fill" }),
+                            "rounded-xl",
+                            !canSubmit && "opacity-60 cursor-not-allowed"
+                        )}
                     >
                         {state.submitting ? "sending..." : !executeRecaptcha ? "loading..." : "send message"}
                     </button>

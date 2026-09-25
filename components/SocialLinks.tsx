@@ -24,11 +24,14 @@ export default async function SocialLinks() {
                         <FaLinkedin className="size-6 sm:size-7" />
                     </SocialIcon>
                 </li>
-                <li>
-                    <SocialIcon href={resumeData.resumeUrl || "https://portfolio-v-2-alpha.vercel.app/documents/resume.pdf"} label="Resume">
-                        <IoDocumentTextSharp className="size-6 sm:size-7" />
-                    </SocialIcon>
-                </li>
+                {/* hidden when sanity has no resume, rather than link somewhere dead */}
+                {resumeData.resumeUrl && (
+                    <li>
+                        <SocialIcon href={resumeData.resumeUrl} label="Resume (PDF)">
+                            <IoDocumentTextSharp className="size-6 sm:size-7" />
+                        </SocialIcon>
+                    </li>
+                )}
                 <li>
                     <SocialIcon href="https://se-webring.xyz/" label="SE Webring">
                         {/* decorative image: alt can be empty since link has aria-label */}

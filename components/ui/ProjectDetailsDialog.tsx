@@ -30,7 +30,7 @@ export default function ProjectDetailsDialog({ title, content, subtitle }: Proje
         <Dialog>
             {/* trigger button */}
             <DialogTrigger asChild>
-                <Button className="group justify-center sm:w-auto focus-visible:ring-primary hover:cursor-pointer" variant="ghost" size="sm">
+                <Button className="group justify-center sm:w-auto focus-visible:ring-primary hover:cursor-pointer" variant="fill" size="sm">
                     details
                     <FaChevronRight
                         aria-hidden="true"
@@ -39,24 +39,28 @@ export default function ProjectDetailsDialog({ title, content, subtitle }: Proje
                 </Button>
             </DialogTrigger>
 
-            {/* extra detail content */}
-            <DialogContent className="sm:max-w-xl max-h-[85vh] p-0">
-                <div className="p-6">
-                    <DialogHeader className="space-y-1">
-                        <DialogTitle className="text-xl">{title}</DialogTitle>
-                        {subtitle && (
-                            <DialogDescription className="text-xs text-muted-foreground">
-                                {subtitle}
-                            </DialogDescription>
-                        )}
-                    </DialogHeader>
+            {/* width steps up per breakpoint rather than sitting at one max-width.
+                flex + max-h lets it shrink to short content and cap at the viewport,
+                with the scroll area taking whatever height is left. */}
+            <DialogContent
+                className="flex max-h-[min(85vh,52rem)] w-[calc(100%-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl"
+            >
+                {/* pr-12 clears the close button */}
+                <DialogHeader className="shrink-0 space-y-1 border-b border-white/10 p-6 pr-12 pb-4">
+                    <DialogTitle className="text-xl">{title}</DialogTitle>
+                    {subtitle && (
+                        <DialogDescription className="text-xs text-muted-foreground">
+                            {subtitle}
+                        </DialogDescription>
+                    )}
+                </DialogHeader>
 
-                    <ScrollArea className="mt-4 h-[56vh] pr-4">
-                        <article className="prose dark:prose-invert max-w-none">
-                            <PortableText value={content} components={ptComponents} />
-                        </article>
-                    </ScrollArea>
-                </div>
+                <ScrollArea className="min-h-0 flex-1">
+                    {/* ptComponents sets no paragraph margin, so space them here */}
+                    <article className="space-y-3 px-6 py-5 text-sm leading-relaxed sm:text-base">
+                        <PortableText value={content} components={ptComponents} />
+                    </article>
+                </ScrollArea>
             </DialogContent>
         </Dialog>
     );

@@ -6,7 +6,13 @@ import { Project } from "@/lib/types/queryTypes";
 import { projectsQuery } from "@/lib/queries/sanityQueries";
 
 export async function getProjects(): Promise<Project[]> {
-    return client.fetch(projectsQuery, {}, {
-        next: { tags: ['project'] }
-    })
+    try {
+        return await client.fetch(projectsQuery, {}, {
+            next: { tags: ['project'] }
+        })
+    } catch (err) {
+        // don't fail the build over a sanity hiccup
+        console.error('[getProjects] sanity fetch failed:', err)
+        return []
+    }
 }

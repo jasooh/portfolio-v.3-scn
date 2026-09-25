@@ -6,7 +6,12 @@ import { Experience } from "@/lib/types/queryTypes";
 import { experiencesQuery } from "@/lib/queries/sanityQueries";
 
 export async function getExperiences(): Promise<Experience[]> {
-    return client.fetch(experiencesQuery, {}, {
-        next: { tags: ['experience'] }
-    })
+    try {
+        return await client.fetch(experiencesQuery, {}, {
+            next: { tags: ['experience'] }
+        })
+    } catch (err) {
+        console.error('[getExperiences] sanity fetch failed:', err)
+        return []
+    }
 }

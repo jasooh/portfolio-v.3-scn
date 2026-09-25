@@ -22,6 +22,7 @@ export const experiencesQuery = groq`
 *[_type == "experience"] | order(coalesce(endDate, now()) desc, startDate desc, order asc) {
     _id,
     title,
+    role,
     startDate,
     endDate,
     "images": images[0...3]{
@@ -46,7 +47,7 @@ export const moreQuery = groq`
 
 export const resumeQuery = groq`
 *[_type == "siteSettings"][0]{
-    "resumeUrl": resume.asset->url,
+    "resumeUrl": resume.asset->url
 }
 `
 

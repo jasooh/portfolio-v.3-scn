@@ -7,17 +7,20 @@ import { revalidateTag } from 'next/cache'
 import { parseBody } from 'next-sanity/webhook'
 
 type SanityWebhookBody = {
-    _type?: 'project' | 'experience' | 'more' | 'resume' | (string & {})
+    _type?: 'project' | 'experience' | 'more' | 'siteSettings' | (string & {})
     _id?: string
     slug?: { current?: string }
 }
 
+// sanity document type -> cache tag. the resume lives on siteSettings.
 const TYPE_TO_TAG: Record<string, string> = {
     project: 'project',
     experience: 'experience',
     more: 'more',
-    resume: 'resume',
+    siteSettings: 'resume',
 }
+
+const ALL_TAGS = Object.values(TYPE_TO_TAG)
 
 export async function POST(req: NextRequest) {
     try {
@@ -30,14 +33,20 @@ export async function POST(req: NextRequest) {
         }
 
         const type = body?._type ?? 'unknown'
-        const tags = new Set<string>([TYPE_TO_TAG[type] ?? 'sanity'])
+        const mapped = TYPE_TO_TAG[type]
+
+        // unknown type: clear everything rather than risk serving stale content
+        const tags = mapped ? [mapped] : ALL_TAGS
+        if (!mapped) {
+            console.warn(`[revalidate] unmapped sanity type "${type}", clearing all tags`)
+        }
 
         for (const tag of tags) revalidateTag(tag)
 
         return NextResponse.json({
             revalidated: true,
             type,
-            invalidated: [...tags],
+            invalidated: tags,
             now: Date.now(),
         })
     } catch (err) {

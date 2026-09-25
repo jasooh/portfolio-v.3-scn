@@ -31,6 +31,7 @@ function TimelineImages({ images, className }: TimelineImagesProps) {
 
 interface TimelineEntryProps {
     title: string;
+    role?: string | null;
     description: PortableTextBlock[];
     start: string;
     end?: string;
@@ -41,6 +42,7 @@ interface TimelineEntryProps {
 
 export default function TimelineEntry({
       title,
+      role,
       description,
       currentJob = false,
       start,
@@ -55,7 +57,11 @@ export default function TimelineEntry({
                     <span className={`absolute size-7 dark:bg-primary rounded-full z-[-1] ${currentJob ? "animate-ping" : ""}`}/>
                     <FaSuitcase className="w-2.5 h-2.5" aria-hidden="true" />
                 </span>
-                <h3 className="mb-1 text-lg font-semibold dark:text-white">{title}</h3>
+                {/* role leads if set, company otherwise */}
+                <h3 className="mb-0.5 text-lg font-semibold dark:text-white">{role || title}</h3>
+                {role && (
+                    <p className="mb-1 text-sm dark:text-gray-300">{title}</p>
+                )}
                 <time className="block mb-2 text-sm font-normal leading-none dark:text-gray-500">
                     {start} {end && `— ${end}`}
                 </time>

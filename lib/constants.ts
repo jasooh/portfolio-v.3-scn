@@ -7,6 +7,5 @@ export const HERO_TEXT = [
     "i turn napkin sketches into production apps.",
     "i sweat details so everything just works.",
     "i measure, optimize, and deliver.",
-    "i learn fast and raise the bar.",
-    "i commit api keys to the repo. sk-r9t8L2qWvX4bY1zN7jK3pH5mE0aF6sD8oQ4uC1lG"
+    "i learn fast and raise the bar."
 ]

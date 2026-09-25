@@ -6,6 +6,8 @@ import TechMarquee from "@/components/TechMarquee";
 import GitHubCalendar from "react-github-calendar";
 import {getMoreSectionData} from "@/data/getExtras";
 import MessageForm from "@/components/MessageForm";
+import CaptchaProvider from "@/app/providers/CaptchaProvider";
+import Reveal from "@/components/Reveal";
 
 export default async function MoreSection() {
     const moreData = await getMoreSectionData();
@@ -18,6 +20,7 @@ export default async function MoreSection() {
             className="scroll-mt-24 mt-24 sm:mt-32 lg:mt-40 mb-16 sm:mb-20"
         >
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
+                <Reveal>
                 <header className="mb-6 sm:mb-8">
                     <h2
                         id="more-title"
@@ -29,8 +32,11 @@ export default async function MoreSection() {
                         github activity, tools i use, and what i’m up to now.
                     </p>
                 </header>
+                </Reveal>
 
-                {/* grid content */}
+                {/* revealed as one unit: the children rely on lg:col-span-2 and
+                    h-full, which a per-tile wrapper would break */}
+                <Reveal>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     {/* row 1, cols 1-2: tech marquee */}
                     <div
@@ -87,38 +93,44 @@ export default async function MoreSection() {
 
                         <dl className="grid grid-cols-3 gap-4 text-center">
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">{moreData.hackathons || 3}</dd>
+                                <dd className="text-2xl font-semibold leading-tight">{moreData.hackathons}</dd>
                                 <dt className="text-xs text-gray-400">hackathons</dt>
                             </div>
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">{moreData.redbulls || "100+"}</dd>
+                                <dd className="text-2xl font-semibold leading-tight">{moreData.redbulls}</dd>
                                 <dt className="text-xs text-gray-400">redbulls</dt>
                             </div>
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">{moreData.valorantRank || "radiant"}</dd>
+                                <dd className="text-2xl font-semibold leading-tight">{moreData.valorantRank}</dd>
                                 <dt className="text-xs text-gray-400">valorant rank</dt>
                             </div>
                         </dl>
 
                         <dl className="mt-4 grid grid-cols-3 gap-4 text-center">
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">{moreData.currentObsession || "none :("}</dd>
+                                <dd className="text-2xl font-semibold leading-tight">{moreData.currentObsession}</dd>
                                 <dt className="text-xs text-gray-400">obsessed w/</dt>
                             </div>
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">{moreData.osuRank || 100 + "k"}</dd>
+                                <dd className="text-2xl font-semibold leading-tight">{moreData.osuRank}</dd>
                                 <dt className="text-xs text-gray-400">osu! rank</dt>
                             </div>
                             <div>
-                                <dd className="text-2xl font-semibold leading-tight">{moreData.headshotPercent || 100 + "%"}</dd>
+                                <dd className="text-2xl font-semibold leading-tight">{moreData.headshotPercent}</dd>
                                 <dt className="text-xs text-gray-400">headshot %</dt>
                             </div>
                         </dl>
                     </section>
                 </div>
+                </Reveal>
 
-                {/* form */}
-                <MessageForm />
+                {/* captcha provider is scoped here so google's script isn't
+                    pulled into every route */}
+                <Reveal>
+                    <CaptchaProvider>
+                        <MessageForm />
+                    </CaptchaProvider>
+                </Reveal>
             </div>
         </section>
     );

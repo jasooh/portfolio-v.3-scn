@@ -3,13 +3,17 @@
 
 import React from "react";
 import SocialLinks from "@/components/SocialLinks";
+import { contactEmail } from "@/lib/site";
+import Reveal from "@/components/Reveal";
 
 export default function FooterSection() {
     const year = new Date().getFullYear();
 
     return (
         <footer className="w-full bg-card">
-            <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10">
+            {/* bottom padding clears the floating dock */}
+            <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-10 pb-28 sm:pb-32">
+                <Reveal>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-end">
                     {/* left: brand + tagline + social */}
                     <div className="flex flex-col gap-4">
@@ -22,8 +26,15 @@ export default function FooterSection() {
                                 <span className="relative z-10 text-gray-200">justin abuyuan</span>
                             </h3>
                             <p className="italic text-gray-400">
-                                software engineer and hardstuck plat on valorant
+                                software engineer and perpetual tinkerer
                             </p>
+                            {/* fallback for when recaptcha is blocked and the form won't send */}
+                            <a
+                                href={`mailto:${contactEmail}`}
+                                className="mt-1 inline-block text-sm text-gray-400 underline underline-offset-4 hover:text-primary duration-150"
+                            >
+                                {contactEmail}
+                            </a>
                         </div>
 
                         {/* social links */}
@@ -39,6 +50,7 @@ export default function FooterSection() {
                         </p>
                     </div>
                 </div>
+                </Reveal>
             </div>
         </footer>
     );

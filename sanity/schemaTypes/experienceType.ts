@@ -10,9 +10,17 @@ export const experienceType = defineType({
     fields: [
         defineField({
             name: 'title',
-            title: 'Title',
+            title: 'Company',
+            description: 'Organisation name, e.g. "Carta"',
             type: 'string',
             validation: (Rule) => Rule.required().min(2).max(200),
+        }),
+        defineField({
+            name: 'role',
+            title: 'Role',
+            description: 'Your job title, e.g. "Software Engineer Intern". Optional — the entry falls back to showing just the company if this is empty.',
+            type: 'string',
+            validation: (Rule) => Rule.max(200),
         }),
         defineField({
             name: 'startDate',
