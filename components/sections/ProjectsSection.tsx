@@ -4,7 +4,7 @@
 import React from "react";
 import ProjectCard from "@/components/ProjectCard";
 import Reveal from "@/components/Reveal";
-import {getProjects} from "@/data/getProjects";
+import {getProjects} from "@/sanity/fetch";
 import SectionHeader from "@/components/SectionHeader";
 
 export default async function ProjectsSection() {
@@ -40,8 +40,7 @@ export default async function ProjectsSection() {
                                 _id={project._id}
                                 title={project.title}
                                 year={project.year}
-                                imageUrl={project.imageUrl}
-                                alt={project.alt}
+                                image={project.image}
                                 githubUrl={project.githubUrl}
                                 websiteUrl={project.websiteUrl}
                                 badges={project.badges}

@@ -4,12 +4,12 @@
 import React from "react";
 import TechMarquee from "@/components/TechMarquee";
 import GitHubCalendar from "react-github-calendar";
-import {getMoreSectionData} from "@/data/getExtras";
+import {getMoreSectionData} from "@/sanity/fetch";
 import MessageForm from "@/components/MessageForm";
 import CaptchaProvider from "@/app/providers/CaptchaProvider";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
-import type { More } from "@/lib/types/queryTypes";
+import type { More } from "@/sanity/fetch";
 
 const STATS: { key: Exclude<keyof More, "status">; label: string }[] = [
     { key: "hackathons", label: "hackathons" },

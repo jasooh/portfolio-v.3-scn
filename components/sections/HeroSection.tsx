@@ -7,7 +7,7 @@ import {HERO_TEXT} from "@/lib/constants";
 import SocialLinks from "@/components/SocialLinks";
 import Reveal from "@/components/Reveal";
 import Rule from "@/components/Rule";
-import {getMoreSectionData} from "@/data/getExtras";
+import {getMoreSectionData} from "@/sanity/fetch";
 
 // a dimension line: end ticks, a rule either side, the measurement in the middle
 function Dimension({ children }: { children: React.ReactNode }) {

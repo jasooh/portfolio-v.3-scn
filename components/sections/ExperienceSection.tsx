@@ -8,8 +8,7 @@ import { Button } from "@/components/ui/button";
 import TimelineEntry from "@/components/TimelineEntry";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
-import { getExperiences } from "@/data/getExperiences";
-import { getResume } from "@/data/getResume";
+import { getExperiences, getResume } from "@/sanity/fetch";
 
 function fmt(date?: string | null) {
     if (!date) return "present"

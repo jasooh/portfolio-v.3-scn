@@ -2,15 +2,10 @@
 // defines components for rich text styling provided by sanity.
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { client } from "@/sanity/lib/client";
-import imageUrlBuilder from "@sanity/image-url";
 import type { PortableTextComponents } from "@portabletext/react";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-
-const builder = imageUrlBuilder(client);
-const urlFor = (src: SanityImageSource) => builder.image(src);
+import SanityImage from "@/components/SanityImage";
+import { hasAsset } from "@/sanity/lib/image";
 
 export const ptComponents: PortableTextComponents = {
     list: {
@@ -51,11 +46,10 @@ export const ptComponents: PortableTextComponents = {
     },
     types: {
         image: ({ value }) => {
-            const alt: string = value?.alt ?? "";
-            const src = urlFor(value).width(1200).height(800).fit("crop").auto("format").url();
+            if (!hasAsset(value)) return null;
             return (
                 <div className="relative my-4 w-full overflow-hidden border border-border" style={{ aspectRatio: "3 / 2" }}>
-                    <Image src={src} alt={alt} fill className="object-cover" sizes="100vw" />
+                    <SanityImage image={value} aspect={3 / 2} alt={value.alt ?? ""} fill className="object-cover" sizes="100vw" />
                 </div>
             );
         },

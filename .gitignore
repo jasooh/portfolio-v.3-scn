@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# sanity schema extract (input to typegen; regenerate with npm run typegen)
+/sanity/extract.json

@@ -4,22 +4,25 @@
 import React from "react";
 
 import ZoomableThumb from "@/components/ZoomableThumb";
-import {PortableTextBlock} from "@portabletext/types";
+import type { Experience } from "@/sanity/fetch";
+import { hasAsset } from "@/sanity/lib/image";
 import {PortableText} from "@portabletext/react";
 import {ptComponents} from "@/components/ptComponents";
 
+type TimelineImage = NonNullable<Experience["images"]>[number];
+
 // timeline images
 interface TimelineImagesProps {
-    images: { url: string; alt: string }[];
+    images: TimelineImage[];
     className?: string;
 }
 
 function TimelineImages({ images, className }: TimelineImagesProps) {
-    const limitedImages = images.slice(0, 3);
+    const limitedImages = images.filter(hasAsset).slice(0, 3);
     return (
         <div className={className}>
             {limitedImages.map((img, i) => (
-                <ZoomableThumb key={i} url={img.url} alt={img.alt || `Preview ${i + 1}`} />
+                <ZoomableThumb key={i} image={img} alt={img.alt || `Preview ${i + 1}`} />
             ))}
         </div>
     );
@@ -30,12 +33,12 @@ function TimelineImages({ images, className }: TimelineImagesProps) {
 interface TimelineEntryProps {
     title: string;
     role?: string | null;
-    description: PortableTextBlock[];
+    description: Experience["description"];
     start: string;
     end?: string;
     currentJob?: boolean;
     lastEntry?: boolean;
-    images?: { url: string; alt: string }[];
+    images?: TimelineImage[] | null;
 }
 
 export default function TimelineEntry({

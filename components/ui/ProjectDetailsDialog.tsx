@@ -15,13 +15,13 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { PortableText } from "@portabletext/react";
-import type { PortableTextBlock } from "@portabletext/types";
+import type { Project } from "@/sanity/fetch";
 import {FaChevronRight} from "react-icons/fa";
 import {ptComponents} from "@/components/ptComponents";
 
 interface ProjectDetailsDialogProps {
     title: string;
-    content: PortableTextBlock[];      // rich text from Sanity (Portable Text)
+    content: Project["extraDetails"];  // rich text from Sanity (Portable Text)
     subtitle?: string;                 // optional (e.g., year or tagline)
 }
 

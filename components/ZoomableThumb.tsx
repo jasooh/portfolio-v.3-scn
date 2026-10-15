@@ -4,12 +4,13 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
+import SanityImage from "@/components/SanityImage";
+import type { SanityImage as Source } from "@/sanity/lib/image";
 import {Dialog, DialogContent, DialogTitle, DialogTrigger} from "@/components/ui/dialog";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
-export default function ZoomableThumb({url, alt, className}: {
-    url: string;
+export default function ZoomableThumb({image, alt, className}: {
+    image: Source & { asset: NonNullable<Source["asset"]> };
     alt?: string;
     className?: string;
 }) {
@@ -23,10 +24,12 @@ export default function ZoomableThumb({url, alt, className}: {
                     aria-label={`Open preview for ${alt || "image"}`}
                 >
                     <AspectRatio ratio={16 / 9}>
-                        <Image
-                            src={url}
+                        <SanityImage
+                            image={image}
+                            aspect={16 / 9}
                             alt={alt || "Zoom preview"}
                             fill
+                            sizes="160px"
                             className="object-cover grayscale-[35%] transition hover:grayscale-0"
                             draggable={false}
                         />
@@ -47,8 +50,8 @@ export default function ZoomableThumb({url, alt, className}: {
                             {alt}
                         </span>
                     )}
-                    <Image
-                        src={url}
+                    <SanityImage
+                        image={image}
                         alt={alt || ""}
                         fill
                         sizes="92vw"

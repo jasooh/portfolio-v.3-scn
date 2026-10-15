@@ -4,7 +4,7 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoDocumentTextSharp } from "react-icons/io5";
 import { SocialIcon } from "@/components/SocialIcon";
-import { getResume } from "@/data/getResume";
+import { getResume } from "@/sanity/fetch";
 import Image from "next/image";
 import React from "react";
 

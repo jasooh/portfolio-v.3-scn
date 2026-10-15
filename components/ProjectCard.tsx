@@ -4,19 +4,23 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Project } from "@/lib/types/queryTypes";
+import type { Project } from "@/sanity/fetch";
+import { hasAsset } from "@/sanity/lib/image";
+import SanityImage from "@/components/SanityImage";
 import { PortableText } from "@portabletext/react";
 import { FaGithub } from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
 import ProjectDetailsDialog from "@/components/ui/ProjectDetailsDialog";
 import {ptComponents} from "@/components/ptComponents";
 
+const IMAGE_CLASS = "object-cover grayscale-[35%] transition duration-500 group-hover:scale-[1.03] group-hover:grayscale-0 motion-reduce:transition-none";
+
 type Props = Project & {
     /** figure number shown in the caption */
     index?: number;
 };
 
-export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badges, description, extraDetails, websiteUrl, index = 1}: Props) {
+export default function ProjectCard({title, year, image, githubUrl, badges, description, extraDetails, websiteUrl, index = 1}: Props) {
     const fig = String(index).padStart(2, "0");
 
     return (
@@ -24,13 +28,24 @@ export default function ProjectCard({title, year, imageUrl, alt, githubUrl, badg
             {/* figure: inset frame keeps a hairline of card between image and border */}
             <div className="shrink-0 p-3 pb-0">
                 <div className="relative w-full overflow-hidden border border-border" style={{ aspectRatio: "3 / 2" }}>
-                    <Image
-                        src={imageUrl || "https://placehold.co/768x512.png"}
-                        alt={alt || title}
-                        fill
-                        sizes="(min-width:1024px) 384px, 100vw"
-                        className="object-cover grayscale-[35%] transition duration-500 group-hover:scale-[1.03] group-hover:grayscale-0 motion-reduce:transition-none"
-                    />
+                    {hasAsset(image) ? (
+                        <SanityImage
+                            image={image}
+                            aspect={3 / 2}
+                            alt={image.alt || title}
+                            fill
+                            sizes="(min-width:1024px) 384px, 100vw"
+                            className={IMAGE_CLASS}
+                        />
+                    ) : (
+                        <Image
+                            src="https://placehold.co/768x512.png"
+                            alt={title}
+                            fill
+                            sizes="(min-width:1024px) 384px, 100vw"
+                            className={IMAGE_CLASS}
+                        />
+                    )}
                 </div>
                 <div className="mt-2 flex items-center justify-between">
                     <span className="label">fig. {fig}</span>
