@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Hanken_Grotesk, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { siteUrl, siteName, siteTitle, siteDescription } from "@/lib/site";
@@ -24,6 +24,12 @@ const jetbrains = JetBrains_Mono({
     variable: "--font-jetbrains",
     subsets: ["latin"],
 });
+
+// browser chrome (mobile address bar, pwa title bar) matches the ink ground
+export const viewport: Viewport = {
+    themeColor: "#0c0d10",
+    colorScheme: "dark",
+};
 
 export const metadata: Metadata = {
     // makes the relative og/twitter image urls resolve to absolute ones
