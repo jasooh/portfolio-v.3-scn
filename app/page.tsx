@@ -14,10 +14,12 @@ import BackgroundEffect from "@/components/three/BackgroundEffect";
 import AnimatedLoading from "@/components/AnimatedLoading";
 import Scene from "@/components/Scene";
 import SceneSnap from "@/components/SceneSnap";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export default function Home() {
     return (
         <AnimatedLoading minDuration={600} maxDuration={2500} fadeOutMs={450}>
+            <SmoothScroll>
             <a
                 href="#main"
                 className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-primary focus:bg-background focus:px-4 focus:py-2"
@@ -39,6 +41,7 @@ export default function Home() {
                 <FooterSection />
                 <BackgroundEffect />
             </main>
+            </SmoothScroll>
         </AnimatedLoading>
     );
 }

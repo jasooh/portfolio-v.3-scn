@@ -95,17 +95,20 @@ export default async function HeroSection() {
                 </header>
             </div>
 
-            {/* scroll cue: a plumb line */}
+            {/* scroll cue: a plumb line with a bead running down it */}
             <Reveal
                 on="load"
                 delay={0.8}
-                className="pointer-events-none absolute inset-x-0 bottom-6 flex flex-col items-center gap-2"
+                className="pointer-events-none absolute inset-x-0 bottom-6 flex justify-center"
             >
-                <span className="label">scroll</span>
-                <span
-                    aria-hidden="true"
-                    className="h-10 w-px origin-top bg-linear-to-b from-primary to-transparent animate-pulse motion-reduce:animate-none"
-                />
+                <a
+                    href="#projects"
+                    aria-label="Scroll to projects"
+                    className="group pointer-events-auto flex flex-col items-center gap-2 p-2 outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                    <span className="label scroll-cue-label transition-colors group-hover:text-primary">scroll</span>
+                    <span aria-hidden="true" className="scroll-cue-line block h-12 w-px" />
+                </a>
             </Reveal>
         </section>
     );

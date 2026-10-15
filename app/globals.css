@@ -70,11 +70,10 @@
   * {
     @apply border-border outline-ring/50;
   }
-  /* snapping between sections is SceneSnap's job; this only smooths anchor
-     jumps and keeps their landing spot in step with it */
+  /* smoothing is Lenis's job (SmoothScroll) and snapping is SceneSnap's; a
+     css scroll-behavior would fight both. the padding matches their offset */
   html {
     color-scheme: dark;
-    scroll-behavior: smooth;
     scroll-padding-top: 3rem;
   }
   body {
@@ -164,8 +163,36 @@
   }
 }
 
+/* scroll cue: a bead of ink running down the plumb line, and a breathing label */
+.scroll-cue-line {
+  position: relative;
+  overflow: hidden;
+  background: var(--rule);
+}
+.scroll-cue-line::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 40%;
+  background: linear-gradient(to bottom, transparent, var(--primary));
+  animation: scroll-cue-drop 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.scroll-cue-label {
+  animation: scroll-cue-breathe 1.8s ease-in-out infinite;
+}
+
+@keyframes scroll-cue-drop {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(250%); }
+}
+@keyframes scroll-cue-breathe {
+  0%, 100% { opacity: 0.55; letter-spacing: 0.14em; }
+  50% { opacity: 1; letter-spacing: 0.26em; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  .scroll-cue-line::after, .scroll-cue-label { animation: none; }
   .drafted::before { transition: none; }
 }
 

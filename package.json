@@ -27,6 +27,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.43.0",
+    "lenis": "^1.3.11",
     "lucide-react": "^0.511.0",
     "next": "15.5.26",
     "next-sanity": "^10.0.10",
