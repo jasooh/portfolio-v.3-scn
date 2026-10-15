@@ -44,7 +44,7 @@ export default function ZoomableThumb({image, alt, className}: {
                     can't render as an empty pill */}
                 <DialogTitle className="sr-only">{alt || "Image preview"}</DialogTitle>
 
-                <div className="relative h-[80vh] w-full bg-black">
+                <div className="relative h-[80svh] w-full bg-background">
                     {alt && (
                         <span className="absolute left-3 top-3 z-10 label bg-background/80 px-2 py-1 text-foreground">
                             {alt}

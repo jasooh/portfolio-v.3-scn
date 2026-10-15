@@ -95,6 +95,9 @@ export default function ProjectCard({title, year, image, githubUrl, badges, desc
                         title={title}
                         content={extraDetails}
                         subtitle={String(year)}
+                        fig={`fig. ${fig}`}
+                        githubUrl={githubUrl}
+                        websiteUrl={websiteUrl}
                     />
                 </div>
             </div>

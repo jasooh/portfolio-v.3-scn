@@ -191,6 +191,12 @@
   50% { opacity: 1; letter-spacing: 0.26em; }
 }
 
+/* a hairline scrollbar for inner scroll areas, e.g. dialogs */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) transparent;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scroll-cue-line::after, .scroll-cue-label { animation: none; }
   .drafted::before { transition: none; }
