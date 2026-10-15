@@ -16,7 +16,7 @@ export default async function ProjectsSection() {
             id="projects"
             aria-labelledby="projects-title"
             aria-describedby="projects-desc"
-            className="scroll-mt-24 mt-16 sm:mt-24 lg:mt-32"
+            className="mt-16 sm:mt-24 lg:mt-32"
         >
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
                 <SectionHeader

@@ -28,7 +28,7 @@ export default async function MoreSection() {
             id="more"
             aria-labelledby="more-title"
             aria-describedby="more-desc"
-            className="scroll-mt-24 mt-24 sm:mt-32 lg:mt-40 mb-16 sm:mb-20"
+            className="mt-24 sm:mt-32 lg:mt-40 mb-16 sm:mb-20"
         >
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
                 <SectionHeader

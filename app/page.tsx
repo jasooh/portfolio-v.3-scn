@@ -12,6 +12,8 @@ import HeroSection from "@/components/sections/HeroSection";
 import FooterSection from "@/components/sections/FooterSection";
 import BackgroundEffect from "@/components/three/BackgroundEffect";
 import AnimatedLoading from "@/components/AnimatedLoading";
+import Scene from "@/components/Scene";
+import SceneSnap from "@/components/SceneSnap";
 
 export default function Home() {
     return (
@@ -28,10 +30,12 @@ export default function Home() {
             <Nav />
 
             <main id="main" className="flex flex-col items-stretch overflow-x-hidden">
-                <HeroSection />
-                <ProjectsSection />
-                <ExperienceSection />
-                <MoreSection />
+                <SceneSnap />
+                {/* each scene plays its section in and out as you scroll */}
+                <Scene first><HeroSection /></Scene>
+                <Scene><ProjectsSection /></Scene>
+                <Scene><ExperienceSection /></Scene>
+                <Scene last><MoreSection /></Scene>
                 <FooterSection />
                 <BackgroundEffect />
             </main>

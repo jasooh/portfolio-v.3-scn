@@ -30,7 +30,7 @@ export default async function ExperienceSection() {
             id="experience"
             aria-labelledby="experience-title"
             aria-describedby="experience-desc"
-            className="scroll-mt-24 mt-24 sm:mt-32 lg:mt-40"
+            className="mt-24 sm:mt-32 lg:mt-40"
         >
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
                 <SectionHeader

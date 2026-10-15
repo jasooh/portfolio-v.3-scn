@@ -70,8 +70,12 @@
   * {
     @apply border-border outline-ring/50;
   }
+  /* snapping between sections is SceneSnap's job; this only smooths anchor
+     jumps and keeps their landing spot in step with it */
   html {
     color-scheme: dark;
+    scroll-behavior: smooth;
+    scroll-padding-top: 3rem;
   }
   body {
     @apply bg-background text-foreground font-sans;
@@ -161,6 +165,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .drafted::before { transition: none; }
 }
 
