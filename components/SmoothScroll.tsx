@@ -5,9 +5,10 @@
 "use client";
 
 import React from "react";
-import { ReactLenis, useLenis } from "lenis/react";
+import { ReactLenis, useLenis, type LenisRef } from "lenis/react";
 import { useReducedMotion } from "framer-motion";
 import "lenis/dist/lenis.css";
+import { glide } from "@/lib/glide";
 
 // keep in step with SceneSnap and scroll-padding-top in globals.css
 export const SCROLL_PADDING = 48;
@@ -38,10 +39,17 @@ function AnchorGlide() {
             const isTop = target === document.querySelector("[data-scene]");
             // a plain number: lenis's element targeting adds its own margins
             const top = isTop ? 0 : target.getBoundingClientRect().top + lenis.scroll - SCROLL_PADDING;
+            // a magnet glide: any wheel input takes the scroll straight back
+            glide.mode = reduceMotion ? null : "magnet";
+            glide.dir = Math.sign(top - lenis.scroll);
             lenis.scrollTo(top, {
-                duration: reduceMotion ? 0 : 1.4,
+                duration: reduceMotion ? 0 : 1.2,
                 immediate: !!reduceMotion,
                 easing: easeOutExpo,
+                force: true,
+                onComplete: () => {
+                    glide.mode = null;
+                },
             });
             history.replaceState(null, "", `#${id}`);
         };
@@ -56,15 +64,38 @@ function AnchorGlide() {
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
     const reduceMotion = useReducedMotion();
+    const ref = React.useRef<LenisRef>(null);
+
+    // runs on every wheel/touch event before lenis applies it. a glide never
+    // locks the page: the visitor's input either rides along with it or
+    // cancels it, depending on the kind of glide (see lib/glide.ts)
+    const virtualScroll = React.useCallback(({ deltaY, event }: { deltaY: number; event: Event }) => {
+        if (!glide.mode || deltaY === 0) return true;
+        const dir = Math.sign(deltaY);
+        if (glide.mode === "commit" && dir === glide.dir && event.type.includes("wheel")) {
+            // absorbed: returning false alone would let the page scroll natively
+            if (event.cancelable) event.preventDefault();
+            return false;
+        }
+        // drop the glide where it is, so this input applies from the current
+        // position rather than from the glide's destination
+        glide.mode = null;
+        const lenis = ref.current?.lenis;
+        lenis?.scrollTo(lenis.animatedScroll, { immediate: true, force: true });
+        return true;
+    }, []);
 
     return (
         <ReactLenis
             root
+            ref={ref}
             options={{
-                lerp: 0.08,
+                // quicker to answer than a floaty 0.08, still clearly eased
+                lerp: 0.1,
                 smoothWheel: !reduceMotion,
                 // touch keeps the platform's own momentum
                 syncTouch: false,
+                virtualScroll,
             }}
         >
             <AnchorGlide />
