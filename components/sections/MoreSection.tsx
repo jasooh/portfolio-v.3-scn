@@ -3,7 +3,8 @@
 
 import React from "react";
 import TechMarquee from "@/components/TechMarquee";
-import GitHubCalendar from "react-github-calendar";
+import ContributionChart from "@/components/ContributionChart";
+import { GITHUB_USER, getContributions } from "@/lib/github";
 import {getMoreSectionData} from "@/sanity/fetch";
 import MessageForm from "@/components/MessageForm";
 import CaptchaProvider from "@/app/providers/CaptchaProvider";
@@ -21,7 +22,7 @@ const STATS: { key: Exclude<keyof More, "status">; label: string }[] = [
 ];
 
 export default async function MoreSection() {
-    const moreData = await getMoreSectionData();
+    const [moreData, github] = await Promise.all([getMoreSectionData(), getContributions()]);
 
     return (
         <section
@@ -70,27 +71,54 @@ export default async function MoreSection() {
                         </div>
                     </aside>
 
-                    {/* row 2, cols 1-2: GitHub calendar */}
-                    <div className="drafted drafted-hover min-w-0 lg:col-span-2 h-full">
-                        <div className="flex h-full flex-col gap-5 overflow-hidden p-6">
-                            <span className="label">commits / last 12 months</span>
-                            <div
-                                className="min-w-0 overflow-x-auto -mx-2 px-2 font-mono text-xs"
-                                aria-label="GitHub activity calendar"
-                                tabIndex={0}
-                            >
-                                <GitHubCalendar
-                                    hideColorLegend
-                                    hideMonthLabels
-                                    username="jasooh"
-                                    blockRadius={0}
-                                    blockMargin={3}
-                                    colorScheme="dark"
-                                    theme={{ dark: ["#16181e", "#3b3168", "#5f4cb3", "#8670e6", "#b7a5ff"] }}
-                                />
+                    {/* row 2, cols 1-2: github activity, plotted weekly */}
+                    <section aria-labelledby="github-title" className="drafted drafted-hover min-w-0 lg:col-span-2 h-full">
+                        <div className="flex h-full flex-col gap-6 overflow-hidden p-6">
+                            <div className="flex items-baseline justify-between gap-4">
+                                <h3 id="github-title" className="label">commits / last 12 months</h3>
+                                <a
+                                    href={`https://github.com/${GITHUB_USER}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="label transition-colors hover:text-primary"
+                                >
+                                    @{GITHUB_USER} ↗
+                                </a>
                             </div>
+
+                            {github ? (
+                                <>
+                                    <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-4">
+                                        {[
+                                            ["contributions", github.total],
+                                            ["best week", github.bestWeek],
+                                            ["longest streak", `${github.longestStreak}d`],
+                                            ["current streak", `${github.currentStreak}d`],
+                                        ].map(([label, value]) => (
+                                            <div key={label} className="flex flex-col-reverse gap-1 border-t border-border pt-2">
+                                                <dt className="label !text-[10px]">{label}</dt>
+                                                <dd className="font-display text-[1.75rem] leading-none">{value}</dd>
+                                            </div>
+                                        ))}
+                                    </dl>
+                                    <ContributionChart weeks={github.weeks} />
+                                </>
+                            ) : (
+                                <p className="text-sm text-muted-foreground">
+                                    activity is unavailable right now. it&apos;s all on{" "}
+                                    <a
+                                        href={`https://github.com/${GITHUB_USER}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="underline underline-offset-4 hover:text-primary"
+                                    >
+                                        github
+                                    </a>
+                                    .
+                                </p>
+                            )}
                         </div>
-                    </div>
+                    </section>
 
                     {/* row 2, col 3: fun stats, as a table of measurements */}
                     <section aria-labelledby="fun-stats-title" className="drafted drafted-hover min-w-0 h-full">
