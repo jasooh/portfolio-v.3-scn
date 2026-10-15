@@ -70,8 +70,8 @@
   * {
     @apply border-border outline-ring/50;
   }
-  /* smoothing is Lenis's job (SmoothScroll) and snapping is SceneSnap's; a
-     css scroll-behavior would fight both. the padding matches their offset */
+  /* snapping and in-page link glides are SceneSnap's job; a css
+     scroll-behavior would fight its scrolls. the padding matches its offset */
   html {
     color-scheme: dark;
     scroll-padding-top: 3rem;
