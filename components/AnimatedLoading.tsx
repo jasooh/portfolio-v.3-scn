@@ -92,16 +92,30 @@ export default function AnimatedLoading(
                     exit={{opacity: 0}}
                     transition={{duration: fadeOutMs / 1000}}
                 >
-                    <div className="animate-pulse text-sm">
-                        <h1 className="relative font-extrabold tracking-tight leading-[1.1] text-[clamp(2.25rem,8vw,4rem)]">
-                            <span
-                                aria-hidden="true"
-                                className="pointer-events-none absolute inset-0 select-none blur-sm opacity-80"
-                            >
-                                j
-                            </span>
-                            <span className="relative z-10">j</span>
-                        </h1>
+                    {/* a crosshair being drawn, with the monogram at its centre */}
+                    <div className="relative grid size-40 place-items-center">
+                        <motion.span
+                            aria-hidden="true"
+                            className="absolute inset-x-0 top-1/2 block h-px bg-foreground/30"
+                            initial={{scaleX: 0}}
+                            animate={{scaleX: 1}}
+                            transition={{duration: 0.7, ease: [0.22, 1, 0.36, 1]}}
+                        />
+                        <motion.span
+                            aria-hidden="true"
+                            className="absolute inset-y-0 left-1/2 block w-px bg-foreground/30"
+                            initial={{scaleY: 0}}
+                            animate={{scaleY: 1}}
+                            transition={{duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1]}}
+                        />
+                        <span
+                            aria-hidden="true"
+                            className="absolute size-16 rounded-full border border-primary/50 animate-ping motion-reduce:animate-none"
+                        />
+                        <span className="relative bg-background px-2 font-display text-5xl italic leading-none">
+                            j<span className="not-italic text-primary">.</span>
+                        </span>
+                        <span className="label absolute -bottom-6">loading</span>
                     </div>
                 </motion.div>
             )}

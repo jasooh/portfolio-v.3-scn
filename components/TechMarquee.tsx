@@ -29,7 +29,7 @@ const TECHNOLOGIES: { Icon: IconType; label: string }[] = [
 ];
 
 export default function TechMarquee() {
-    const iconClass = "size-10";
+    const iconClass = "size-8";
 
     return (
         <>
@@ -46,12 +46,12 @@ export default function TechMarquee() {
                     speed={50}
                     gradient
                     gradientWidth={100}
-                    gradientColor="oklch(0.21 0.006 285.885)"
+                    gradientColor="#111318"
                     autoFill
                 >
                     {TECHNOLOGIES.map(({ Icon, label }) => (
                         // hover tooltip; not every logo is recognisable
-                        <span key={label} title={label} className="mx-5 inline-flex">
+                        <span key={label} title={label} className="mx-5 inline-flex text-foreground/70">
                             <Icon className={iconClass} />
                         </span>
                     ))}

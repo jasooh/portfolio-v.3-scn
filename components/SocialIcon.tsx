@@ -42,10 +42,10 @@ export function SocialIcon(props: SocialIconProps) {
     } = props;
 
     const base = clsx(
-        "group inline-flex items-center justify-center rounded-lg p-2 outline-none transition",
-        "text-gray-300 hover:text-primary",
-        "hover:drop-shadow-[0_0_12px_theme(colors.primary.DEFAULT)]",
-        "focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+        "group inline-flex size-11 items-center justify-center border border-border bg-card/60 outline-none backdrop-blur-sm transition duration-200",
+        "text-foreground/80 hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary",
+        "focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        "motion-reduce:hover:translate-y-0",
         className
     );
 

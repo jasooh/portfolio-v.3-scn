@@ -15,7 +15,7 @@ const LINKS = [
     { id: "more", label: "more", Icon: IoSparkles },
 ];
 
-const ITEM_CLASS = "relative flex items-center justify-center rounded-full p-2.5 duration-200";
+const ITEM_CLASS = "relative flex items-center justify-center p-2.5 duration-200";
 
 // the icons carry no visible label, so hover and focus surface one
 function DockTooltip({ show, children }: { show: boolean; children: React.ReactNode }) {
@@ -28,7 +28,7 @@ function DockTooltip({ show, children }: { show: boolean; children: React.ReactN
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 4 }}
                         transition={{ duration: 0.15 }}
-                        className="block whitespace-nowrap rounded-md border border-white/10 bg-background/90 px-2 py-1 text-xs text-foreground shadow-md backdrop-blur-md"
+                        className="label block whitespace-nowrap border border-border bg-background/90 px-2 py-1 text-foreground backdrop-blur-md"
                     >
                         {children}
                     </motion.span>
@@ -103,7 +103,7 @@ export default function NavDock({ resumeUrl }: { resumeUrl?: string | null }) {
                         transition={spring}
                         className="pointer-events-auto"
                     >
-                        <ul className="flex items-center gap-0.5 rounded-full border border-white/10 bg-background/70 p-1.5 shadow-lg shadow-black/40 backdrop-blur-xl">
+                        <ul className="drafted flex items-center gap-0.5 !bg-background/75 p-1 shadow-lg shadow-black/40 backdrop-blur-xl">
                             {LINKS.map(({ id, label, Icon }) => {
                                 const isActive = active === id;
                                 return (
@@ -114,15 +114,15 @@ export default function NavDock({ resumeUrl }: { resumeUrl?: string | null }) {
                                             aria-current={isActive ? "true" : undefined}
                                             {...hoverProps(id)}
                                             className={`${ITEM_CLASS} ${
-                                                isActive ? "text-foreground" : "text-gray-400 hover:text-foreground"
+                                                isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
                                             }`}
                                         >
-                                            {/* layoutId slides the highlight between items */}
+                                            {/* layoutId slides the marker between items */}
                                             {isActive && (
                                                 <motion.span
                                                     layoutId="dock-active"
                                                     transition={spring}
-                                                    className="absolute inset-0 rounded-full bg-white/10"
+                                                    className="absolute inset-x-2 bottom-0 h-0.5 bg-primary"
                                                 />
                                             )}
                                             <Icon aria-hidden="true" className="relative size-5 shrink-0" />
@@ -134,7 +134,7 @@ export default function NavDock({ resumeUrl }: { resumeUrl?: string | null }) {
 
                             {resumeUrl && (
                                 <>
-                                    <li aria-hidden="true" className="mx-1 h-5 w-px shrink-0 bg-white/10" />
+                                    <li aria-hidden="true" className="mx-1 h-5 w-px shrink-0 bg-rule" />
                                     <li className="relative">
                                         <DockTooltip show={hovered === "resume"}>resume</DockTooltip>
                                         <Link
@@ -143,7 +143,7 @@ export default function NavDock({ resumeUrl }: { resumeUrl?: string | null }) {
                                             rel="noopener noreferrer"
                                             aria-label="Open résumé (PDF, opens in a new tab)"
                                             {...hoverProps("resume")}
-                                            className={`${ITEM_CLASS} bg-primary/15 text-primary hover:bg-primary/25`}
+                                            className={`${ITEM_CLASS} bg-primary text-primary-foreground hover:bg-primary/85`}
                                         >
                                             <IoDocumentTextSharp aria-hidden="true" className="size-5 shrink-0" />
                                         </Link>

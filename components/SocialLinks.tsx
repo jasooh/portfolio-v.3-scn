@@ -13,29 +13,29 @@ export default async function SocialLinks() {
 
     return (
         <nav aria-label="Social links">
-            <ul className="flex flex-row items-center gap-3">
+            <ul className="flex flex-row items-center gap-2">
                 <li>
                     <SocialIcon href="https://github.com/jasooh" label="GitHub">
-                        <FaGithub className="size-6 sm:size-7" />
+                        <FaGithub className="size-5" />
                     </SocialIcon>
                 </li>
                 <li>
                     <SocialIcon href="https://www.linkedin.com/in/justin-abuyuan" label="LinkedIn">
-                        <FaLinkedin className="size-6 sm:size-7" />
+                        <FaLinkedin className="size-5" />
                     </SocialIcon>
                 </li>
                 {/* hidden when sanity has no resume, rather than link somewhere dead */}
                 {resumeData.resumeUrl && (
                     <li>
                         <SocialIcon href={resumeData.resumeUrl} label="Resume (PDF)">
-                            <IoDocumentTextSharp className="size-6 sm:size-7" />
+                            <IoDocumentTextSharp className="size-5" />
                         </SocialIcon>
                     </li>
                 )}
                 <li>
                     <SocialIcon href="https://se-webring.xyz/" label="SE Webring">
                         {/* decorative image: alt can be empty since link has aria-label */}
-                        <Image src="/logo_w.svg" alt="" width={28} height={28} className="h-7 w-7" />
+                        <Image src="/logo_w.svg" alt="" width={20} height={20} className="size-5 opacity-80 group-hover:opacity-100" />
                     </SocialIcon>
                 </li>
             </ul>

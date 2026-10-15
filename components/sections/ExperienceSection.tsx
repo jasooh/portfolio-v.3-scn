@@ -3,10 +3,11 @@
 
 import React from "react";
 import Link from "next/link";
-import { FaChevronRight } from "react-icons/fa";
+import { FaArrowRightLong } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import TimelineEntry from "@/components/TimelineEntry";
 import Reveal from "@/components/Reveal";
+import SectionHeader from "@/components/SectionHeader";
 import { getExperiences } from "@/data/getExperiences";
 import { getResume } from "@/data/getResume";
 
@@ -32,30 +33,18 @@ export default async function ExperienceSection() {
             className="scroll-mt-24 mt-24 sm:mt-32 lg:mt-40"
         >
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
-                <Reveal>
-                <header className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
-                    <div>
-                        <h2
-                            id="experience-title"
-                            className="font-bold tracking-tight leading-tight text-[clamp(1.75rem,5vw,3rem)]"
-                        >
-                            experience.
-                        </h2>
-                        <p
-                            id="experience-desc"
-                            className="mt-2 max-w-prose text-sm sm:text-base text-muted-foreground"
-                        >
-                            a collection of the teams i&apos;ve built with, the systems i&apos;ve
-                            worked on, and the lessons i&apos;ve carried forward.
-                        </p>
-                    </div>
-
-                    {resume.resumeUrl && (
+                <SectionHeader
+                    index="02"
+                    id="experience"
+                    title="experience"
+                    description={<>a collection of the teams i&apos;ve built with, the systems i&apos;ve
+                        worked on, and the lessons i&apos;ve carried forward.</>}
+                    action={resume.resumeUrl && (
                         <Button
                             asChild
                             variant="fill"
                             size="lg"
-                            className="group w-full justify-center sm:w-auto focus-visible:ring-primary"
+                            className="group w-full justify-center sm:w-auto"
                             title="Open résumé (PDF)"
                         >
                             <Link
@@ -64,19 +53,18 @@ export default async function ExperienceSection() {
                                 rel="noopener noreferrer"
                                 aria-label="Open résumé (PDF, opens in a new tab)"
                             >
-                                <span>check out my resume</span>
-                                <FaChevronRight
+                                <span>view résumé</span>
+                                <FaArrowRightLong
                                     aria-hidden="true"
-                                    className="ml-2 size-3 transition-transform group-hover:translate-x-0.5"
+                                    className="ml-1 size-3.5 transition-transform group-hover:translate-x-1"
                                 />
                             </Link>
                         </Button>
                     )}
-                </header>
-                </Reveal>
+                />
 
                 {/* timeline */}
-                <ol role="list" className="mt-8 sm:mt-10 pl-5 sm:pl-6">
+                <ol role="list" className="mt-10 sm:mt-12">
                     {exps.length === 0 && (
                         <li className="text-sm text-muted-foreground">No experience entries yet.</li>
                     )}

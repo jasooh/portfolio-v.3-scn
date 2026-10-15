@@ -8,6 +8,17 @@ import {getMoreSectionData} from "@/data/getExtras";
 import MessageForm from "@/components/MessageForm";
 import CaptchaProvider from "@/app/providers/CaptchaProvider";
 import Reveal from "@/components/Reveal";
+import SectionHeader from "@/components/SectionHeader";
+import type { More } from "@/lib/types/queryTypes";
+
+const STATS: { key: Exclude<keyof More, "status">; label: string }[] = [
+    { key: "hackathons", label: "hackathons" },
+    { key: "redbulls", label: "redbulls" },
+    { key: "valorantRank", label: "valorant" },
+    { key: "currentObsession", label: "obsessed w/" },
+    { key: "osuRank", label: "osu! rank" },
+    { key: "headshotPercent", label: "headshot %" },
+];
 
 export default async function MoreSection() {
     const moreData = await getMoreSectionData();
@@ -20,106 +31,81 @@ export default async function MoreSection() {
             className="scroll-mt-24 mt-24 sm:mt-32 lg:mt-40 mb-16 sm:mb-20"
         >
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
-                <Reveal>
-                <header className="mb-6 sm:mb-8">
-                    <h2
-                        id="more-title"
-                        className="font-bold tracking-tight leading-tight text-[clamp(1.75rem,5vw,3rem)]"
-                    >
-                        more.
-                    </h2>
-                    <p id="more-desc" className="mt-2 text-sm sm:text-base text-gray-400">
-                        github activity, tools i use, and what i’m up to now.
-                    </p>
-                </header>
-                </Reveal>
+                <SectionHeader
+                    index="03"
+                    id="more"
+                    title="more"
+                    description="github activity, tools i use, and what i’m up to now."
+                />
 
                 {/* revealed as one unit: the children rely on lg:col-span-2 and
-                    h-full, which a per-tile wrapper would break */}
+                    h-full, which a per-tile wrapper would break. tiles are
+                    .drafted, so clipping happens on an inner wrapper. */}
                 <Reveal>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <div className="mt-10 sm:mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     {/* row 1, cols 1-2: tech marquee */}
-                    <div
-                        aria-label="Technologies I use"
-                        className="min-w-0 overflow-hidden flex justify-center lg:col-span-2 h-full rounded-2xl border border-white/10 p-6 bg-card"
-                    >
-                        <div className="flex w-full mx-auto max-w-full sm:max-w-3xl lg:max-w-none overflow-hidden">
-                            <TechMarquee />
+                    <div aria-label="Technologies I use" className="drafted drafted-hover min-w-0 lg:col-span-2 h-full">
+                        <div className="flex h-full flex-col gap-5 overflow-hidden p-6">
+                            <span className="label">stack / tools</span>
+                            <div className="flex w-full overflow-hidden">
+                                <TechMarquee />
+                            </div>
                         </div>
                     </div>
 
                     {/* row 1, col 3: availability */}
-                    <aside
-                        aria-label="Availability and location"
-                        className="min-w-0 overflow-hidden h-full rounded-2xl border border-white/10 bg-card p-6"
-                    >
-                        <div className="flex flex-col items-center gap-2">
-                            <div
-                                role="status"
-                                aria-live="polite"
-                                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5"
-                            >
-                                <span className="relative flex h-2.5 w-2.5">
-                                    <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-ping motion-reduce:animate-none" />
-                                    <span className="relative inline-flex size-2.5 rounded-full bg-primary" />
-                                </span>
-                                <span className="text-sm font-medium leading-none">{moreData.status}</span>
+                    <aside aria-label="Availability and location" className="drafted drafted-hover min-w-0 h-full">
+                        <div className="flex h-full flex-col justify-between gap-6 overflow-hidden p-6">
+                            <span className="label">status</span>
+                            <div className="flex flex-col gap-2">
+                                <div role="status" aria-live="polite" className="inline-flex items-center gap-2.5">
+                                    <span className="relative flex size-2">
+                                        <span className="absolute inline-flex size-full bg-primary opacity-75 animate-ping motion-reduce:animate-none" />
+                                        <span className="relative inline-flex size-2 bg-primary" />
+                                    </span>
+                                    <span className="font-display text-2xl leading-none">{moreData.status}</span>
+                                </div>
+                                <span className="label">toronto · remote-friendly</span>
                             </div>
-                            <span className="text-xs sm:text-sm text-gray-400 leading-none">
-                                Toronto · remote-friendly
-                            </span>
                         </div>
                     </aside>
 
                     {/* row 2, cols 1-2: GitHub calendar */}
-                    <div className="min-w-0 overflow-hidden lg:col-span-2 h-full rounded-2xl border border-white/10 p-6 bg-card">
-                        <div
-                            className="min-w-0 overflow-x-auto -mx-2 px-2"
-                            aria-label="GitHub activity calendar"
-                            tabIndex={0}
-                        >
-                            <GitHubCalendar hideColorLegend hideMonthLabels username="jasooh" />
+                    <div className="drafted drafted-hover min-w-0 lg:col-span-2 h-full">
+                        <div className="flex h-full flex-col gap-5 overflow-hidden p-6">
+                            <span className="label">commits / last 12 months</span>
+                            <div
+                                className="min-w-0 overflow-x-auto -mx-2 px-2 font-mono text-xs"
+                                aria-label="GitHub activity calendar"
+                                tabIndex={0}
+                            >
+                                <GitHubCalendar
+                                    hideColorLegend
+                                    hideMonthLabels
+                                    username="jasooh"
+                                    blockRadius={0}
+                                    blockMargin={3}
+                                    colorScheme="dark"
+                                    theme={{ dark: ["#16181e", "#3b3168", "#5f4cb3", "#8670e6", "#b7a5ff"] }}
+                                />
+                            </div>
                         </div>
                     </div>
 
-                    {/* row 2, col 3: fun stats */}
-                    <section
-                        aria-labelledby="fun-stats-title"
-                        className="min-w-0 overflow-hidden h-full rounded-2xl border border-white/10 p-6 bg-card"
-                    >
-                        <h3 id="fun-stats-title" className="text-lg font-semibold mb-4">
-                            fun stats 🎯
-                        </h3>
+                    {/* row 2, col 3: fun stats, as a table of measurements */}
+                    <section aria-labelledby="fun-stats-title" className="drafted drafted-hover min-w-0 h-full">
+                        <div className="h-full overflow-hidden p-6">
+                            <h3 id="fun-stats-title" className="label mb-5">fun stats</h3>
 
-                        <dl className="grid grid-cols-3 gap-4 text-center">
-                            <div>
-                                <dd className="text-2xl font-semibold leading-tight">{moreData.hackathons}</dd>
-                                <dt className="text-xs text-gray-400">hackathons</dt>
-                            </div>
-                            <div>
-                                <dd className="text-2xl font-semibold leading-tight">{moreData.redbulls}</dd>
-                                <dt className="text-xs text-gray-400">redbulls</dt>
-                            </div>
-                            <div>
-                                <dd className="text-2xl font-semibold leading-tight">{moreData.valorantRank}</dd>
-                                <dt className="text-xs text-gray-400">valorant rank</dt>
-                            </div>
-                        </dl>
-
-                        <dl className="mt-4 grid grid-cols-3 gap-4 text-center">
-                            <div>
-                                <dd className="text-2xl font-semibold leading-tight">{moreData.currentObsession}</dd>
-                                <dt className="text-xs text-gray-400">obsessed w/</dt>
-                            </div>
-                            <div>
-                                <dd className="text-2xl font-semibold leading-tight">{moreData.osuRank}</dd>
-                                <dt className="text-xs text-gray-400">osu! rank</dt>
-                            </div>
-                            <div>
-                                <dd className="text-2xl font-semibold leading-tight">{moreData.headshotPercent}</dd>
-                                <dt className="text-xs text-gray-400">headshot %</dt>
-                            </div>
-                        </dl>
+                            <dl className="grid grid-cols-3 gap-x-4 gap-y-5">
+                                {STATS.map(({ key, label }) => (
+                                    <div key={key} className="flex flex-col-reverse gap-1 border-t border-border pt-2">
+                                        <dt className="label !text-[10px]">{label}</dt>
+                                        <dd className="font-display text-[1.75rem] leading-none truncate">{moreData[key]}</dd>
+                                    </div>
+                                ))}
+                            </dl>
+                        </div>
                     </section>
                 </div>
                 </Reveal>

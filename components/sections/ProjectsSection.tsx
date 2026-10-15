@@ -5,6 +5,7 @@ import React from "react";
 import ProjectCard from "@/components/ProjectCard";
 import Reveal from "@/components/Reveal";
 import {getProjects} from "@/data/getProjects";
+import SectionHeader from "@/components/SectionHeader";
 
 export default async function ProjectsSection() {
     const projects = await getProjects();
@@ -15,39 +16,27 @@ export default async function ProjectsSection() {
             id="projects"
             aria-labelledby="projects-title"
             aria-describedby="projects-desc"
-            className="scroll-mt-24 mt-24 sm:mt-32 lg:mt-40"
+            className="scroll-mt-24 mt-16 sm:mt-24 lg:mt-32"
         >
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
-                <Reveal>
-                <header className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
-                    <div>
-                        <h2
-                            id="projects-title"
-                            className="font-bold tracking-tight leading-tight text-[clamp(1.75rem,5vw,3rem)]"
-                        >
-                            projects.
-                        </h2>
-                        <p
-                            id="projects-desc"
-                            className="mt-2 max-w-prose text-sm sm:text-base text-gray-400"
-                        >
-                            a glimpse into the products i&apos;ve crafted, the ideas i&apos;ve
-                            pursued, and the problems i&apos;ve solved along the way.
-                        </p>
-                    </div>
-
-                </header>
-                </Reveal>
+                <SectionHeader
+                    index="01"
+                    id="projects"
+                    title="projects"
+                    description={<>a glimpse into the products i&apos;ve crafted, the ideas i&apos;ve
+                        pursued, and the problems i&apos;ve solved along the way.</>}
+                />
 
                 <ul
                     role="list"
-                    className="mt-8 grid gap-8 sm:mt-10 sm:gap-10 sm:grid-cols-2 lg:grid-cols-3"
+                    className="mt-10 grid gap-8 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3"
                 >
                     {limitedProjects.map((project, i) => (
                         <li key={project._id}>
                             {/* cascade rather than landing all at once */}
                             <Reveal delay={i * 0.1}>
                             <ProjectCard
+                                index={i + 1}
                                 _id={project._id}
                                 title={project.title}
                                 year={project.year}

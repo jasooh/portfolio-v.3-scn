@@ -3,9 +3,6 @@
 
 import React from "react";
 
-// components
-import { Separator } from "@/components/ui/separator";
-
 // sections
 import Nav from "@/components/Nav";
 import MoreSection from "@/components/sections/MoreSection";
@@ -21,7 +18,7 @@ export default function Home() {
         <AnimatedLoading minDuration={600} maxDuration={2500} fadeOutMs={450}>
             <a
                 href="#main"
-                className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:border focus:border-white/15 focus:bg-background focus:px-4 focus:py-2"
+                className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-primary focus:bg-background focus:px-4 focus:py-2"
             >
                 skip to content
             </a>
@@ -35,7 +32,6 @@ export default function Home() {
                 <ProjectsSection />
                 <ExperienceSection />
                 <MoreSection />
-                <Separator className="w-full mt-12 sm:mt-16 lg:mt-20" />
                 <FooterSection />
                 <BackgroundEffect />
             </main>

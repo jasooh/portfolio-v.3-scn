@@ -22,7 +22,7 @@ export default function BackgroundEffect() {
     useIntroHold(sceneReady);
 
     return (
-        <div className="fixed w-screen h-screen flex items-center opacity-20 sm:opacity-40 justify-center pointer-events-none z-[-999]">
+        <div className="fixed w-screen h-screen flex items-center opacity-20 sm:opacity-30 justify-center pointer-events-none z-[-999]">
             <BackgroundScene onReady={() => setSceneReady(true)} />
         </div>
     );

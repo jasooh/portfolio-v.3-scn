@@ -19,7 +19,7 @@ export default function ZoomableThumb({url, alt, className}: {
             <DialogTrigger asChild>
                 <button
                     type="button"
-                    className={`w-40 relative hover:opacity-50 hover:cursor-pointer duration-150 ${className || ""}`}
+                    className={`relative w-40 border border-border p-1 duration-200 hover:cursor-pointer hover:border-primary/60 ${className || ""}`}
                     aria-label={`Open preview for ${alt || "image"}`}
                 >
                     <AspectRatio ratio={16 / 9}>
@@ -27,7 +27,7 @@ export default function ZoomableThumb({url, alt, className}: {
                             src={url}
                             alt={alt || "Zoom preview"}
                             fill
-                            className="rounded-md object-cover"
+                            className="object-cover grayscale-[35%] transition hover:grayscale-0"
                             draggable={false}
                         />
                     </AspectRatio>
@@ -43,7 +43,7 @@ export default function ZoomableThumb({url, alt, className}: {
 
                 <div className="relative h-[80vh] w-full bg-black">
                     {alt && (
-                        <span className="absolute left-3 top-3 z-10 rounded bg-black/60 px-2 py-1 text-xs text-white">
+                        <span className="absolute left-3 top-3 z-10 label bg-background/80 px-2 py-1 text-foreground">
                             {alt}
                         </span>
                     )}

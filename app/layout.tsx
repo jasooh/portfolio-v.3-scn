@@ -1,17 +1,27 @@
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Hanken_Grotesk, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { siteUrl, siteName, siteTitle, siteDescription } from "@/lib/site";
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
+// body copy
+const hanken = Hanken_Grotesk({
+    variable: "--font-hanken",
     subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
+// display: the name and section titles
+const instrument = Instrument_Serif({
+    variable: "--font-instrument",
+    subsets: ["latin"],
+    weight: "400",
+    style: ["normal", "italic"],
+});
+
+// annotations, labels, dates
+const jetbrains = JetBrains_Mono({
+    variable: "--font-jetbrains",
     subsets: ["latin"],
 });
 
@@ -69,7 +79,7 @@ export default function RootLayout({
 }>) {
 return (
     <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
+        <body className={`${hanken.variable} ${instrument.variable} ${jetbrains.variable} antialiased dark`}>
             {/* entrance animations render at opacity:0 in the server html, so
                 without js nothing would ever reveal them */}
             <noscript>

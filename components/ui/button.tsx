@@ -18,12 +18,12 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
         ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+          "hover:bg-accent hover:text-primary dark:hover:bg-accent/60",
         link: "text-primary underline-offset-4 hover:underline",
         // wipes the accent colour in from the left on hover. animated
         // background-size, so it needs no extra markup to do it.
         fill:
-          "border border-white/10 bg-[linear-gradient(to_right,var(--primary),var(--primary))] bg-left bg-no-repeat bg-[length:0%_100%] transition-[background-size,color] duration-300 ease-out hover:bg-[length:100%_100%] hover:text-primary-foreground motion-reduce:transition-none",
+          "font-mono text-[11px] uppercase tracking-[0.14em] border border-rule bg-[linear-gradient(to_right,var(--primary),var(--primary))] bg-left bg-no-repeat bg-[length:0%_100%] transition-[background-size,color] duration-300 ease-out hover:bg-[length:100%_100%] hover:border-primary hover:text-primary-foreground motion-reduce:transition-none",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

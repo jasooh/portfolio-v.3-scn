@@ -25,7 +25,7 @@ export default function MessageForm() {
      */
     const ReCaptchaDetails = () => {
         return (
-            <p className="mt-4 text-[11px] text-gray-400">
+            <p className="mt-6 text-[11px] text-muted-foreground">
                 This site is protected by reCAPTCHA and the Google{" "}
                 <a
                     href="https://policies.google.com/privacy"
@@ -56,18 +56,18 @@ export default function MessageForm() {
         return (
             <section
                 aria-labelledby="contact-title"
-                className="mt-6 sm:mt-8 rounded-2xl border border-white/10 p-6 bg-card"
+                className="drafted mt-6 sm:mt-8 p-6 sm:p-8"
             >
-                <h3 id="contact-title" className="text-lg font-semibold mb-2">
+                <h3 id="contact-title" className="mb-2 font-display text-3xl italic leading-none">
                     message sent — thank you!
                 </h3>
-                <p className="text-gray-300 mb-4">
+                <p className="mb-5 text-muted-foreground">
                     i’ll get back to you as soon as i can. want to send another? :)
                 </p>
                 <button
                     type="button"
                     onClick={() => window.location.reload()}
-                    className={cn(buttonVariants({ variant: "fill" }), "rounded-xl")}
+                    className={buttonVariants({ variant: "fill", size: "lg" })}
                 >
                     send another
                 </button>
@@ -80,20 +80,21 @@ export default function MessageForm() {
     return (
         <section
             aria-labelledby="contact-title"
-            className="mt-6 sm:mt-8 rounded-2xl border border-white/10 p-6 bg-card"
+            className="drafted mt-6 sm:mt-8 p-6 sm:p-8"
         >
-            <h3 id="contact-title" className="text-lg font-semibold mb-4">
-                let’s talk.
+            <span className="label">[ 03.1 ] contact</span>
+            <h3 id="contact-title" className="mt-2 mb-6 font-display text-4xl italic leading-none">
+                let’s talk<span className="not-italic text-primary">.</span>
             </h3>
 
-            <form className="grid gap-4 sm:grid-cols-2" onSubmit={handleSubmit}>
+            <form className="grid gap-x-8 gap-y-6 sm:grid-cols-2" onSubmit={handleSubmit}>
                 {/* honeypot */}
                 <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" />
 
                 <div className="sm:col-span-1">
                     <label
                         htmlFor="contact-name"
-                        className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
+                        className="label block"
                     >
                         name
                     </label>
@@ -103,7 +104,7 @@ export default function MessageForm() {
                         type="text"
                         required
                         placeholder="name"
-                        className="w-full rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
+                        className="w-full border-0 border-b border-rule bg-transparent px-0 py-2 text-base outline-none transition-colors placeholder:text-muted-foreground/50 focus-visible:border-primary"
                     />
                     <ValidationError prefix="Name" field="name" errors={state.errors} />
                 </div>
@@ -111,7 +112,7 @@ export default function MessageForm() {
                 <div className="sm:col-span-1">
                     <label
                         htmlFor="contact-email"
-                        className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
+                        className="label block"
                     >
                         email
                     </label>
@@ -122,7 +123,7 @@ export default function MessageForm() {
                         required
                         autoComplete="email"
                         placeholder="you@domain.com"
-                        className="w-full rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
+                        className="w-full border-0 border-b border-rule bg-transparent px-0 py-2 text-base outline-none transition-colors placeholder:text-muted-foreground/50 focus-visible:border-primary"
                     />
                     <ValidationError prefix="Email" field="email" errors={state.errors} />
                 </div>
@@ -130,7 +131,7 @@ export default function MessageForm() {
                 <div className="sm:col-span-2">
                     <label
                         htmlFor="contact-subject"
-                        className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
+                        className="label block"
                     >
                         subject
                     </label>
@@ -140,7 +141,7 @@ export default function MessageForm() {
                         type="text"
                         required
                         placeholder="subject"
-                        className="w-full rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
+                        className="w-full border-0 border-b border-rule bg-transparent px-0 py-2 text-base outline-none transition-colors placeholder:text-muted-foreground/50 focus-visible:border-primary"
                     />
                     <ValidationError prefix="Subject" field="subject" errors={state.errors} />
                 </div>
@@ -148,7 +149,7 @@ export default function MessageForm() {
                 <div className="sm:col-span-2">
                     <label
                         htmlFor="contact-message"
-                        className="mb-1 block text-xs uppercase tracking-wide text-gray-400"
+                        className="label block"
                     >
                         message
                     </label>
@@ -158,7 +159,7 @@ export default function MessageForm() {
                         required
                         rows={5}
                         placeholder="hey justin, we'd like to offer you a job..."
-                        className="w-full resize-y rounded-xl border border-white/10 bg-black/10 px-3 py-2 outline-none ring-1 ring-transparent focus-visible:ring-2 focus-visible:ring-primary"
+                        className="w-full resize-y border-0 border-b border-rule bg-transparent px-0 py-2 text-base outline-none transition-colors placeholder:text-muted-foreground/50 focus-visible:border-primary"
                     />
                     <ValidationError prefix="Message" field="message" errors={state.errors} />
                 </div>
@@ -169,8 +170,7 @@ export default function MessageForm() {
                         disabled={!canSubmit}
                         aria-disabled={!canSubmit}
                         className={cn(
-                            buttonVariants({ variant: "fill" }),
-                            "rounded-xl",
+                            buttonVariants({ variant: "fill", size: "lg" }),
                             !canSubmit && "opacity-60 cursor-not-allowed"
                         )}
                     >

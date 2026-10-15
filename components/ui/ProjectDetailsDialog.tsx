@@ -30,7 +30,7 @@ export default function ProjectDetailsDialog({ title, content, subtitle }: Proje
         <Dialog>
             {/* trigger button */}
             <DialogTrigger asChild>
-                <Button className="group justify-center sm:w-auto focus-visible:ring-primary hover:cursor-pointer" variant="fill" size="sm">
+                <Button className="group justify-center sm:w-auto hover:cursor-pointer" variant="fill" size="sm">
                     details
                     <FaChevronRight
                         aria-hidden="true"
@@ -46,10 +46,10 @@ export default function ProjectDetailsDialog({ title, content, subtitle }: Proje
                 className="flex max-h-[min(85vh,52rem)] w-[calc(100%-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl"
             >
                 {/* pr-12 clears the close button */}
-                <DialogHeader className="shrink-0 space-y-1 border-b border-white/10 p-6 pr-12 pb-4">
-                    <DialogTitle className="text-xl">{title}</DialogTitle>
+                <DialogHeader className="shrink-0 space-y-1 border-b border-border p-6 pr-12 pb-4">
+                    <DialogTitle className="text-3xl">{title}</DialogTitle>
                     {subtitle && (
-                        <DialogDescription className="text-xs text-muted-foreground">
+                        <DialogDescription className="label">
                             {subtitle}
                         </DialogDescription>
                     )}

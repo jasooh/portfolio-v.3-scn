@@ -17,9 +17,9 @@ const REFERENCE_ASPECT = 1.6;
 const GROWTH = 1.1;
 const BASE_Z = -6;
 
-// the violet accent drifts toward cyan as you descend
-const COLOR_START = new THREE.Color("#a78bfa");
-const COLOR_END = new THREE.Color("#22d3ee");
+// the light royal purple deepens as you descend
+const COLOR_START = new THREE.Color("#a48bff");
+const COLOR_END = new THREE.Color("#6d4dff");
 
 // smooths the raw scroll value, so flicks ease rather than snap and returning
 // to the top glides back to centre instead of teleporting
@@ -112,8 +112,8 @@ export default function WireframeGeoBackground() {
             <Wireframe
                 scroll={scroll}
                 build={() => new THREE.TorusKnotGeometry(4, 0.9, 96, 12, 2, 3)}
-                color="#ffffff"
-                opacity={0.55}
+                color="#e9e6dd"
+                opacity={0.4}
                 spin={0.08}
                 scrollSpin={1.25}
                 position={[0, 0, 0]}
@@ -121,7 +121,7 @@ export default function WireframeGeoBackground() {
             <Wireframe
                 scroll={scroll}
                 build={() => new THREE.IcosahedronGeometry(4.6, 1)}
-                color="#a78bfa"
+                color="#a48bff"
                 tint
                 opacity={0.6}
                 spin={-0.05}
