@@ -199,6 +199,21 @@
   50% { opacity: 0; }
 }
 
+/* three bars bouncing out of step, for a track that's playing */
+.eq > span {
+  width: 2px;
+  height: 100%;
+  background: var(--primary);
+  transform-origin: bottom;
+  animation: eq-bounce 0.9s ease-in-out infinite;
+}
+.eq > span:nth-child(2) { animation-delay: -0.3s; }
+.eq > span:nth-child(3) { animation-delay: -0.6s; }
+@keyframes eq-bounce {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
 /* a hairline scrollbar for inner scroll areas, e.g. dialogs */
 .scroll-thin {
   scrollbar-width: thin;
@@ -207,6 +222,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .caret { animation: none; }
+  .eq > span { animation: none; transform: scaleY(0.7); }
   .scroll-cue-line::after, .scroll-cue-label { animation: none; }
   .drafted::before { transition: none; }
 }

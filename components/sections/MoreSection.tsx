@@ -10,22 +10,18 @@ import MessageForm from "@/components/MessageForm";
 import CaptchaProvider from "@/app/providers/CaptchaProvider";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
-import type { More } from "@/sanity/fetch";
-import PartsList, { type PartsRow } from "@/components/PartsList";
-
-// order is the parts list order. kind adds the headshot gauge and a caret on
-// the stat that changes most often
-const STATS: { key: Exclude<keyof More, "status">; label: string; kind?: PartsRow["kind"] }[] = [
-    { key: "hackathons", label: "hackathons" },
-    { key: "redbulls", label: "red bulls" },
-    { key: "valorantRank", label: "valorant rank" },
-    { key: "headshotPercent", label: "headshot", kind: "bar" },
-    { key: "osuRank", label: "osu! rank" },
-    { key: "currentObsession", label: "obsessed w/", kind: "cursor" },
-];
+import PartsList from "@/components/PartsList";
+import { buildFunStats } from "@/lib/funStats";
+import { getLastPlayed } from "@/lib/spotify";
+import { getValorant } from "@/lib/valorant";
 
 export default async function MoreSection() {
-    const [moreData, github] = await Promise.all([getMoreSectionData(), getContributions()]);
+    const [moreData, github, valorant, spotify] = await Promise.all([
+        getMoreSectionData(),
+        getContributions(),
+        getValorant(),
+        getLastPlayed(),
+    ]);
 
     return (
         <section
@@ -128,7 +124,7 @@ export default async function MoreSection() {
                         <div className="h-full overflow-hidden p-6">
                             <PartsList
                                 rev={new Date().getFullYear()}
-                                rows={STATS.map(({ key, label, kind }) => ({ value: moreData[key], label, kind }))}
+                                rows={buildFunStats(moreData, valorant, spotify)}
                             />
                         </div>
                     </section>
