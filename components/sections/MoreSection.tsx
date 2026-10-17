@@ -12,7 +12,8 @@ import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
 import PartsList from "@/components/PartsList";
 import { buildFunStats } from "@/lib/funStats";
-import { getLastPlayed } from "@/lib/spotify";
+import { getSpotify } from "@/lib/spotify";
+import SpotifyTile from "@/components/SpotifyTile";
 import { getValorant } from "@/lib/valorant";
 
 export default async function MoreSection() {
@@ -20,7 +21,7 @@ export default async function MoreSection() {
         getMoreSectionData(),
         getContributions(),
         getValorant(),
-        getLastPlayed(),
+        getSpotify(),
     ]);
 
     return (
@@ -124,10 +125,13 @@ export default async function MoreSection() {
                         <div className="h-full overflow-hidden p-6">
                             <PartsList
                                 rev={new Date().getFullYear()}
-                                rows={buildFunStats(moreData, valorant, spotify)}
+                                rows={buildFunStats(moreData, valorant)}
                             />
                         </div>
                     </section>
+
+                    {/* row 3, full width: spotify, only once it's configured */}
+                    {spotify && <SpotifyTile now={spotify} />}
                 </div>
                 </Reveal>
 

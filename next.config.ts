@@ -11,6 +11,12 @@ const nextConfig: NextConfig = {
                 protocol: "https",
                 hostname: "cdn.sanity.io",
                 pathname: "/images/**", // optional but good for scoping
+            },
+            {
+                // spotify album art
+                protocol: "https",
+                hostname: "i.scdn.co",
+                pathname: "/image/**",
             }
         ]
     }
