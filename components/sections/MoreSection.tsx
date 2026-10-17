@@ -11,14 +11,17 @@ import CaptchaProvider from "@/app/providers/CaptchaProvider";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
 import type { More } from "@/sanity/fetch";
+import PartsList, { type PartsRow } from "@/components/PartsList";
 
-const STATS: { key: Exclude<keyof More, "status">; label: string }[] = [
+// order is the parts list order. kind adds the headshot gauge and a caret on
+// the stat that changes most often
+const STATS: { key: Exclude<keyof More, "status">; label: string; kind?: PartsRow["kind"] }[] = [
     { key: "hackathons", label: "hackathons" },
-    { key: "redbulls", label: "redbulls" },
-    { key: "valorantRank", label: "valorant" },
-    { key: "currentObsession", label: "obsessed w/" },
+    { key: "redbulls", label: "red bulls" },
+    { key: "valorantRank", label: "valorant rank" },
+    { key: "headshotPercent", label: "headshot", kind: "bar" },
     { key: "osuRank", label: "osu! rank" },
-    { key: "headshotPercent", label: "headshot %" },
+    { key: "currentObsession", label: "obsessed w/", kind: "cursor" },
 ];
 
 export default async function MoreSection() {
@@ -120,19 +123,13 @@ export default async function MoreSection() {
                         </div>
                     </section>
 
-                    {/* row 2, col 3: fun stats, as a table of measurements */}
+                    {/* row 2, col 3: fun stats, as a drawing's bill of materials */}
                     <section aria-labelledby="fun-stats-title" className="drafted drafted-hover min-w-0 h-full">
                         <div className="h-full overflow-hidden p-6">
-                            <h3 id="fun-stats-title" className="label mb-5">fun stats</h3>
-
-                            <dl className="grid grid-cols-3 gap-x-4 gap-y-5">
-                                {STATS.map(({ key, label }) => (
-                                    <div key={key} className="flex flex-col-reverse gap-1 border-t border-border pt-2">
-                                        <dt className="label !text-[10px]">{label}</dt>
-                                        <dd className="font-display text-[1.75rem] leading-none truncate">{moreData[key]}</dd>
-                                    </div>
-                                ))}
-                            </dl>
+                            <PartsList
+                                rev={new Date().getFullYear()}
+                                rows={STATS.map(({ key, label, kind }) => ({ value: moreData[key], label, kind }))}
+                            />
                         </div>
                     </section>
                 </div>

@@ -191,6 +191,14 @@
   50% { opacity: 1; letter-spacing: 0.26em; }
 }
 
+/* a terminal caret: hard on/off rather than a fade */
+.caret {
+  animation: caret-blink 1.06s steps(1, end) infinite;
+}
+@keyframes caret-blink {
+  50% { opacity: 0; }
+}
+
 /* a hairline scrollbar for inner scroll areas, e.g. dialogs */
 .scroll-thin {
   scrollbar-width: thin;
@@ -198,6 +206,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .caret { animation: none; }
   .scroll-cue-line::after, .scroll-cue-label { animation: none; }
   .drafted::before { transition: none; }
 }
