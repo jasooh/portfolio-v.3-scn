@@ -14,13 +14,11 @@ import PartsList from "@/components/PartsList";
 import { buildFunStats } from "@/lib/funStats";
 import { getSpotify } from "@/lib/spotify";
 import SpotifyTile from "@/components/SpotifyTile";
-import { getValorant } from "@/lib/valorant";
 
 export default async function MoreSection() {
-    const [moreData, github, valorant, spotify] = await Promise.all([
+    const [moreData, github, spotify] = await Promise.all([
         getMoreSectionData(),
         getContributions(),
-        getValorant(),
         getSpotify(),
     ]);
 
@@ -125,7 +123,7 @@ export default async function MoreSection() {
                         <div className="h-full overflow-hidden p-6">
                             <PartsList
                                 rev={new Date().getFullYear()}
-                                rows={buildFunStats(moreData, valorant)}
+                                rows={buildFunStats(moreData)}
                             />
                         </div>
                     </section>

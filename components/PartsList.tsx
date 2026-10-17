@@ -10,15 +10,8 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
 export type PartsRow = {
     value: string | number;
     label: string;
-    /**
-     * "bar" draws a gauge from a percentage value; "cursor" adds a blinking
-     * caret; "eq" adds a little equaliser, for a track that's playing now
-     */
-    kind?: "bar" | "cursor" | "eq";
-    /** links the description, e.g. to the track */
-    href?: string;
-    /** pulled live rather than from sanity; marked with a dot */
-    live?: boolean;
+    /** "bar" draws a gauge from a percentage value; "cursor" adds a blinking caret */
+    kind?: "bar" | "cursor";
 };
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -58,7 +51,7 @@ export default function PartsList({ rows, rev }: { rows: PartsRow[]; rev: string
                     whileInView="shown"
                     viewport={{ once: true, amount: 0.4 }}
                 >
-                    {rows.map(({ value, label, kind, href, live }, i) => {
+                    {rows.map(({ value, label, kind }, i) => {
                         const pct = kind === "bar" ? parseFloat(String(value)) : NaN;
                         return (
                             <motion.tr key={`${i}-${label}`} variants={row} className="border-b border-border">
@@ -67,35 +60,13 @@ export default function PartsList({ rows, rev }: { rows: PartsRow[]; rev: string
                                 </td>
                                 <td className="truncate py-2 pr-2 text-sm text-foreground">
                                     {value}
-                                    {kind === "eq" && (
-                                        <span aria-hidden="true" className="eq ml-1.5 inline-flex h-[0.8em] items-end gap-px">
-                                            <span /><span /><span />
-                                        </span>
-                                    )}
                                     {kind === "cursor" && (
                                         <span aria-hidden="true" className="caret ml-0.5 inline-block h-[0.95em] w-[0.5em] translate-y-[0.12em] bg-primary" />
                                     )}
                                 </td>
                                 <td className="py-2">
                                     <div className="flex min-w-0 items-center gap-2 text-foreground/75">
-                                        {live && (
-                                            <span title="live" className="size-1 shrink-0 bg-primary">
-                                                <span className="sr-only">live</span>
-                                            </span>
-                                        )}
-                                        {href ? (
-                                            <a
-                                                href={href}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                title={label}
-                                                className="min-w-0 line-clamp-2 break-words underline decoration-rule underline-offset-4 transition-colors hover:text-primary hover:decoration-primary"
-                                            >
-                                                {label}
-                                            </a>
-                                        ) : (
-                                            <span title={label} className="min-w-0 line-clamp-2 break-words">{label}</span>
-                                        )}
+                                        <span title={label} className="min-w-0 line-clamp-2 break-words">{label}</span>
                                         {Number.isFinite(pct) ? (
                                             // gauge: a hairline track filled to the value
                                             <span aria-hidden="true" className="relative h-1.5 min-w-8 flex-1 border border-rule">
