@@ -4,6 +4,7 @@
 "use client";
 
 import React from "react";
+import { useReducedMotion } from "framer-motion";
 import {
     Dialog,
     DialogContent,
@@ -30,14 +31,92 @@ interface ProjectDetailsDialogProps {
     websiteUrl?: string | null;
 }
 
+// how far down, or how fast, a drag has to go to dismiss the sheet
+const DISMISS_DISTANCE = 96;
+const DISMISS_VELOCITY = 0.5; // px per ms
+// matches the sm breakpoint, below which the panel is a sheet
+const SHEET_QUERY = "(max-width: 39.99rem)";
+
 const LINK_CLASS =
     "label inline-flex items-center gap-2 border border-rule px-3 py-2 text-foreground transition-colors hover:border-primary hover:text-primary";
 
 export default function ProjectDetailsDialog({ title, content, subtitle, fig, githubUrl, websiteUrl }: ProjectDetailsDialogProps) {
     const hasLinks = Boolean(githubUrl || websiteUrl);
+    // controlled, so a drag can close the sheet itself
+    const [open, setOpen] = React.useState(false);
+    const reduceMotion = useReducedMotion();
+    const panelRef = React.useRef<HTMLDivElement | null>(null);
+    const dragRef = React.useRef<{
+        id: number;
+        startY: number;
+        lastY: number;
+        lastTime: number;
+        prevY: number;
+        prevTime: number;
+        offset: number;
+    } | null>(null);
+
+    // drag-to-dismiss, from the handle and header only. the scroller is never
+    // touched, so native momentum scrolling is left exactly as it is.
+    const startDrag = (event: React.PointerEvent<HTMLDivElement>) => {
+        if (event.pointerType !== "touch" || !window.matchMedia(SHEET_QUERY).matches) return;
+        const panel = panelRef.current;
+        if (!panel) return;
+
+        dragRef.current = {
+            id: event.pointerId,
+            startY: event.clientY,
+            lastY: event.clientY,
+            lastTime: event.timeStamp,
+            prevY: event.clientY,
+            prevTime: event.timeStamp,
+            offset: 0,
+        };
+        panel.style.transition = "none";
+        event.currentTarget.setPointerCapture(event.pointerId);
+    };
+
+    const moveDrag = (event: React.PointerEvent<HTMLDivElement>) => {
+        const drag = dragRef.current;
+        const panel = panelRef.current;
+        if (!drag || !panel || event.pointerId !== drag.id) return;
+
+        drag.offset = Math.max(0, event.clientY - drag.startY);
+        drag.prevY = drag.lastY;
+        drag.prevTime = drag.lastTime;
+        drag.lastY = event.clientY;
+        drag.lastTime = event.timeStamp;
+
+        // the `translate` property, not `transform`: tw-animate-css leaves its
+        // enter keyframe filling forwards, and an animation outranks an inline
+        // style, so an inline transform here would be silently ignored. the
+        // keyframes never touch `translate`.
+        panel.style.translate = `0 ${drag.offset}px`;
+    };
+
+    const endDrag = (event: React.PointerEvent<HTMLDivElement>) => {
+        const drag = dragRef.current;
+        const panel = panelRef.current;
+        if (!drag || event.pointerId !== drag.id) return;
+        dragRef.current = null;
+
+        const elapsed = Math.max(1, drag.lastTime - drag.prevTime);
+        const velocity = (drag.lastY - drag.prevY) / elapsed;
+
+        if (drag.offset > DISMISS_DISTANCE || velocity > DISMISS_VELOCITY) {
+            // the exit animation carries it the rest of the way down
+            setOpen(false);
+            return;
+        }
+
+        if (!panel) return;
+        // a drag tracks the finger either way; only the settle is motion
+        panel.style.transition = reduceMotion ? "none" : "translate 200ms cubic-bezier(0.22, 1, 0.36, 1)";
+        panel.style.translate = "0 0";
+    };
 
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             {/* trigger button */}
             <DialogTrigger asChild>
                 <Button className="group justify-center sm:w-auto hover:cursor-pointer" variant="fill" size="sm">
@@ -53,10 +132,26 @@ export default function ProjectDetailsDialog({ title, content, subtitle, fig, gi
                 flex + max-h lets it shrink to short content and cap at the viewport,
                 with the body taking whatever height is left. */}
             <DialogContent
-                className="flex max-h-[min(85svh,52rem)] w-[calc(100%-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-w-2xl lg:max-w-3xl"
+                ref={panelRef}
+                sheetOnMobile
+                className="flex max-h-[90svh] w-[calc(100%-2rem)] flex-col gap-0 overflow-hidden p-0 max-sm:pb-[env(safe-area-inset-bottom)] sm:max-h-[min(85svh,52rem)] sm:max-w-2xl lg:max-w-3xl"
             >
+                {/* the drag surface: handle plus header. touch-none keeps the browser
+                    from claiming the gesture, and the body below is never included. */}
+                <div
+                    onPointerDown={startDrag}
+                    onPointerMove={moveDrag}
+                    onPointerUp={endDrag}
+                    onPointerCancel={endDrag}
+                    className="shrink-0 max-sm:touch-none"
+                >
+                {/* grab handle, phones only */}
+                <div aria-hidden="true" className="flex justify-center pt-3 sm:hidden">
+                    <span className="h-1 w-10 bg-rule" />
+                </div>
+
                 {/* pr-14 clears the close button */}
-                <DialogHeader className="shrink-0 gap-3 border-b border-border p-6 pr-14 text-left sm:p-8 sm:pr-16">
+                <DialogHeader className="gap-3 border-b border-border p-6 pr-14 text-left max-sm:pt-4 sm:p-8 sm:pr-16">
                     <DialogDescription className="label flex items-center gap-3">
                         {fig && <span className="text-primary">{fig}</span>}
                         {fig && subtitle && <span aria-hidden="true" className="h-px w-6 bg-rule" />}
@@ -64,6 +159,7 @@ export default function ProjectDetailsDialog({ title, content, subtitle, fig, gi
                     </DialogDescription>
                     <DialogTitle className="text-4xl sm:text-5xl">{title}</DialogTitle>
                 </DialogHeader>
+                </div>
 
                 {/* a plain overflow container rather than radix's ScrollArea, whose
                     viewport grows with its content inside a flex column and never
